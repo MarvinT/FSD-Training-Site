@@ -1,0 +1,5 @@
+%h1 FSD
+
+#content 
+
+%img{:src=> "/assets/logo.gif" :class=> }

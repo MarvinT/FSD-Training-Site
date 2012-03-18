@@ -4,9 +4,14 @@ Feature: Upload Prezis
 	So that I can share prezis with volunteers
 	I want to be able to upload prezis to a specific lesson
 
-  	
+Background: lessons in database
+
+  Given the following lessons exist:
+  Lesson1
+  Lesson2 
+ 	
 Scenario: upload document to existing a lesson
   Given I am on the detail page for "Lesson1"
-  And  I fill in "upload_prezis" with "upload_prezis_path"
+  And  I enter the url for "Prezzie1"
   And  I press "submit"
-  Then I should see "upload_prezis_path"
+  Then I should see "Prezzie1 successfully uploaded"

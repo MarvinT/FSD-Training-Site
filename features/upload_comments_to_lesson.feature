@@ -4,10 +4,11 @@ Feature: Upload Comments on Individual Lesson Pages
 	So that I can share my opinion about specific documents, prezis, and videos
 	I want to be able to add comments to lessons
 
-Background: lessonss in database
+Background: lessons in database
 
   Given the following lessons exist:
   Lesson1
+  Lesson2
   	
 Scenario: upload comments to existing a lesson
   Given I am on the detail page for "Lesson1"

@@ -8,6 +8,7 @@ Background: lessons in database
 
   Given the following lessons exist:
   Lesson1
+  Lesson2
   	
 Scenario: should see the lesson on home page 
   Given I am on the FSD-Training_Site home page

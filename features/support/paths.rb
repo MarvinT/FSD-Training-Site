@@ -16,6 +16,12 @@ module NavigationHelpers
     when /^the home\s?page$/
       '/'
 
+    when /^the detail page for "(.*)"$/
+      lesson = Lesson.find_by_title($1)
+      lesson_path(lesson)
+
+
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

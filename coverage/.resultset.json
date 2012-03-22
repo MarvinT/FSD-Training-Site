@@ -1,0 +1,63 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/home/saasbook/FSD-Training-Site/app/controllers/application_controller.rb": [
+        1,
+        1,
+        null
+      ],
+      "/home/saasbook/FSD-Training-Site/app/helpers/application_helper.rb": [
+        1,
+        null
+      ],
+      "/home/saasbook/FSD-Training-Site/app/controllers/lessons_controller.rb": [
+        1,
+        null,
+        1,
+        0,
+        0,
+        null,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        0,
+        null,
+        null,
+        null
+      ],
+      "/home/saasbook/FSD-Training-Site/app/models/lesson.rb": [
+        1,
+        null
+      ]
+    },
+    "timestamp": 1332441191
+  }
+}

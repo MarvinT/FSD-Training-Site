@@ -16,6 +16,19 @@ module NavigationHelpers
     when /^the home\s?page$/
       '/'
 
+    when /^the FSD-Training-Site home page$/
+      '/lessons'
+    
+    when /^the edit page for "(.*)"$/
+      "/lessons/#{Lesson.find_by_title($1).id}/edit"
+      
+    when /^the create page$/
+      "/lessons/new"
+            
+    when /^the details page for "(.*)"$/
+      "/lessons/#{Lesson.find_by_title($1).id}"
+      
+      
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

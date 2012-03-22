@@ -7,8 +7,9 @@ Feature: Upload Documents
 Background: lessons in database
 
   Given the following lessons exist:
-  Lesson1
-  Lesson2
+  | title      | release_date |
+  | Lesson1    |   2012-01-15 |
+  | Lesson2    |   2012-02-15 |
 
 Scenario: upload document to existing a lesson
   Given I am on the detail page for "Lesson1"

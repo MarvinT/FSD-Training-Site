@@ -49,10 +49,9 @@ describe LessonsController do
       it 'should update the lesson page' do
         Lesson.stub(:find).
           and_return(@fake_result)
-        @fake_result.should_receive(:update_attributes!).with(@fake_lesson).
-          and_return(@fake_result)
+        @fake_result.should_receive(:update_attributes!).with(@fake_lesson)
         post :update, {:id => '1', :lesson => @fake_lesson}
-        response.should redirect_to("/lessons/#{@fake_result.id}")
+        response.should redirect_to(lesson_path(@fake_result))
       end
 
       it 'should destroy the lesson page' do

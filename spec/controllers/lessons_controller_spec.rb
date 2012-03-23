@@ -31,43 +31,36 @@ describe LessonsController do
         and_return(@fake_result)
       post :create, {:lesson => @fake_lesson}
     end
-    describe 'after valid creation' do
-      before :each do
-        post :create, {:lesson => @fake_lesson}
-      end
+    
+    it 'should appear the created the lesson in home page' do
+      post :create, {:lesson => @fake_lesson}
+      response.should redirect_to('/lessons')
+    end
 
-      it 'should appear the created the lesson in home page' do
-        response.should redirect_to('/lessons')
-      end
+    it 'should go to the edit page of the lesson' do
+      Lesson.should_receive(:find).with('1').
+        and_return(@fake_result)
+      post :edit, {:id => '1'}
+      response.should render_template('edit')
+    end
 
-      it 'should go to the edit page of the lesson' do
-        Lesson.should_receive(:find).with('1').
-          and_return(@fake_result)
-        post :edit, {:id => '1'}
-        response.should render_template('edit')
-      end
+    it 'should update the lesson page' do
+      Lesson.stub(:find).
+        and_return(@fake_result)
+      @fake_result.should_receive(:update_attributes!).with(@fake_lesson)
+      post :update, {:id => '1', :lesson => @fake_lesson}
+      response.should redirect_to(lesson_path(@fake_result))
+    end
 
-      it 'should update the lesson page' do
-        Lesson.stub(:find).
-          and_return(@fake_result)
-        @fake_result.should_receive(:update_attributes!).with(@fake_lesson)
-        post :update, {:id => '1', :lesson => @fake_lesson}
-        response.should redirect_to(lesson_path(@fake_result))
-      end
-
-      it 'should destroy the lesson page' do
-        Lesson.stub(:find).
-          and_return(@fake_result)
-        @fake_result.should_receive(:destroy)
-        post :destroy, {:id => '1'}
-        response.should redirect_to('/lessons')
-      end
+    it 'should destroy the lesson page' do
+      Lesson.stub(:find).
+        and_return(@fake_result)
+      @fake_result.should_receive(:destroy)
+      post :destroy, {:id => '1'}
+      response.should redirect_to('/lessons')
     end
   end
 
-<<<<<<< HEAD
-end
-=======
   describe 'add video to a lesson' do
     before :each do
       @Lesson1 = new Lesson
@@ -91,9 +84,7 @@ end
     it 'should show the Edit Lesson view' do
       response.should render_template('edit_lesson')
     end
-
   end
-
+  
 end
 
->>>>>>> 53d23f569d4d6bbe11f3eb1af46cd72b810164d0

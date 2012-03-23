@@ -1,0 +1,24 @@
+require 'spec_helper'
+
+describe VideoController do
+  describe 'add video to a lesson' do
+    before :each do
+
+    end
+
+    it 'should add videos with valid urls' do
+      Video.stub(:isValidUrl?).and_return(true)
+      #lesson add video?  Video add url?
+    end
+
+    it 'should not add videos with invalid urls' do
+      Video.stub(:isValidUrl?).and_return(false)
+      #lesson blocked from adding video? Video can't add url?
+    end
+
+    it 'should show the Edit Lesson view' do
+      response.should render('edit_lesson')
+    end
+
+  end
+end

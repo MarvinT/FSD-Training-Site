@@ -1,0 +1,2 @@
+class Video < Component
+end

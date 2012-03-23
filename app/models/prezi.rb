@@ -1,0 +1,2 @@
+class Prezi < Component
+end

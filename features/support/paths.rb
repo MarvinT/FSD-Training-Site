@@ -20,6 +20,17 @@ module NavigationHelpers
       lesson = Lesson.find_by_title($1)
       lesson_path(lesson)
 
+    when /^the FSD-Training-Site home page$/
+      '/lessons'
+
+    when /^the edit page for "(.*)"$/
+      "/lessons/#{Lesson.find_by_title($1).id}/edit"
+
+    when /^the create page$/
+      "/lessons/new"
+
+    when /^the details page for "(.*)"$/
+      "/lessons/#{Lesson.find_by_title($1).id}"
 
 
     # Add more mappings here.

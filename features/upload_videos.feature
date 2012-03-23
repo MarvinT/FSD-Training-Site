@@ -8,9 +8,11 @@ Feature: Upload Videos
 Background: lessons in database
 
   Given the following lessons exist:
+
   |title            |description       |release_date|
   |Lesson1          |the first lesson  |25-Nov-1992|
   |Lesson2          |the second lesson |22-Mar-2012|
+
   	
 Scenario: upload a valid video to existing a lesson
   Given I am on the detail page for "Lesson1"

@@ -14,7 +14,8 @@ describe LessonsController do
   end 
   
   describe 'index test' do
-    it 'show the index page' do   
+    it 'show the index page' do 
+      Lesson.should_receive(:all)  
       post :index
       response.should render_template('index') 
     end   

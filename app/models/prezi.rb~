@@ -1,2 +1,0 @@
-class Prezi < ActiveRecord::Base
-end

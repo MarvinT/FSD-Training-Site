@@ -31,7 +31,7 @@ describe LessonsController do
         and_return(@fake_result)
       post :create, {:lesson => @fake_lesson}
     end
-    
+
     it 'should appear the created the lesson in home page' do
       post :create, {:lesson => @fake_lesson}
       response.should redirect_to('/lessons')
@@ -63,8 +63,8 @@ describe LessonsController do
 
   describe 'add video to a lesson' do
     before :each do
-      @Lesson1 = new Lesson
-      @Lesson2 = new Lesson
+      @Lesson1 = Lesson.new
+      @Lesson2 = Lesson.new
       @testUrl = "http://www.youtube.com/watch?v=dQw4w9WgXcQ&ob=av2n"
     end
 
@@ -85,6 +85,6 @@ describe LessonsController do
       response.should render_template('edit_lesson')
     end
   end
-  
+
 end
 

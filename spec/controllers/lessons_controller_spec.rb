@@ -31,7 +31,7 @@ describe LessonsController do
         and_return(@fake_result)
       post :create, {:lesson => @fake_lesson}
     end
-    
+
     it 'should appear the created the lesson in home page' do
       post :create, {:lesson => @fake_lesson}
       response.should redirect_to('/lessons')
@@ -86,7 +86,7 @@ describe LessonsController do
       response.should render_template('edit_lesson')
     end
   end
-  
+
 end
 
-  
+

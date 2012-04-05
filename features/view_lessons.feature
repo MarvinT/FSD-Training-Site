@@ -7,9 +7,10 @@ Feature: Viewing Lessons
 Background: lessons in database
 
   Given the following lessons exist:
-  | title      | release_date |
-  | Lesson1    |   2012-01-15 |
-  | Lesson2    |   2012-02-15 |
+
+  |title            |description       |
+  |Lesson1          |the first lesson  |
+  |Lesson2          |the second lesson |
   	
 Scenario: should see the lesson on home page 
   Given I am on the FSD-Training_Site home page

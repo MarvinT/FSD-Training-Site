@@ -7,9 +7,10 @@ Feature: Upload Comments on Individual Lesson Pages
 Background: lessons in database
 
  Given the following lessons exist:
-  |title            |description       |release_date|
-  |Lesson1          |the first lesson  |25-Nov-1992|
-  |Lesson2          |the second lesson |22-Mar-2012|
+ 
+  |title            |description       |
+  |Lesson1          |the first lesson  |
+  |Lesson2          |the second lesson |
   	
 Scenario: upload comments to existing a lesson
   Given I am on the detail page for "Lesson1"

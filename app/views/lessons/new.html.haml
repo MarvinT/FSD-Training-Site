@@ -2,7 +2,7 @@
   = render :partial => "shared/head"
   #main
     .content
-      %h1 Create a new lesson
+      %h1 Create a New Lesson
       = form_tag lessons_path do
         = label :lesson, :title, 'Title'
         %br
@@ -15,5 +15,5 @@
         %br
         %br
         = submit_tag 'Save Changes'
-    .clear
-    = render :partial => "shared/footer"
+  .clear
+  = render :partial => "shared/footer"

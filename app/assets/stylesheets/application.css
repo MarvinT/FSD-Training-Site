@@ -104,3 +104,8 @@ float: left;
 width: 310px;
 padding: 5px;
 }
+
+
+#lesson_description {
+height: 4em;
+}

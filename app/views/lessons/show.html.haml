@@ -1,0 +1,9 @@
+#wrapper
+  = render :partial => "shared/head"
+  #main
+    .content
+      %h2= @lesson.title
+      %p= @lesson.description
+
+    .clear
+  = render :partial => "shared/footer"

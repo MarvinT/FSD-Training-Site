@@ -6,15 +6,15 @@
       = form_tag lessons_path do
         = label :lesson, :title, 'Title'
         %br
-        = text_field :lesson, 'title'
+        = text_area :lesson, 'title'
         %br
         %br
         = label :lesson, :description, 'Description'
         %br
-        = text_field :lesson, 'description'
+        = text_area :lesson, 'description'
         %br
         %br
         = submit_tag 'Save Changes'
-    .clear
+  .clear
   = render :partial => "shared/footer"
  

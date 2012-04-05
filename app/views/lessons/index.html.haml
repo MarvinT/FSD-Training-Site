@@ -14,8 +14,16 @@
                %p link_to "#{lesson.title}", lesson_path(lesson)
    #right_sidebar
       .content
-         %h2 admin login
-         %p Login under construction
+         - if !@user.nil?
+            %h2 admin login
+            %p Login under construction
+         - else
+            %h2 admin control panel
+            %p
+               = link_to "Create Lesson", new_lesson_path
+               %br
+               Logout
+
          %hr
          %h2 facebook
          %p

@@ -7,7 +7,11 @@
          %p The FSD Training Center is an online e-learning center that provides pre-departure training online for students across the United States. Documents, presentations, and videos are organized by lesson to create a classroom-like experience.
          %hr
          %h2 Lessons
-         %p There currently no lessons available. Please check back later.
+         - if @lessons.empty?
+            %p There currently no lessons available. Please check back later.
+         - else
+            - @lessons.each do |lesson|
+               %p link_to "#{lesson.title}", lesson_path(lesson)
    #right_sidebar
       .content
          %h2 admin login

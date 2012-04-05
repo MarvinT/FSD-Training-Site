@@ -3,7 +3,6 @@ class CreateLessons < ActiveRecord::Migration
     create_table :lessons do |t|
       t.string :title
       t.text :description
-      t.datetime :release_date
       t.timestamps
     end
   end

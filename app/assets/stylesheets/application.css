@@ -105,7 +105,15 @@ width: 310px;
 padding: 5px;
 }
 
+#lesson_title{
+height:1.5em;
+}
+
+#lesson_description, #lesson_title {
+width: 30em;
+}
 
 #lesson_description {
-height: 4em;
+float: top;
+height: 7em;
 }

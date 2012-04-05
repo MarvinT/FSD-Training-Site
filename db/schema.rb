@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120323031752) do
+ActiveRecord::Schema.define(:version => 20120405041853) do
 
   create_table "components", :force => true do |t|
     t.integer  "order"
@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(:version => 20120323031752) do
   create_table "lessons", :force => true do |t|
     t.string   "title"
     t.text     "description"
-    t.datetime "release_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

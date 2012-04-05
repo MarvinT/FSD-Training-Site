@@ -11,7 +11,8 @@
             %p There currently no lessons available. Please check back later.
          - else
             - @lessons.each do |lesson|
-               %p link_to "#{lesson.title}", lesson_path(lesson)
+               %p
+                  = link_to "#{lesson.title}", lesson_path(lesson)
    #right_sidebar
       .content
          - if !@user.nil?

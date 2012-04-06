@@ -34,6 +34,7 @@ class LessonsController < ApplicationController
     if not @lesson = Lesson.find(params[:id])
       flash[:notice] = "Invalid id input."
       redirect_to lessons_path
+    end
   end
  
   def update

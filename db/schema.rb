@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(:version => 20120405041853) do
 
   create_table "lessons", :force => true do |t|
     t.string   "title"
-    t.integer  "order"
     t.text     "description"
+    t.datetime "release_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

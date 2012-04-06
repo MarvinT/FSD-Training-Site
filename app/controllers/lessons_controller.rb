@@ -39,7 +39,7 @@ class LessonsController < ApplicationController
   end
 
   def addVideo
-    lesson = Lesson.find(params[:id])
+    lesson = Lesson.find params[:id]
     url = params[:video_url]
     if Video.isValidUrl?(url)
       new_video = Video.new(:url => url)
@@ -49,7 +49,7 @@ class LessonsController < ApplicationController
     else
       flash[:error] = "Video url is invalid"
     end
-    redirect_to edit
+    redirect_to edit_lesson_path(lesson)
   end
 
 end

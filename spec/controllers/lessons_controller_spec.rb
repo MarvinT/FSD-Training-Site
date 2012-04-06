@@ -63,14 +63,14 @@ describe LessonsController do
 
   describe 'add video to a lesson' do
     before :each do
-      @Lesson1 = mock("Lesson", :id => 1)
+      @Lesson1 = mock("Lesson", :id => '1')
       @testUrl = "test URL"
     end
 
     it 'should add videos with valid urls' do
       Video.stub(:isValidUrl?).and_return(true)
       Lesson.stub(:find).with(@Lesson1.id).and_return(@Lesson1)
-      post :addVideo, {:lesson_id => @Lesson1.id, :video_url => testUrl}
+      post :addVideo, {:id => @Lesson1.id, :video_url => @testUrl}
       @Lesson1.components.empty?.should be(false)
       #should replace with better test once we know how the controller method works
     end
@@ -78,8 +78,8 @@ describe LessonsController do
     it 'should not add videos with invalid urls' do
       Video.stub(:isValidUrl?).and_return(false)
       Lesson.stub(:find).with(@Lesson1.id).and_return(@Lesson1)
-      post :addVideo, {:lesson_id => @Lesson1.id, :video_url => testUrl}
-      @Lesson2.components.empty?.should be(true)
+      post :addVideo, {:id => @Lesson1.id, :video_url => @testUrl}
+      @Lesson1.components.empty?.should be(true)
     end
 
     after :each do

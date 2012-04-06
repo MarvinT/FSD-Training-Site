@@ -14,7 +14,7 @@ describe Video do
     end
 
     it 'should reject invalid urls' do
-      badUrl = "http://www.youtube.com/watch?v=KaqC5FnvAEc"
+      badUrl = "http://www.blutube.com/watch?v=KaqC5FnvAEc"
       Video.isValidUrl?(badUrl).should be(false)
     end
   end

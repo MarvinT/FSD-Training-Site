@@ -20,3 +20,14 @@ end
 Then /I should see all of the lessons/ do
   page.should have_css("table#lessons tr", :count=> Lesson.find(:all).length + 1)
 end
+
+And /I press "OK" on the pop up/ do
+  page.driver.browser.switch_to.alert.accept
+
+
+end
+
+And /I press "Cancel" on the pop up/ do
+  page.driver.browser.switch_to.alert.dismiss
+
+end

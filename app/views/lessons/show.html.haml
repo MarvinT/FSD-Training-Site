@@ -16,5 +16,24 @@
       %hr
       %h2 Comments
       %p This functionality is under construction.
+  #right_sidebar
+    .content
+      -if @user.nil?
+        %h2 admin control panel
+        %p
+          = link_to "Edit Lesson", edit_lesson_path(@lesson)
+          %br
+          = link_to "Delete Lesson", lesson_path(@lesson), :method => :delete, :confirm =>'Are you sure?'
+          %br
+          Upload Document
+          %br
+          Upload Prezi
+          %br
+          Upload Video
+          %br
+          Logout
+        %hr
+      %h2 navigation
+      %p= link_to "Return Home", "/"
   .clear
   = render :partial => "shared/footer"

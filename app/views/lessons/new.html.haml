@@ -22,5 +22,14 @@
         %br
         %br
         = submit_tag 'Save Changes'
+  #right_sidebar
+    .content
+      -if @user.nil?
+        %h2 admin control panel
+        %p
+          Logout
+        %hr
+      %h2 navigation
+      %p= link_to "Return Home", "/"
   .clear
   = render :partial => "shared/footer"

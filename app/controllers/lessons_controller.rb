@@ -5,7 +5,7 @@ class LessonsController < ApplicationController
     begin 
       @lesson = Lesson.find(id) # look up lesson by unique ID
     rescue
-      flash[:notice] = "Invalid id input."
+      flash[:notice] = "Lesson not found."
       redirect_to lessons_path
     end
     # will render app/views/lessons/show.<extension> by default
@@ -36,7 +36,7 @@ class LessonsController < ApplicationController
     begin
       @lesson = Lesson.find(params[:id])
     rescue  
-      flash[:notice] = "Invalid id input."
+      flash[:notice] = "Lesson not found."
       redirect_to lessons_path
     end
   end

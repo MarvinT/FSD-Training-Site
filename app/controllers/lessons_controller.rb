@@ -2,7 +2,9 @@ class LessonsController < ApplicationController
 
   def show
     id = params[:id] # retrieve lesson ID from URI route
-    if not @lesson = Lesson.find(id) # look up lesson by unique ID
+    begin 
+      @lesson = Lesson.find(id) # look up lesson by unique ID
+    rescue
       flash[:notice] = "Invalid id input."
       redirect_to lessons_path
     end
@@ -31,7 +33,9 @@ class LessonsController < ApplicationController
   end
 
   def edit
-    if not @lesson = Lesson.find(params[:id])
+    begin
+      @lesson = Lesson.find(params[:id])
+    rescue  
       flash[:notice] = "Invalid id input."
       redirect_to lessons_path
     end

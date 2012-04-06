@@ -23,8 +23,8 @@ describe LessonsController do
 
   describe 'create, edit, update, destroy test' do
     before :each do
-      @fake_lesson = {'title' => 'lesson1', "description" => 'sample lesson', 'release_date' => '25-Nov-2011'}
-      @fake_result = mock('Lesson', :id => '1', :title => 'lesson1', :description => 'sample lesson', :release_date => '25-Nov-2011')
+      @fake_lesson = {'title' => 'lesson1', "description" => 'sample lesson'}
+      @fake_result = mock('Lesson', :id => '1', :title => 'lesson1', :description => 'sample lesson')
     end
     it 'should create the lesson page' do
       Lesson.should_receive(:create!).with(@fake_lesson).
@@ -63,13 +63,14 @@ describe LessonsController do
 
   describe 'add video to a lesson' do
     before :each do
-      @Lesson1 = mock("Lesson", :id => '1')
+      # @Lesson1 = mock("Lesson", :id => '1')
+      @Lesson1 = Lesson.create!(:title => 'test', :order => 4, :description => 'test')
       @testUrl = "test URL"
     end
 
     it 'should add videos with valid urls' do
       Video.stub(:isValidUrl?).and_return(true)
-      Lesson.stub(:find).with(@Lesson1.id).and_return(@Lesson1)
+      Lesson.stub(:find).with("#{@Lesson1.id}").and_return(@Lesson1)
       post :addVideo, {:id => @Lesson1.id, :video_url => @testUrl}
       @Lesson1.components.empty?.should be(false)
       #should replace with better test once we know how the controller method works
@@ -77,13 +78,13 @@ describe LessonsController do
 
     it 'should not add videos with invalid urls' do
       Video.stub(:isValidUrl?).and_return(false)
-      Lesson.stub(:find).with(@Lesson1.id).and_return(@Lesson1)
+      Lesson.stub(:find).with("#{@Lesson1.id}").and_return(@Lesson1)
       post :addVideo, {:id => @Lesson1.id, :video_url => @testUrl}
       @Lesson1.components.empty?.should be(true)
     end
 
     after :each do
-      response.should render_template('edit_lesson')
+      response.should redirect_to edit_lesson_path @Lesson1
     end
   end
 

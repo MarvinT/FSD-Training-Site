@@ -3,6 +3,8 @@ class CreateComponents < ActiveRecord::Migration
     create_table :components do |t|
       t.integer :order
       t.references :lesson
+      t.string :url
+      t.string :type
 
       t.timestamps
     end

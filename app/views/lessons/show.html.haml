@@ -3,6 +3,10 @@
   #main
     .content
       %h1= @lesson.title
+      - if flash[:notice] != nil
+        #notice.message= flash[:notice]
+      - elsif flash[:warning] != nil
+        #warning.message= flash[:warning]
       %hr
       %h2 Description
       %p= @lesson.description

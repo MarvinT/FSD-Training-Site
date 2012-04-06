@@ -10,10 +10,10 @@
       - elsif flash[:warning] != nil
         #warning.message= flash[:warning]
         %br
-      = form_tag lessons_path do
+      = form_tag lesson_path(@lesson), :method => :put do
         = label :lesson, :title, 'Title'
         %br
-        = text_area :lesson, 'title'
+        = text_field :lesson, 'title'
         %br
         %br
         = label :lesson, :description, 'Description'

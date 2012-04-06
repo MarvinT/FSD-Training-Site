@@ -9,7 +9,7 @@ gem 'rails', '3.1.3'
 
 gem 'haml'
 
-gem "selenium-webdriver", "~> 2.20.0"
+gem "selenium-webdriver", "~> 2.13.0"
 
 # Gems used only for assets and not required
 # in production environments by default.

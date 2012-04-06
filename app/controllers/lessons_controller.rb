@@ -21,7 +21,7 @@ class LessonsController < ApplicationController
         flash[:notice] = "#{@lesson.title} was successfully created."
         redirect_to lessons_path
       else
-        flash[:notice] = "An error has happened."
+        flash[:notice] = "You must enter a title for lesson."
         redirect_to new_lesson_path
       end  
     end  
@@ -38,7 +38,7 @@ class LessonsController < ApplicationController
         flash[:notice] = "#{@lesson.title} was successfully updated."
         redirect_to lesson_path(@lesson)
       else
-        flash[:notice] = "An error has happened."
+        flash[:notice] = "You must enter a title for lesson."
         redirect_to edit_lesson_path(@lesson)
       end
     end

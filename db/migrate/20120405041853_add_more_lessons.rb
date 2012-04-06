@@ -1,13 +1,13 @@
 class AddMoreLessons < ActiveRecord::Migration
   MORE_LESSONS = [
-    {:title => 'Lesson1', :description => 'lesson1 description'},
-    {:title => 'Lesson2', :description => 'lesson2 description'},
-    {:title => 'Lesson3', :description => 'lesson3 description'},
-    {:title => 'Lesson4', :description => 'lesson4 description'},
-    {:title => 'Lesson5', :description => 'lesson5 description'},
-    {:title => 'Lesson6', :description => 'lesson6 description'},
-    {:title => 'Lesson7', :description => 'lesson7 description'},
-    {:title => 'Lesson8', :description => 'lesson7 description'},
+    {:title => 'Lesson 1: Sample Title', :description => 'This is a sample description for Lesson 1'},
+    {:title => 'Lesson 2: Sample Title', :description => 'This is a sample description for Lesson 2'},
+    {:title => 'Lesson 3: Sample Title', :description => 'This is a sample description for Lesson 3'},
+    {:title => 'Lesson 4: Sample Title', :description => 'This is a sample description for Lesson 4'},
+    {:title => 'Lesson 5: Sample Title', :description => 'This is a sample description for Lesson 5'},
+    {:title => 'Lesson 6: Sample Title', :description => 'This is a sample description for Lesson 6'},
+    {:title => 'Lesson 7: Sample Title', :description => 'This is a sample description for Lesson 7'},
+    {:title => 'Lesson 8: Sample Title', :description => 'This is a sample description for Lesson 8'},
   ]
   def up
     MORE_LESSONS.each do |lesson|

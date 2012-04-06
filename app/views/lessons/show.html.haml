@@ -2,8 +2,38 @@
   = render :partial => "shared/head"
   #main
     .content
-      %h2= @lesson.title
+      %h1= @lesson.title
+      %hr
+      %h2 Description
       %p= @lesson.description
-
+      %hr
+      %h2 Documents
+      %p There are currently no documents uploaded for this lesson.
+      %h2 Prezis
+      %p There are currently no prezis uploaded for this lesson.
+      %h2 Videos
+      %p There are currently no videos uploaded for this lesson.
+      %hr
+      %h2 Comments
+      %p This functionality is under construction.
+  #right_sidebar
+    .content
+      -if @user.nil?
+        %h2 admin control panel
+        %p
+          = link_to "Edit Lesson", edit_lesson_path(@lesson)
+          %br
+          = link_to "Delete Lesson", lesson_path(@lesson), :method => :delete, :confirm =>'Are you sure?'
+          %br
+          Upload Document
+          %br
+          Upload Prezi
+          %br
+          Upload Video
+          %br
+          Logout
+        %hr
+      %h2 navigation
+      %p= link_to "Return Home", "/"
   .clear
   = render :partial => "shared/footer"

@@ -2,7 +2,10 @@ class LessonsController < ApplicationController
 
   def show
     id = params[:id] # retrieve lesson ID from URI route
-    @lesson = Lesson.find(id) # look up lesson by unique ID
+    if not @lesson = Lesson.find(id) # look up lesson by unique ID
+      flash[:notice] = "Invalid id input."
+      redirect_to lessons_path
+    end
     # will render app/views/lessons/show.<extension> by default
   end
 
@@ -28,7 +31,9 @@ class LessonsController < ApplicationController
   end
 
   def edit
-    @lesson = Lesson.find params[:id]
+    if not @lesson = Lesson.find(params[:id])
+      flash[:notice] = "Invalid id input."
+      redirect_to lessons_path
   end
  
   def update

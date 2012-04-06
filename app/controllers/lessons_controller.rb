@@ -41,25 +41,30 @@ class LessonsController < ApplicationController
     end
   end
  
-  def update
-    @lesson = Lesson.find params[:id]
-    if request.post?
-      if Lesson.update(params[:id], params[:lesson])
-        flash[:notice] = "#{@lesson.title} was successfully updated."
-        redirect_to lesson_path(@lesson)
-      else
-        flash[:notice] = "You must enter a title for lesson."
-        redirect_to edit_lesson_path(@lesson)
-      end
-    end
-  end
-
   # def update
     # @lesson = Lesson.find params[:id]
-    # @lesson.update_attributes!(params[:lesson])
-    # flash[:notice] = "#{@lesson.title} was successfully updated."
-    # redirect_to lesson_path(@lesson)
+    # if request.post?
+      # if Lesson.update(params[:id], params[:lesson])
+        # flash[:notice] = "#{@lesson.title} was successfully updated."
+        # redirect_to lesson_path(@lesson)
+      # else
+        # flash[:notice] = "You must enter a title for lesson."
+        # redirect_to edit_lesson_path(@lesson)
+      # end
+    # end
   # end
+
+  def update
+    @lesson = Lesson.find params[:id] 
+    begin 
+      @lesson.update_attributes!(params[:lesson])
+      flash[:notice] = "#{@lesson.title} was successfully updated."
+      redirect_to lesson_path(@lesson)
+    rescue
+      flash[:notice] = "You must enter a title for lesson."
+      redirect_to edit_lesson_path(@lesson) 
+    end
+  end
 
   def destroy
     @lesson = Lesson.find(params[:id])

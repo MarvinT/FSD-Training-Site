@@ -1,13 +1,8 @@
 require 'spec_helper'
 
 describe Video do
-  pending "add some examples to (or delete) #{__FILE__}"
+
   describe 'saving a video' do
-=begin
-    before :each do
-      @testVideo = Video.create!
-    end
-=end
     it 'should check if the url is valid' do
       testUrl = "http://www.youtube.com/watch?v=dQw4w9WgXcQ&ob=av2n"
       Video.isValidUrl?(testUrl).should be(true)

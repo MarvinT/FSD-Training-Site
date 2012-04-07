@@ -1,7 +1,7 @@
 Feature: Create or Delete a Lesson
 
 	As an admin
-	So that I can organize documetns, videos, and prezzies into lessons
+	So that I can organize documents, videos, and prezzies into lessons
 	I want to be able to create or delete a lesson
 
 Background: lessons in database

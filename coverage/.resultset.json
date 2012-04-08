@@ -17,8 +17,9 @@
         1,
         1,
         1,
+        1,
         null,
-        0,
+        1,
         0,
         null,
         null,
@@ -107,13 +108,68 @@
         null,
         1,
         1,
+        1,
+        null,
+        1,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/home/saasbook/FSD/app/controllers/videos_controller.rb": [
+        1,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        0,
+        null,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        null,
+        0,
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/home/saasbook/FSD/app/models/video.rb": [
+        1,
+        null,
+        1,
+        null,
+        1,
+        2,
+        null,
+        null,
+        1,
+        null,
         null,
         1,
         null,
         null,
         null,
-        1,
-        4,
+        null,
         null,
         null,
         null
@@ -121,30 +177,35 @@
       "/home/saasbook/FSD/app/models/component.rb": [
         1,
         1,
+        null,
+        1,
+        null,
+        null,
+        1,
+        null,
+        null,
+        1,
+        null,
+        null,
         null
       ],
       "/home/saasbook/FSD/app/models/document.rb": [
         1,
+        null,
+        1,
         null
       ],
       "/home/saasbook/FSD/app/models/prezi.rb": [
+        1,
+        null,
         1,
         null
       ],
       "/home/saasbook/FSD/app/models/text.rb": [
         1,
         null
-      ],
-      "/home/saasbook/FSD/app/models/video.rb": [
-        1,
-        1,
-        2,
-        null,
-        null
       ]
     },
-
-    "timestamp": 1333739163
-
+    "timestamp": 1333869826
   }
 }

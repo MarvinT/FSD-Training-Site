@@ -74,18 +74,4 @@ class LessonsController < ApplicationController
     redirect_to lessons_path
   end
 
-  def addVideo
-    lesson = Lesson.find params[:id]
-    url = params[:video_url]
-    if Video.isValidUrl?(url)
-      new_video = Video.create(:url => url)
-      lesson.components << new_video
-      lesson.save!
-      flash[:notice] = "Video has been added to this lesson"
-    else
-      flash[:error] = "Video url is invalid"
-    end
-    redirect_to edit_lesson_path(lesson)
-  end
-
 end

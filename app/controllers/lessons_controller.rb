@@ -4,6 +4,7 @@ class LessonsController < ApplicationController
     id = params[:id] # retrieve lesson ID from URI route
     begin
       @lesson = Lesson.find(id) # look up lesson by unique ID
+      @videos = @lesson.videos
     rescue
       flash[:notice] = "Lesson not found."
       redirect_to lessons_path

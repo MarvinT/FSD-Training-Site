@@ -16,7 +16,8 @@
       %h2 Prezis
       %p There are currently no prezis uploaded for this lesson.
       %h2 Videos
-      %p There are currently no videos uploaded for this lesson.
+      - @videos.each do |video|
+        = render :partial => 'videos/youtube_video', :locals => { :url => video.url }
       %hr
       %h2 Comments
       %p This functionality is under construction.
@@ -33,7 +34,7 @@
           %br
           Upload Prezi
           %br
-          Upload Video
+          = link_to "Upload Video", new_lesson_video_path(@lesson)
           %br
           Logout
         %hr

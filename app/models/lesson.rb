@@ -1,18 +1,15 @@
 class Lesson < ActiveRecord::Base
 
-  has_many :components
+  has_many :videos
+  has_many :documents
+  has_many :prezis
+
   validates_presence_of :title
 
-  def videos
-    components.where(:type => 'Video')
+
+  def self.title(id)
+    Lesson.find(id).title
   end
 
-  def prezis
-    components.where(:type => 'Prezi')
-  end
-
-  def documents
-    components.where(:type => 'Document')
-  end
 
 end

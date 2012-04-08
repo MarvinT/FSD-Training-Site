@@ -64,12 +64,19 @@ describe LessonsController do
       response.should render_template('edit')
     end
     
+    # it 'show Lesson not found.' do
+      # Lesson.should_receive(:find).with('10').
+        # should raise_error
+      # post :edit, {:id => '10'}
+      # response.should redirect_to('/lessons')
+    # end    
+
     it 'show Lesson not found.' do
-      Lesson.should_receive(:find).with('10').
-        should raise_error
+      Lesson.stub(:find).with('10').
+        and_raise(ActiveRecord::RecordNotFound)
       post :edit, {:id => '10'}
       response.should redirect_to('/lessons')
-    end    
+    end   
 
     it 'should update the lesson page' do
       Lesson.stub(:find).
@@ -82,8 +89,8 @@ describe LessonsController do
     it 'show You must enter a title for lesson.' do
       Lesson.stub(:find).
         and_return(@fake_result)
-      @fake_result.should_receive(:update_attributes!).with(@invalid_fake_lesson).
-        should raise_error
+      @fake_result.stub(:update_attributes!).with(@invalid_fake_lesson).
+        and_raise_error
       post :update, {:id => '1', :lesson => @invalid_fake_lesson}
       response.should redirect_to(edit_lesson_path(@fake_result))
     end    

@@ -11,9 +11,9 @@ describe VideosController do
 
 
     it 'should send back a redirect to the lesson page on successful creation' do
-      Video.should_receive(:new).with('url'=> @fake_video[:url]).
+      Video.should_receive(:new).with('url'=>@fake_video[:url]).
         and_return(@fake_video)
-      Video.should_receive(:embedableUrl).with('url' => @fake_video[:url]).and_return('')
+      Video.should_receive(:embedableUrl).with('url'=>@fake_video[:url]).and_return('')
 
       Lesson.should_receive(:find).with('1').
           and_return(@fake_result)

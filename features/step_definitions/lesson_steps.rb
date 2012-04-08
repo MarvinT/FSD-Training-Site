@@ -31,3 +31,8 @@ And /I press "Cancel" on the pop up/ do
   page.driver.browser.switch_to.alert.dismiss
 
 end
+
+And /I upload "(.*)" as my video$/ do |embed_code|
+
+  fill_in("video_url", :with => embed_code)
+end

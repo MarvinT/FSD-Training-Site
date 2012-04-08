@@ -8,11 +8,10 @@ class VideosController < ApplicationController
   def create
     if request.post?
 
-      @video = Video.new("url" => Video.embedableUrl(params[:video][:url]))
-      @video.attributes.each do |attr_name, attr_value|
-        puts "#{attr_name}, #{attr_value}"
-      end
+
       if Video.isValidUrl?(params[:video][:url])
+
+        @video = Video.new("url" => Video.embedableUrl(params[:video][:url]))
         @video.save
         lesson = Lesson.find(params[:lesson_id])
         lesson.videos << @video

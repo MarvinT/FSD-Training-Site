@@ -16,7 +16,7 @@ Background: lessons in database
 Scenario: upload a valid video to existing a lesson
   Given I am on the detail page for "Lesson1"
   And I follow "Upload Video"
-  And  I upload "blurg src="youtube.com/embed/UYdXi-AseF8" blurg" as my video
+  And  I upload "http://youtu.be/Q_h4IoPJXZw" as my video
   And  I press "Upload Video"
   Then I should be on the detail page for "Lesson1"
 

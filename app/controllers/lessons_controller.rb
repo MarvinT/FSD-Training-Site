@@ -19,19 +19,31 @@ class LessonsController < ApplicationController
   def new
     # default: render 'new' template
   end
-
+  
   def create
-    @lesson = Lesson.new(params[:lesson])
-    if request.post?
-      if @lesson.save
-        flash[:notice] = "#{@lesson.title} was successfully created."
-        redirect_to lessons_path
-      else
-        flash[:notice] = "You must enter a title for lesson."
-        redirect_to new_lesson_path
-      end
-    end
-  end
+    begin
+      @lesson = Lesson.create!(params[:lesson])
+      flash[:notice] = "#{@lesson.title} was successfully created."
+      redirect_to lessons_path
+    rescue
+      flash[:notice] = "You must enter a title for lesson."
+      redirect_to new_lesson_path
+    end  
+  end    
+    
+  # def create
+# 
+    # @lesson = Lesson.new(params[:lesson])
+    # if request.post?
+      # if @lesson.save
+        # flash[:notice] = "#{@lesson.title} was successfully created."
+        # redirect_to lessons_path
+      # else
+        # flash[:notice] = "You must enter a title for lesson."
+        # redirect_to new_lesson_path
+      # end
+    # end
+  # end
 
   def edit
     begin

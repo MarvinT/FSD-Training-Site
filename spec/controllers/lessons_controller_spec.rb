@@ -90,7 +90,7 @@ describe LessonsController do
       Lesson.stub(:find).
         and_return(@fake_result)
       @fake_result.stub(:update_attributes!).with(@invalid_fake_lesson).
-        and_raise_error
+        and_raise(ActiveRecord::RecordInvalid)
       post :update, {:id => '1', :lesson => @invalid_fake_lesson}
       response.should redirect_to(edit_lesson_path(@fake_result))
     end    

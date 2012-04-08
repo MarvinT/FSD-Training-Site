@@ -9,6 +9,14 @@ gem 'rails', '3.1.3'
 
 gem 'haml'
 
+# gem "oa-openid"
+# gem 'omniauth', '0.3.2', :git => 'git://github.com/intridea/omniauth.git'
+gem 'omniauth'
+gem 'omniauth-google-apps'
+# gem 'omniauth-openid'
+gem 'mongrel', '1.2.0.pre2'
+
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -45,6 +53,7 @@ end
 
 group :development, :test do
   gem 'sqlite3' # use SQLite only in development and testing
+  gem 'ruby-debug19'
 end
 group :production do
   gem 'pg' # use PostgreSQL in production (Heroku)

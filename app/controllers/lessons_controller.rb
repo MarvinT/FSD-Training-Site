@@ -1,6 +1,9 @@
 class LessonsController < ApplicationController
 
+  before_filter :admin_required, :except => [:index, :show]
+
   def show
+    @user = session[:admin_user]
     id = params[:id] # retrieve lesson ID from URI route
     begin
       @lesson = Lesson.find(id) # look up lesson by unique ID
@@ -13,13 +16,15 @@ class LessonsController < ApplicationController
   end
 
   def index
+    @user = session[:admin_user]
     @lessons = Lesson.all
   end
 
   def new
+    @user = session[:admin_user]
     # default: render 'new' template
   end
-  
+
   def create
     begin
       @lesson = Lesson.create!(params[:lesson])
@@ -28,11 +33,11 @@ class LessonsController < ApplicationController
     rescue
       flash[:notice] = "You must enter a title for lesson."
       redirect_to new_lesson_path
-    end  
-  end    
-    
+    end
+  end
+
   # def create
-# 
+#
     # @lesson = Lesson.new(params[:lesson])
     # if request.post?
       # if @lesson.save
@@ -46,6 +51,7 @@ class LessonsController < ApplicationController
   # end
 
   def edit
+    @user = session[:admin_user]
     begin
       @lesson = Lesson.find(params[:id])
     rescue

@@ -13,6 +13,16 @@ Fsd::Application.routes.draw do
   # This route can be invoked with purchase_url(:id => product.id)
 
   match 'lessons/:id/addVideo' => 'lessons#addVideo'
+  
+  match '/auth/admin/callback', :to => 'sessions#authenticate_admin'
+
+  constraints :subdomain => 'admin' do
+    scope :module => 'admin', :as => 'admin' do
+      root :to => 'users#index'
+      resources :users
+    # etc.
+    end
+  end
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products

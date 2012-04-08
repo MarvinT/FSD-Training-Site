@@ -2,8 +2,9 @@ class LessonsController < ApplicationController
 
   def show
     id = params[:id] # retrieve lesson ID from URI route
-    begin 
+    begin
       @lesson = Lesson.find(id) # look up lesson by unique ID
+      @videos = @lesson.videos
     rescue
       flash[:notice] = "Lesson not found."
       redirect_to lessons_path
@@ -18,29 +19,41 @@ class LessonsController < ApplicationController
   def new
     # default: render 'new' template
   end
-
+  
   def create
-    @lesson = Lesson.new(params[:lesson])
-    if request.post?
-      if @lesson.save 
-        flash[:notice] = "#{@lesson.title} was successfully created."
-        redirect_to lessons_path
-      else
-        flash[:notice] = "You must enter a title for lesson."
-        redirect_to new_lesson_path
-      end  
+    begin
+      @lesson = Lesson.create!(params[:lesson])
+      flash[:notice] = "#{@lesson.title} was successfully created."
+      redirect_to lessons_path
+    rescue
+      flash[:notice] = "You must enter a title for lesson."
+      redirect_to new_lesson_path
     end  
-  end
+  end    
+    
+  # def create
+# 
+    # @lesson = Lesson.new(params[:lesson])
+    # if request.post?
+      # if @lesson.save
+        # flash[:notice] = "#{@lesson.title} was successfully created."
+        # redirect_to lessons_path
+      # else
+        # flash[:notice] = "You must enter a title for lesson."
+        # redirect_to new_lesson_path
+      # end
+    # end
+  # end
 
   def edit
     begin
       @lesson = Lesson.find(params[:id])
-    rescue  
+    rescue
       flash[:notice] = "Lesson not found."
       redirect_to lessons_path
     end
   end
- 
+
   # def update
     # @lesson = Lesson.find params[:id]
     # if request.post?
@@ -55,14 +68,14 @@ class LessonsController < ApplicationController
   # end
 
   def update
-    @lesson = Lesson.find params[:id] 
-    begin 
+    @lesson = Lesson.find params[:id]
+    begin
       @lesson.update_attributes!(params[:lesson])
       flash[:notice] = "#{@lesson.title} was successfully updated."
       redirect_to lesson_path(@lesson)
     rescue
       flash[:notice] = "You must enter a title for lesson."
-      redirect_to edit_lesson_path(@lesson) 
+      redirect_to edit_lesson_path(@lesson)
     end
   end
 
@@ -71,20 +84,6 @@ class LessonsController < ApplicationController
     @lesson.destroy
     flash[:notice] = "Lesson '#{@lesson.title}' deleted."
     redirect_to lessons_path
-  end
-
-  def addVideo
-    lesson = Lesson.find params[:id]
-    url = params[:video_url]
-    if Video.isValidUrl?(url)
-      new_video = Video.new(:url => url)
-      lesson.components << new_video
-      lesson.save!
-      flash[:notice] = "Video has been added to this lesson"
-    else
-      flash[:error] = "Video url is invalid"
-    end
-    redirect_to edit_lesson_path(lesson)
   end
 
 end

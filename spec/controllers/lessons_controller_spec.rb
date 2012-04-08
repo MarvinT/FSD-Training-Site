@@ -5,12 +5,24 @@ describe LessonsController do
   describe 'show test' do
     it 'show the correct id page' do
       fake_lesson = mock('Lesson', :id => '1')
+      fake_videos = [mock('Video', :id => '1'),mock('Video', :id => '1')]
       Lesson.should_receive(:find).with('1').
         and_return(fake_lesson)
+      fake_lesson.should_receive(:videos).
+        and_return(fake_videos)
       get :show, {:id => '1'}
       response.should render_template('lessons/show')
       assigns(:lesson).should == fake_lesson
+      assigns(:videos).should == fake_videos
     end
+    
+    it 'show Lesson not found.' do
+      Lesson.should_receive(:find).with('10').
+        should raise_error
+      get :show, {:id => '10'}
+      response.should redirect_to('/lessons')
+    end
+    
   end
 
   describe 'index test' do
@@ -23,6 +35,7 @@ describe LessonsController do
 
   describe 'create, edit, update, destroy test' do
     before :each do
+      @invalid_fake_lesson = {'title' => '', "description" => 'sample lesson'}
       @fake_lesson = {'title' => 'lesson1', "description" => 'sample lesson'}
       @fake_result = mock('Lesson', :id => '1', :title => 'lesson1', :description => 'sample lesson')
     end
@@ -36,6 +49,13 @@ describe LessonsController do
       post :create, {:lesson => @fake_lesson}
       response.should redirect_to('/lessons')
     end
+    
+    it 'show You must enter a title for lesson.' do
+      Lesson.should_receive(:create!).with(@invalid_fake_lesson).
+        should raise_error
+      post :create, {:lesson => @invalid_fake_lesson}
+      response.should redirect_to('/lessons/new')
+    end    
 
     it 'should go to the edit page of the lesson' do
       Lesson.should_receive(:find).with('1').
@@ -43,6 +63,20 @@ describe LessonsController do
       post :edit, {:id => '1'}
       response.should render_template('edit')
     end
+    
+    # it 'show Lesson not found.' do
+      # Lesson.should_receive(:find).with('10').
+        # should raise_error
+      # post :edit, {:id => '10'}
+      # response.should redirect_to('/lessons')
+    # end    
+
+    it 'show Lesson not found.' do
+      Lesson.stub(:find).with('10').
+        and_raise(ActiveRecord::RecordNotFound)
+      post :edit, {:id => '10'}
+      response.should redirect_to('/lessons')
+    end   
 
     it 'should update the lesson page' do
       Lesson.stub(:find).
@@ -52,39 +86,21 @@ describe LessonsController do
       response.should redirect_to(lesson_path(@fake_result))
     end
 
+    it 'show You must enter a title for lesson.' do
+      Lesson.stub(:find).
+        and_return(@fake_result)
+      @fake_result.stub(:update_attributes!).with(@invalid_fake_lesson).
+        and_raise(ActiveRecord::RecordInvalid)
+      post :update, {:id => '1', :lesson => @invalid_fake_lesson}
+      response.should redirect_to(edit_lesson_path(@fake_result))
+    end    
+    
     it 'should destroy the lesson page' do
       Lesson.stub(:find).
         and_return(@fake_result)
       @fake_result.should_receive(:destroy)
       post :destroy, {:id => '1'}
       response.should redirect_to('/lessons')
-    end
-  end
-
-  describe 'add video to a lesson' do
-    before :each do
-      # @Lesson1 = mock("Lesson", :id => '1')
-      @Lesson1 = Lesson.create!(:title => 'test', :order => 4, :description => 'test')
-      @testUrl = "test URL"
-    end
-
-    it 'should add videos with valid urls' do
-      Video.stub(:isValidUrl?).and_return(true)
-      Lesson.stub(:find).with("#{@Lesson1.id}").and_return(@Lesson1)
-      post :addVideo, {:id => @Lesson1.id, :video_url => @testUrl}
-      @Lesson1.components.empty?.should be(false)
-      #should replace with better test once we know how the controller method works
-    end
-
-    it 'should not add videos with invalid urls' do
-      Video.stub(:isValidUrl?).and_return(false)
-      Lesson.stub(:find).with("#{@Lesson1.id}").and_return(@Lesson1)
-      post :addVideo, {:id => @Lesson1.id, :video_url => @testUrl}
-      @Lesson1.components.empty?.should be(true)
-    end
-
-    after :each do
-      response.should redirect_to edit_lesson_path @Lesson1
     end
   end
 

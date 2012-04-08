@@ -15,12 +15,14 @@ Background: lessons in database
   	
 Scenario: upload a valid video to existing a lesson
   Given I am on the detail page for "Lesson1"
-  And  I fill in "content" with "http://www.youtube.com/watch?v=U6tV11acSRk"
-  And  I press "submit"
-  Then I should see "Video1 successfully uploaded"
+  And I follow "Upload Video"
+  And  I upload "http://youtu.be/Q_h4IoPJXZw" as my video
+  And  I press "Upload Video"
+  Then I should be on the detail page for "Lesson1"
 
 Scenario: upload an invalid video url to an existing lesson
   Given I am on the detail page for "Lesson1"
-  And I fill in "content" with "http://www.gobbeldygook.gov"
-  And I press "submit"
-  Then I should see "Failure: invalid url. Please try again"
+  And I follow "Upload Video"
+  And I upload "http://www.gobbeldygook.gov" as my video
+  And I press "Upload Video"
+  Then I should see "Sorry, your URL was invalid. Please enter a valid URL."

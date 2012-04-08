@@ -18,3 +18,9 @@ Scenario: upload document to existing a lesson
   And  I enter the url for "Prezzie1"
   And  I press "submit"
   Then I should see "Prezzie1 successfully uploaded"
+
+Scenario: upload an invalid Prezi url to an existing lesson
+  Given I am on the detail page for "Lesson1"
+  And I fill in "content" with "http://www.gobbeldygook.gov"
+  And I press "submit"
+  Then I should see "Failure: invalid url. Please try again"

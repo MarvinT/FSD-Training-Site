@@ -9,13 +9,11 @@ gem 'rails', '3.1.3'
 
 gem 'haml'
 
-# gem "oa-openid"
-# gem 'omniauth', '0.3.2', :git => 'git://github.com/intridea/omniauth.git'
 gem 'omniauth'
 gem 'omniauth-google-apps'
-# gem 'omniauth-openid'
 gem 'mongrel', '1.2.0.pre2'
 
+gem "selenium-webdriver", "~> 2.13.0"
 
 # Gems used only for assets and not required
 # in production environments by default.

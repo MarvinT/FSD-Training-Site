@@ -17,3 +17,8 @@ Scenario: upload comments to existing a lesson
   And  I fill in "comment" with "my comment"
   And  I press "submit"
   Then I should see "my comment"
+
+Scenario: try to upload comments without including a comment body
+ Given I am on the detail page for "Lesson1"
+ And I press "submit"
+ Then I should see "Please enter a valid comment"

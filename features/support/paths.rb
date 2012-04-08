@@ -20,6 +20,9 @@ module NavigationHelpers
       lesson = Lesson.find_by_title($1)
       lesson_path(lesson)
 
+    when /^the detail page for lesson number "(.*)"/
+      lesson_path($1)
+
     when /^the FSD-Training-Site home page$/
       '/lessons'
 

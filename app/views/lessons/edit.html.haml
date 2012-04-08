@@ -24,7 +24,7 @@
         = submit_tag 'Save Changes'
   #right_sidebar
     .content
-      -if @user.nil?
+      -if !@user.nil?
         %h2 admin control panel
         %p
           Logout

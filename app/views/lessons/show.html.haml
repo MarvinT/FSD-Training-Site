@@ -23,7 +23,7 @@
       %p This functionality is under construction.
   #right_sidebar
     .content
-      -if @user.nil?
+      -if !@user.nil?
         %h2 admin control panel
         %p
           = link_to "Edit Lesson", edit_lesson_path(@lesson)

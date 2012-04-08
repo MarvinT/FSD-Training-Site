@@ -20,9 +20,9 @@
                      = link_to "#{lesson.title}", lesson_path(lesson)
    #right_sidebar
       .content
-         - if !@user.nil?
+         - if @user.nil?
             %h2 admin login
-            %p Login under construction
+            = link_to "Login", "/auth/admin"
          - else
             %h2 admin control panel
             %p

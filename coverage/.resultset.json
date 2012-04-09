@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/saasbook/FSD/app/controllers/admin/lessons_controller.rb": [
+      "/home/saasbook/cs169/fsd/app/controllers/admin/lessons_controller.rb": [
         1,
         1,
         null,
@@ -10,30 +10,30 @@
         null,
         null
       ],
-      "/home/saasbook/FSD/app/controllers/application_controller.rb": [
+      "/home/saasbook/cs169/fsd/app/controllers/application_controller.rb": [
         1,
         1,
         1,
-        8,
+        0,
         null,
         null,
         null,
         1,
         null,
         1,
-        8,
+        10,
         null,
         null
       ],
-      "/home/saasbook/FSD/app/helpers/application_helper.rb": [
+      "/home/saasbook/cs169/fsd/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "/home/saasbook/FSD/app/helpers/admin/lessons_helper.rb": [
+      "/home/saasbook/cs169/fsd/app/helpers/admin/lessons_helper.rb": [
         1,
         null
       ],
-      "/home/saasbook/FSD/app/models/lesson.rb": [
+      "/home/saasbook/cs169/fsd/app/models/lesson.rb": [
         1,
         null,
         1,
@@ -50,7 +50,7 @@
         null,
         null
       ],
-      "/home/saasbook/FSD/app/controllers/lessons_controller.rb": [
+      "/home/saasbook/cs169/fsd/app/controllers/lessons_controller.rb": [
         1,
         null,
         1,
@@ -79,13 +79,13 @@
         null,
         null,
         1,
-        0,
-        0,
-        0,
-        0,
+        3,
+        3,
+        3,
+        2,
         null,
-        0,
-        0,
+        1,
+        1,
         null,
         null,
         null,
@@ -104,12 +104,12 @@
         null,
         null,
         1,
-        0,
-        0,
-        0,
+        2,
+        2,
+        2,
         null,
-        0,
-        0,
+        1,
+        1,
         null,
         null,
         null,
@@ -127,44 +127,45 @@
         null,
         null,
         1,
-        0,
-        0,
-        0,
-        0,
-        0,
+        2,
+        2,
+        2,
+        1,
+        1,
         null,
-        0,
-        0,
+        1,
+        1,
         null,
         null,
         null,
         1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null
+      ],
+      "/home/saasbook/cs169/fsd/app/controllers/sessions_controller.rb": [
+        1,
+        1,
+        0,
+        null,
+        0,
+        null,
         0,
         0,
-        0,
+        null,
         0,
         null,
         null,
         null
       ],
-      "/home/saasbook/FSD/app/controllers/sessions_controller.rb": [
-        1,
-        1,
-        0,
-        null,
-        0,
-        null,
-        0,
-        0,
-        null,
-        0,
-        null,
-        null,
-        null
-      ],
-      "/home/saasbook/FSD/app/controllers/videos_controller.rb": [
+      "/home/saasbook/cs169/fsd/app/controllers/videos_controller.rb": [
         1,
         null,
+        1,
         null,
         1,
         0,
@@ -195,7 +196,7 @@
         null,
         null
       ],
-      "/home/saasbook/FSD/app/models/video.rb": [
+      "/home/saasbook/cs169/fsd/app/models/video.rb": [
         1,
         null,
         1,
@@ -216,7 +217,7 @@
         null,
         null
       ],
-      "/home/saasbook/FSD/app/models/component.rb": [
+      "/home/saasbook/cs169/fsd/app/models/component.rb": [
         1,
         1,
         null,
@@ -231,23 +232,23 @@
         null,
         null
       ],
-      "/home/saasbook/FSD/app/models/document.rb": [
+      "/home/saasbook/cs169/fsd/app/models/document.rb": [
         1,
         null,
         1,
         null
       ],
-      "/home/saasbook/FSD/app/models/prezi.rb": [
+      "/home/saasbook/cs169/fsd/app/models/prezi.rb": [
         1,
         null,
         1,
         null
       ],
-      "/home/saasbook/FSD/app/models/text.rb": [
+      "/home/saasbook/cs169/fsd/app/models/text.rb": [
         1,
         null
       ]
     },
-    "timestamp": 1333930337
+    "timestamp": 1333934636
   }
 }

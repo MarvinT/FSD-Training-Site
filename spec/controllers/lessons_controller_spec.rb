@@ -15,14 +15,14 @@ describe LessonsController do
       assigns(:lesson).should == fake_lesson
       assigns(:videos).should == fake_videos
     end
-    
+
     it 'show Lesson not found.' do
       Lesson.should_receive(:find).with('10').
         should raise_error
       get :show, {:id => '10'}
       response.should redirect_to('/lessons')
     end
-    
+
   end
 
   describe 'index test' do
@@ -38,6 +38,7 @@ describe LessonsController do
       @invalid_fake_lesson = {'title' => '', "description" => 'sample lesson'}
       @fake_lesson = {'title' => 'lesson1', "description" => 'sample lesson'}
       @fake_result = mock('Lesson', :id => '1', :title => 'lesson1', :description => 'sample lesson')
+      controller.stub(:admin?).and_return(true)
     end
     it 'should create the lesson page' do
       Lesson.should_receive(:create!).with(@fake_lesson).
@@ -49,13 +50,13 @@ describe LessonsController do
       post :create, {:lesson => @fake_lesson}
       response.should redirect_to('/lessons')
     end
-    
+
     it 'show You must enter a title for lesson.' do
       Lesson.should_receive(:create!).with(@invalid_fake_lesson).
         should raise_error
       post :create, {:lesson => @invalid_fake_lesson}
       response.should redirect_to('/lessons/new')
-    end    
+    end
 
     it 'should go to the edit page of the lesson' do
       Lesson.should_receive(:find).with('1').
@@ -63,20 +64,20 @@ describe LessonsController do
       post :edit, {:id => '1'}
       response.should render_template('edit')
     end
-    
+
     # it 'show Lesson not found.' do
       # Lesson.should_receive(:find).with('10').
         # should raise_error
       # post :edit, {:id => '10'}
       # response.should redirect_to('/lessons')
-    # end    
+    # end
 
     it 'show Lesson not found.' do
       Lesson.stub(:find).with('10').
         and_raise(ActiveRecord::RecordNotFound)
       post :edit, {:id => '10'}
       response.should redirect_to('/lessons')
-    end   
+    end
 
     it 'should update the lesson page' do
       Lesson.stub(:find).
@@ -93,8 +94,8 @@ describe LessonsController do
         and_raise(ActiveRecord::RecordInvalid)
       post :update, {:id => '1', :lesson => @invalid_fake_lesson}
       response.should redirect_to(edit_lesson_path(@fake_result))
-    end    
-    
+    end
+
     it 'should destroy the lesson page' do
       Lesson.stub(:find).
         and_return(@fake_result)

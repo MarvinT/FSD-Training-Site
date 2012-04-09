@@ -4,6 +4,7 @@ describe VideosController do
   before :each do
     @fake_lesson = {'title' => 'lesson1', "description" => 'sample lesson', :id => '1'}
     @fake_video = mock('Video', :id => '1', "url" => "a_valid_url")
+    controller.stub(:admin?).and_return(true)
   end
 
 

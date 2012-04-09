@@ -10,7 +10,6 @@ describe VideosController do
 
   describe 'the create method' do
 
-
     it 'should send back a redirect to the lesson page on successful creation' do
       Video.should_receive(:isValidUrl?).with('a_valid_url').and_return(true)
       Video.should_receive(:new).with('url'=> 'a_valid_url').
@@ -31,6 +30,20 @@ describe VideosController do
       post :create, {:lesson_id => 1, :video => {:url => 'not_a_url'}}
 
       response.should redirect_to('/lessons/1/videos/new')
+
+    end
+  end
+
+  describe 'destroying videos' do
+    it 'should destroy a lesson when the controller method is called' do
+      Video.stub(:find).
+        and_return(@fake_video)
+
+      Lesson.stub(:find).and_return(@fake_lesson)
+      @fake_video.should_receive(:destroy)
+      post :destroy, {:id => '1', :lesson_id => '1'}
+      response.should redirect_to('/lessons/1?description=sample+lesson&title=lesson1')
+
 
 
     end

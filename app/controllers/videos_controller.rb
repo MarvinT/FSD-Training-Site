@@ -25,8 +25,13 @@ class VideosController < ApplicationController
     end
   end
 
-
-
+  def destroy
+    @video = Video.find(params[:id])
+    @video.destroy
+    @lesson = Lesson.find(params[:lesson_id])
+    flash[:notice] = 'You have deleted a video for this lesson.'
+    redirect_to lesson_path(@lesson)
+  end
 
 
 end

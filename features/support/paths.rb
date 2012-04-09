@@ -16,6 +16,9 @@ module NavigationHelpers
     when /^the home\s?page$/
       '/'
 
+    when /^the login page$/ 
+      '/auth/admin'
+      
     when /^the detail page for "(.*)"$/
       lesson = Lesson.find_by_title($1)
       lesson_path(lesson)

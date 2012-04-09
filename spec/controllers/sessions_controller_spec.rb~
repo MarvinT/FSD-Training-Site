@@ -1,0 +1,9 @@
+require 'spec_helper'
+
+describe SessionsController do
+  def login(user)
+    post login_path, :login => 'marvin', :password => 'marvin2012'
+  end
+
+
+end

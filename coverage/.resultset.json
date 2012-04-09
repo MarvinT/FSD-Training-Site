@@ -150,14 +150,14 @@
       "/home/saasbook/cs169/fsd/app/controllers/sessions_controller.rb": [
         1,
         1,
-        0,
+        2,
         null,
-        0,
+        2,
         null,
-        0,
-        0,
+        2,
+        1,
         null,
-        0,
+        1,
         null,
         null,
         null
@@ -249,6 +249,10 @@
         null
       ]
     },
+<<<<<<< HEAD
     "timestamp": 1333934636
+=======
+    "timestamp": 1333940702
+>>>>>>> 5b94297307d91151ee43c1affb91120b9beb0a21
   }
 }

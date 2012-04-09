@@ -4,9 +4,23 @@ Given /^I enter the url for "([^"]*)"$/ do |url|
   pending # express the regexp above with the code you wish you had
 
 end
+# 
+# Given /^I am logged in$/ do
+  # Given %{I am on the login page}
+   # fills_in("Email", :with => "marvin")
+   # fills_in("Passwd", :with => "marvin2012")
+   # clicks_button("signIn")
+# end
 
+Given /^I try to login$/ do 
+  fill_in("Email", :with => "marvin")
+  fill_in("Passwd", :with => "marvin2012")
+  click_link("signIn")
+end
 
-# Add a declarative step here for populating the DB with movies.
+Given /^I am logged in$/ do
+  controller.session[:admin_user] = true
+end
 
 Given /the following lessons exist/ do |lessons_table|
   lessons_table.hashes.each do |lesson|
@@ -14,7 +28,6 @@ Given /the following lessons exist/ do |lessons_table|
     # you should arrange to add that movie to the database here.
     Lesson.create!(lesson)
   end
-
 end
 
 Then /I should see all of the lessons/ do

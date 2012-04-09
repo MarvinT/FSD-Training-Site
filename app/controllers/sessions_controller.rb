@@ -10,4 +10,9 @@ class SessionsController < ApplicationController
       render :text => '401 Unauthorized', :status => 401
     end
   end
+  
+  def logout_admin
+    session[:admin_user] = nil
+    redirect_to '/', :notice => "Signed out!"
+  end
 end

@@ -15,6 +15,8 @@ Fsd::Application.routes.draw do
   match 'lessons/:id/addVideo' => 'lessons#addVideo'
   
   match '/auth/admin/callback', :to => 'sessions#authenticate_admin'
+  
+  match '/auth/admin/logout', :to => 'sessions#logout_admin'
 
   constraints :subdomain => 'admin' do
     scope :module => 'admin', :as => 'admin' do

@@ -13,12 +13,9 @@ end
 # end
 
 Given /^I try to login$/ do 
-  begin
-    fill_in("Email", :with => "marvin")
-    fill_in("Passwd", :with => "marvin2012")
-    click_link("signIn")
-  rescue
-  end
+  fill_in("Email", :with => "marvin")
+  fill_in("Passwd", :with => "marvin2012")
+  click_link("signIn")
 end
 
 Given /^I am logged in$/ do

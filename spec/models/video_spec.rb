@@ -4,7 +4,7 @@ describe Video do
 
   describe 'Checking for valid videos' do
     it 'should return true if the url is valid' do
-      testUrl = "http://youtu.bedQw4w9WgXcQ"
+      testUrl = "http://youtu.be/dQw4w9WgXcQ"
       Video.isValidUrl?(testUrl).should be(true)
     end
 

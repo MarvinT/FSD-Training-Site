@@ -13,9 +13,11 @@ Fsd::Application.routes.draw do
   # This route can be invoked with purchase_url(:id => product.id)
 
   match 'lessons/:id/addVideo' => 'lessons#addVideo'
-  
+
   match '/auth/admin/callback', :to => 'sessions#authenticate_admin'
-  
+
+  match '/auth/failure', :to => 'sessions#admin_authentication_failure'
+
   match '/auth/admin/logout', :to => 'sessions#logout_admin'
 
   constraints :subdomain => 'admin' do

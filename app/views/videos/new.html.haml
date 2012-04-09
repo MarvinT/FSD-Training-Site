@@ -18,8 +18,7 @@
     .content
       -if @user.nil?
         %h2 admin control panel
-        %p
-          Logout
+        %p= link_to "Logout", "/auth/admin/logout"
         %hr
       %h2 navigation
       %p= link_to "Return Home", "/"

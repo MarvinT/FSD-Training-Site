@@ -1,5 +1,6 @@
 class VideosController < ApplicationController
 
+  before_filter :admin_required
 
   def new
     @lesson_title = Lesson.title(params[:lesson_id])

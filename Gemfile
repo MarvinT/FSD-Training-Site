@@ -13,7 +13,7 @@ gem 'omniauth'
 gem 'omniauth-google-apps'
 gem 'mongrel', '1.2.0.pre2'
 
-gem "selenium-webdriver", "~> 2.13.0"
+gem "selenium-webdriver", "~> 2.20.0"
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -35,13 +35,10 @@ gem 'jquery-rails'
 # Deploy with Capistrano
 # gem 'capistrano'
 
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
-
 group :test, :development do
   gem 'simplecov'
   gem 'rspec-rails'
-  gem 'cucumber-rails'
+  gem 'cucumber-rails', :require => false
   gem 'cucumber-rails-training-wheels' # some pre-fabbed step definitions  
   gem 'database_cleaner' # to clear Cucumber's test database between runs
   gem 'capybara'         # lets Cucumber pretend to be a web browser
@@ -51,7 +48,7 @@ end
 
 group :development, :test do
   gem 'sqlite3' # use SQLite only in development and testing
-  gem 'ruby-debug19'
+  gem 'ruby-debug19', :require => 'ruby-debug'
 end
 group :production do
   gem 'pg' # use PostgreSQL in production (Heroku)

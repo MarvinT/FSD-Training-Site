@@ -22,13 +22,13 @@
       .content
          - if @user.nil?
             %h2 admin login
-            = link_to "Login", "/auth/admin"
+            = link_to "Login", login_path
          - else
             %h2 admin control panel
             %p
                = link_to "Create Lesson", new_lesson_path
                %br
-               %p= link_to "Logout", "/auth/admin/logout"
+               %p= link_to "Logout", logout_path
 
          %hr
          %h2 facebook

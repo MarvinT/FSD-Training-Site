@@ -26,9 +26,9 @@
     .content
       -if !@user.nil?
         %h2 admin control panel
-        %p= link_to "Logout", "/auth/admin/logout"
+        %p= link_to "Logout", logout_path
         %hr
       %h2 navigation
-      %p= link_to "Return Home", "/"
+      %p= link_to "Return Home", root_path
   .clear
   = render :partial => "shared/footer"

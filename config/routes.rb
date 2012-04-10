@@ -14,18 +14,11 @@ Fsd::Application.routes.draw do
 
   match 'lessons/:id/addVideo' => 'lessons#addVideo'
 
-  match '/auth/admin/callback', :to => 'sessions#authenticate_admin'
-
-  match '/auth/failure', :to => 'sessions#admin_authentication_failure'
-
-  match '/auth/admin/logout', :to => 'sessions#logout_admin'
-
-  constraints :subdomain => 'admin' do
-    scope :module => 'admin', :as => 'admin' do
-      root :to => 'users#index'
-      resources :users
-    # etc.
-    end
+  scope '/auth' do
+    match '/admin', :as => :login
+    match '/admin/callback', :to => 'sessions#authenticate_admin'
+    match '/failure', :to => 'sessions#admin_authentication_failure'
+    match '/admin/logout', :to => 'sessions#logout_admin', :as => :logout
   end
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):

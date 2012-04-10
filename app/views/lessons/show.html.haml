@@ -42,9 +42,9 @@
           %br
           = link_to "Upload Video", new_lesson_video_path(@lesson)
           %br
-          %p= link_to "Logout", "/auth/admin/logout"
+          %p= link_to "Logout", logout_path
         %hr
       %h2 navigation
-      %p= link_to "Return Home", "/"
+      %p= link_to "Return Home", root_path
   .clear
   = render :partial => "shared/footer"

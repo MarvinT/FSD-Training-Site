@@ -1,13 +1,16 @@
 #wrapper
   = render :partial => "shared/head"
-  #main
+  .content
     .content
       %h1= @lesson.title
+      %img{:src => "/assets/#{@banner}"}
       - if flash[:notice] != nil
+        %br
         #notice.message= flash[:notice]
       - elsif flash[:warning] != nil
+        %br
         #warning.message= flash[:warning]
-      %hr
+    #main
       %h2 Description
       %p= @lesson.description
       %hr
@@ -16,6 +19,8 @@
       %h2 Prezis
       %p There are currently no prezis uploaded for this lesson.
       %h2 Videos
+      - if @videos.empty?
+        %p There are currently no videos uploaded for this lesson.
       - @videos.each do |video|
         = render :partial => 'videos/youtube_video', :locals => { :url => video.url }
         -if !@user.nil?
@@ -23,12 +28,11 @@
           = link_to "Delete Video", lesson_video_path(@lesson.id, video.id), :method => :delete, :confirm =>'Are you sure?'
           %br
           %br
-          
+  
       %hr
       %h2 Comments
       %p This functionality is under construction.
-  #right_sidebar
-    .content
+    #right_sidebar
       -if !@user.nil?
         %h2 admin control panel
         %p

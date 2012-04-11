@@ -1,16 +1,18 @@
 #wrapper
    = render :partial => "shared/head"
-   #main
-      .content
-         %h1 Welcome to the FSD Training Center
+   .content
+      %h1 Welcome to FSD Training Center
+      %img{:src => "/assets/trainingcenter_banner.jpg"}
+      - if flash[:notice] != nil
+         %br
+         #notice.message= flash[:notice]
+      - elsif flash[:warning] != nil
+         %br 
+         #warning.message= flash[:warning]
+      #main
          %p FSD reduces global poverty by providing over 300 grassroots community organizations around the world with training and key resources to address pressing socioeconomic issues.
          %p The FSD Training Center is an online e-learning center that provides pre-departure training online for students across the United States. Documents, presentations, and videos are organized by lesson to create a classroom-like experience.
-         %hr
-         %h2 Lessons
-         - if flash[:notice] != nil
-            #notice.message= flash[:notice]
-         - elsif flash[:warning] != nil
-            #warning.message= flash[:warning]
+         .title Lessons
          - if @lessons.empty?
             %p There currently no lessons available. Please check back later.
          - else
@@ -18,19 +20,14 @@
                - @lessons.each do |lesson|
                   %li
                      = link_to "#{lesson.title}", lesson_path(lesson)
-   #right_sidebar
-      .content
-         - if @user.nil?
-            %h2 admin login
-            = link_to "Login", login_path
-         - else
+      #right_sidebar
+         - if !@user.nil?
             %h2 admin control panel
             %p
                = link_to "Create Lesson", new_lesson_path
                %br
-               %p= link_to "Logout", logout_path
-
-         %hr
+               = link_to "Logout", logout_path
+            %hr
          %h2 facebook
          %p
             Stay updated with our

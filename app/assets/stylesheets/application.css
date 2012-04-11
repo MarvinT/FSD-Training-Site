@@ -107,11 +107,19 @@ height: 7em;
 }
 
 .title {
-font-size: 16px;
-padding: 8px;
+font-size: 20px;
+padding: 10px;
 color: #fff;
 font-weight: bold;
 background-color: #746859;
+}
+
+.title_small {
+font-size: 14px;
+padding: 7px;
+color: #fff;
+font-weight: bold;
+background-color: #756859;
 }
 
 #notice, #flash {
@@ -127,4 +135,34 @@ border: 2px solid #C2AD99;
 display: block;
 margin-left: auto;
 margin-right: auto;
+}
+
+.lessons {
+font-size: 16px;
+border: 1px solid #000;
+border-left: 10px solid #E37126;
+padding: 5px;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+
+#documents, #prezis, #videos, #comments {
+padding: 5px;
+margin: 5px;
+}
+
+#documents {
+border-left: 8px solid #466193;
+}
+
+#prezis {
+border-left: 8px solid #F0C020;
+}
+
+#videos {
+border-left: 8px solid #A81F24;
+}
+
+.bold a {
+font-weight:bold;
 }

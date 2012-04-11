@@ -9,7 +9,7 @@ describe Video do
     end
 
     it 'should reject invalid urls' do
-      badUrl = "http://www.youtube.com/embed/dQw4w9WgXcQ"
+      badUrl = "http://www.youtu.be/dQw4w9WgXy"
       Video.isValidUrl?(badUrl).should be(false)
     end
   end

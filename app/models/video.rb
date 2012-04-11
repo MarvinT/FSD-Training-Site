@@ -1,9 +1,17 @@
+require 'open-uri'
 class Video < Component
 
   belongs_to :lesson
 
   def self.isValidUrl?(url)
-    url.include? 'http://youtu.be'
+    from_youtube = url.include? 'http://youtu.be'
+    page_exists = true
+    begin
+      open(url)
+    rescue
+      page_exists = false
+    end
+    from_youtube && page_exists
   end
 
   def self.embedableUrl(url)

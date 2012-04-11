@@ -10,8 +10,15 @@ class LessonsController < ApplicationController
     id = params[:id] # retrieve lesson ID from URI route
     begin
       @lesson = Lesson.find(id) # look up lesson by unique ID
+
+      @documents = @lesson.documents
+
+      puts "Documents is #{@documents}. Is it empty? #{@documents.empty?}"
+
       @videos = @lesson.videos
-    rescue
+
+    rescue Exception => e
+      puts e.message
       flash[:notice] = "Lesson not found."
       redirect_to lessons_path
     end

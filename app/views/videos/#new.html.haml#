@@ -1,0 +1,28 @@
+#wrapper
+  = render :partial => "shared/head"
+  #main
+    .content
+      - if flash[:notice]
+        #notice.message= flash[:notice]
+      %h1 Add a video to #{@lesson_title}
+      %p On the youtube page for the video, click share, and then copy the text you find there. Pleae enter this text below. Example: http://youtu.be/hRWGZtle-i0
+      %hr
+      = form_tag lesson_videos_path do
+        = label :video, :url, 'URL'
+        %br
+        = text_field :video, 'url'
+        %br
+        %br
+        = submit_tag 'Upload Video'
+  #right_sidebar
+    .content
+      -if @user.nil?
+        %h2 admin control panel
+        %p= link_to "Logout", "/auth/admin/logout"
+        %hr
+      %h2 navigation
+      %p= link_to "Return Home", "/"
+  .clear
+  = render :partial => "shared/footer"
+  
+         

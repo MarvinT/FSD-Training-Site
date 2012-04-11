@@ -1,0 +1,28 @@
+#wrapper
+  = render :partial => "shared/head"
+  #main
+    .content
+      - if flash[:notice]
+        #notice.message= flash[:notice]
+      %h1 Add a document to #{@lesson_title}
+      %p On the Google docs page for the document click share in the upper right corner.  Make sure that if access is set to private to click change and select 'Public on the web'.  After saving, copy the link under 'Link to share' and enter the link below.
+      %hr
+      = form_tag lesson_documents_path do
+        = label :document, :url, 'URL'
+        %br
+        = text_field :document, 'url'
+        %br
+        %br
+        = submit_tag 'Upload Document'
+  #right_sidebar
+    .content
+      -if @user.nil?
+        %h2 admin control panel
+        %p= link_to "Logout", "/auth/admin/logout"
+        %hr
+      %h2 navigation
+      %p= link_to "Return Home", "/"
+  .clear
+  = render :partial => "shared/footer"
+  
+         

@@ -16,7 +16,16 @@
       %hr
       #documents
         %h2 Documents
-        %p There are currently no documents uploaded for this lesson.
+        - if @documents.empty?
+          %p There are currently no documents uploaded for this lesson.
+        - @documents.each do |doc|
+          = render :partial => 'documents/doc_iframe', :locals => { :url => doc.url}
+          -if !@user.nil?
+            %br
+            = link_to "Delete Document", lesson_document_path(@lesson.id, doc.id), :method => :delete, :confirm => 'Are you sure?'
+            %br
+            %br
+             
       #prezis
         %h2 Prezis
         %p There are currently no prezis uploaded for this lesson.
@@ -43,7 +52,7 @@
           %br
           = link_to "Delete Lesson", lesson_path(@lesson), :method => :delete, :confirm =>'Are you sure?'
           %br
-          Upload Document
+          = link_to "Upload Document", new_lesson_document_path(@lesson)
           %br
           Upload Prezi
           %br

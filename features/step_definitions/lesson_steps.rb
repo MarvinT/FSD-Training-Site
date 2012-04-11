@@ -38,3 +38,7 @@ And /I upload "(.*)" as my video$/ do |embed_code|
 
   fill_in("video_url", :with => embed_code)
 end
+
+And /I upload "(.*)" as my document$/ do |doc_url|
+  fill_in("document_url", :with => doc_url)
+end

@@ -46,6 +46,7 @@ describe DocumentsController do
       response.should redirect_to('/lessons/1?description=sample+lesson&title=lesson1')
 
 
+
     end
   end
  end

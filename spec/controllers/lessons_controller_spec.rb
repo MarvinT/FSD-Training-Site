@@ -6,14 +6,18 @@ describe LessonsController do
     it 'show the correct id page' do
       fake_lesson = mock('Lesson', :id => '1')
       fake_videos = [mock('Video', :id => '1'),mock('Video', :id => '1')]
+      fake_documents = [mock('Document', :id => '1'),mock('Document', :id => '1')]
       Lesson.should_receive(:find).with('1').
         and_return(fake_lesson)
       fake_lesson.should_receive(:videos).
         and_return(fake_videos)
+      fake_lesson.should_receive(:documents).
+        and_return(fake_documents)
       get :show, {:id => '1'}
       response.should render_template('lessons/show')
       assigns(:lesson).should == fake_lesson
       assigns(:videos).should == fake_videos
+      assigns(:documents).should == fake_documents
     end
 
     it 'show Lesson not found.' do

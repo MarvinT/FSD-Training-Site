@@ -4,8 +4,8 @@ class LessonsController < ApplicationController
 
   def show
     @user = session[:admin_user]
-    banners = ["banner1.jpg", "banner2.jpg", "banner3.jpg"]
-    random = rand(3)
+    banners = ["banner1.jpg", "banner2.jpg", "banner3.jpg", "banner4.jpg", "banner5.jpg", "banner6.jpg", "banner7.jpg"]
+    random = rand(7)
     @banner = banners[random]
     id = params[:id] # retrieve lesson ID from URI route
     begin

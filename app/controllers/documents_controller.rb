@@ -10,7 +10,7 @@ class DocumentsController < ApplicationController
     if request.post?
       if Document.isValidUrl?(params[:document][:url])
 
-        @doc = Document.new(params[:document])
+        @doc = Document.new("url" => Document.embedableUrl(params[:document][:url]))
         @doc.save
         lesson = Lesson.find(params[:lesson_id])
         lesson.documents << @doc

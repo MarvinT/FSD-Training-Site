@@ -13,14 +13,14 @@ describe DocumentsController do
 
     it 'should send back a redirect to the lesson page on successful creation' do
       Document.should_receive(:isValidUrl?).with('a_valid_url').and_return(true)
-      Document.should_receive(:new).with('url'=> 'a_valid_url').
+      Document.should_receive(:new).with('url'=> 'a_valid_url&amp;embedded=true').
         and_return(@fake_doc)
-      Document.should_receive(:embedableUrl).with('a_valid_url').and_return('a_valid_url')
+      Document.should_receive(:embedableUrl).with('a_valid_url').and_return('a_valid_url&amp;embedded=true')
       @fake_doc.should_receive(:save).and_return(true)
       Lesson.should_receive(:find).with('1').
           and_return(@fake_lesson)
       @fake_lesson.should_receive(:documents).and_return([])
-      post :create, {:lesson_id => 1, :documents => {:url => 'a_valid_url'}}
+      post :create, {:lesson_id => 1, :document => {:url => 'a_valid_url'}}
 
       response.should redirect_to('/lessons/1')
     end

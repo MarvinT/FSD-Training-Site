@@ -166,3 +166,20 @@ border-left: 8px solid #A81F24;
 .bold a {
 font-weight:bold;
 }
+
+iframe {
+  height: 400px;
+  width: 700px;  
+
+  margin-left: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  -moz-border-radius: 12px;
+  -webkit-border-radius: 12px; 
+  border-radius: 12px; 
+
+  -moz-box-shadow: 4px 4px 14px #466193; 
+  -webkit-box-shadow: 4px 4px 14px #466193; 
+  box-shadow: 4px 4px 14px #466193; 
+}

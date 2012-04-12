@@ -5,7 +5,7 @@ describe LessonsController do
   describe 'show test' do
     it 'show the correct id page' do
       fake_lesson = mock('Lesson', :id => '1')
-      fake_videos = [mock('Video', :id => '1'),mock('Video', :id => '1')]
+      fake_videos = [mock('Video', :id => '1'),mock('Video', :id => '2')]
       fake_documents = [mock('Document', :id => '1'),mock('Document', :id => '1')]
       Lesson.should_receive(:find).with('1').
         and_return(fake_lesson)

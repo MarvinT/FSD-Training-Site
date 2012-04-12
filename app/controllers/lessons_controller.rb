@@ -13,12 +13,9 @@ class LessonsController < ApplicationController
 
       @documents = @lesson.documents
 
-      puts "Documents is #{@documents}. Is it empty? #{@documents.empty?}"
-
       @videos = @lesson.videos
 
     rescue Exception => e
-      puts e.message
       flash[:notice] = "Lesson not found."
       redirect_to lessons_path
     end

@@ -13,6 +13,8 @@ class LessonsController < ApplicationController
 
       @documents = @lesson.documents
 
+      @prezis = @lesson.prezis
+
       @videos = @lesson.videos
 
     rescue Exception => e

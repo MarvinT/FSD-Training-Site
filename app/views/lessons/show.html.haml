@@ -28,7 +28,15 @@
              
       #prezis
         %h2 Prezis
-        %p There are currently no prezis uploaded for this lesson.
+        - if @prezis.empty?
+          %p There are currently no prezis uploaded for this lesson.
+        - @prezis.each do |prezi|
+          = render :partial => 'prezis/prezi_player', :locals => {:url => prezi.url}
+          - if !@user.nil?
+            %br
+            = link_to "Delete Prezi", lesson_prezi_path(@lesson.id, prezi.id), :method => :delete, :confirm => 'Are you sure?' 
+            %br
+            %br
       #videos
         %h2 Videos
         - if @videos.empty?
@@ -54,7 +62,7 @@
           %br
           = link_to "Upload Document", new_lesson_document_path(@lesson)
           %br
-          Upload Prezi
+          = link_to "Upload Prezi", new_lesson_prezi_path(@lesson)
           %br
           = link_to "Upload Video", new_lesson_video_path(@lesson)
           %br

@@ -5,7 +5,7 @@
       - if flash[:notice]
         #notice.message= flash[:notice]
       %h1 Add a video to #{@lesson_title}
-      %p On the youtube page for the video, click share, and then copy the text you find there. Pleae enter this text below. Example: http://youtu.be/hRWGZtle-i0
+      %p On the youtube page for the video, click share, and then copy the text you find there. Please enter this text below. Example: http://youtu.be/hRWGZtle-i0
       %hr
       = form_tag lesson_videos_path do
         = label :video, :url, 'URL'

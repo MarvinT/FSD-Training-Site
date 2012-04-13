@@ -19,6 +19,7 @@ Given /the following lessons exist/ do |lessons_table|
   end
 end
 
+
 Then /I should see all of the lessons/ do
   page.should have_css("table#lessons tr", :count=> Lesson.find(:all).length + 1)
 end

@@ -99,4 +99,18 @@ class LessonsController < ApplicationController
     redirect_to lessons_path
   end
 
+  def create_comment
+    
+  end
+  def edit_comment
+    
+  end
+  
+  def update_comment
+    
+  end
+  
+  def destroy_comment
+    
+  end
 end

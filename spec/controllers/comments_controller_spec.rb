@@ -41,7 +41,7 @@ describe CommentsController do
       Comment.should_receive(:find).with('1').
         and_return(@fake_comment_result)
       post :edit, {:lesson_id => '1', :id => '1'}
-      response.should redirect_to(edit_lesson_comment_path(@fake_comment_result))
+      response.should render_template('edit')
     end     
 
     it 'show Comment not found.' do

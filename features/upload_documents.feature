@@ -31,7 +31,7 @@ Scenario: upload an invalid video url to an existing lesson
 Scenario: delete a document from a lesson
   Given I am on the detail page for "Lesson1"
   And I follow "Upload Document"
-  And I upload "https://docs.google.com/document/pub?id=1Kh7QOtwI7ZtKadWWAumRPU1-HDbHARgCRJIkg5QeUMw/edit" 
+  And I upload "https://docs.google.com/document/pub?id=1Kh7QOtwI7ZtKadWWAumRPU1-HDbHARgCRJIkg5QeUMw" as my document
   And I press "Upload Document"
   Then I should be on the detail page for "Lesson1"
   And I follow "Delete Document"

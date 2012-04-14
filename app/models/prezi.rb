@@ -7,7 +7,7 @@ class Prezi < Component
     begin
       open(url)
     rescue Exception => e
-      puts e.message
+      #puts e.message
       return false
     end
 

@@ -1,3 +1,4 @@
+@comments
 Feature: Upload Comments on Individual Lesson Pages
 
 	As a volunteer

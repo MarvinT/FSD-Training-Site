@@ -156,11 +156,11 @@
         null,
         1,
         null,
-        0,
+        1,
         null,
-        2,
-        2,
-        2,
+        1,
+        1,
+        1,
         null,
         null,
         null,
@@ -397,12 +397,8 @@
         null,
         null,
         null
-      ],
-      "/home/saasbook/FSD/app/models/text.rb": [
-        1,
-        null
       ]
     },
-    "timestamp": 1334349649
+    "timestamp": 1334362209
   }
 }

@@ -42,3 +42,7 @@ end
 And /I upload "(.*)" as my document$/ do |doc_url|
   fill_in("document_url", :with => doc_url)
 end
+
+And /I upload "(.*)" as my prezi$/ do |prez_url|
+  fill_in("prezi_url", :with => prez_url)
+end

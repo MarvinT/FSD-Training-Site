@@ -47,6 +47,7 @@
         1,
         1,
         1,
+        1,
         null,
         1,
         null,
@@ -56,6 +57,60 @@
         null,
         null,
         null,
+        null
+      ],
+      "/home/saasbook/FSD/app/controllers/comments_controller.rb": [
+        1,
+        null,
+        1,
+        null,
+        1,
+        0,
+        0,
+        0,
+        null,
+        0,
+        null,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        null,
+        0,
+        0,
+        null,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        null,
+        0,
+        0,
+        null,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        null,
+        null
+      ],
+      "/home/saasbook/FSD/app/models/comment.rb": [
+        1,
+        1,
+        null,
+        1,
         null
       ],
       "/home/saasbook/FSD/app/controllers/documents_controller.rb": [
@@ -399,6 +454,6 @@
         null
       ]
     },
-    "timestamp": 1334362209
+    "timestamp": 1334369398
   }
 }

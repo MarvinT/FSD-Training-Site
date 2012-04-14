@@ -1,0 +1,29 @@
+#wrapper
+  = render :partial => "shared/head"
+  #main
+    .content
+      - if flash[:notice]
+        #notice.message= flash[:notice]
+      %h1 Add a prezi to #{@lesson_title}
+      %p On the page for your prezi, click the share button by its bottom left corner.  Copy the URL shown into the box below.  Example: http://prezi.com/2ge5bhookyep/welcome-to-fsd-international/
+      %hr
+      = form_tag lesson_prezis_path do
+        = label :prezi, :url, 'URL'
+        %br
+        = text_field :prezi, 'url'
+        %br
+        %br
+        = submit_tag 'Upload Prezi'
+  #right_sidebar
+    .content
+      -if @user.nil?
+        %h2 admin control panel
+        %p= link_to "Logout", "/auth/admin/logout"
+        %hr
+      %h2 navigation
+      %p= link_to "Return Home", "/"
+  .clear
+  = render :partial => "shared/footer"
+  
+         
+

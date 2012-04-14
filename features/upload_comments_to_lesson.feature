@@ -6,8 +6,8 @@ Feature: Upload Comments on Individual Lesson Pages
 
 Background: lessons in database
 
- Given the following lessons exist:
- 
+  Given the following lessons exist:
+  
   |title            |description       |
   |Lesson1          |the first lesson  |
   |Lesson2          |the second lesson |
@@ -36,7 +36,7 @@ Scenario: edit a existing comment
   And  I am on the detail page for "Lesson1"
   And  I follow "Edit_1"
   And  I am on the comment edit page for "Comment1"
-  And  I fill "Com_body_1" with "Comment1 body changed"
+  And  I fill in "Com_body_1" with "Comment1 body changed"
   And  I press "submit"
   Then I am on the detail page for "Lesson1"
   And I should see "Comment1 body changed"

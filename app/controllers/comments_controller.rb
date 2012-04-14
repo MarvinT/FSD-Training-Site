@@ -31,7 +31,7 @@ class CommentsController < ApplicationController
       redirect_to lesson_path(@lesson)
     rescue
       flash[:notice] = "You must enter a title for comment."
-      redirect_to edit_comment_path(@comment)
+      redirect_to edit_lesson_comment_path(@comment)
     end
   end    
   

@@ -12,7 +12,8 @@ Background: lessons in database
   |title            |description       |
   |Lesson1          |the first lesson  |
   |Lesson2          |the second lesson |
-    	
+
+@wip    	
 Scenario: upload comments to existing a lesson
   Given I am on the detail page for "Lesson1"
   And  I fill in "Com_title" with "Comment1"
@@ -22,12 +23,14 @@ Scenario: upload comments to existing a lesson
   Then I am on the detail page for "Lesson1"
   And I should see "Comment1"
 
+@wip
 Scenario: try to upload comments without including a comment title
   Given I am on the detail page for "Lesson1"
   And  I fill in "Com_body" with "Comment1 body"
   And I press "upload"
   Then I should see "Please enter a valid comment"
- 
+
+@wip 
 Scenario: edit a existing comment
   Given I am on the detail page for "Lesson1"
   And  I fill in "Com_title" with "Comment1"
@@ -41,7 +44,8 @@ Scenario: edit a existing comment
   And  I press "submit"
   Then I am on the detail page for "Lesson1"
   And I should see "Comment1 body changed"
-  
+
+@wip  
 @javascript
 Scenario: delete a existing comment
   Given I am on the detail page for "Lesson1"

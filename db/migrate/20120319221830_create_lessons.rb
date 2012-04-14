@@ -4,6 +4,7 @@ class CreateLessons < ActiveRecord::Migration
       t.string :title
       t.integer :order
       t.text :description
+      t.references :comment
       t.timestamps
     end
   end

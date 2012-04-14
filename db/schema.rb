@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120405041853) do
+ActiveRecord::Schema.define(:version => 20120413211920) do
+
+  create_table "comments", :force => true do |t|
+    t.string   "title"
+    t.string   "editor"
+    t.text     "body"
+    t.integer  "lesson_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "components", :force => true do |t|
     t.integer  "order"

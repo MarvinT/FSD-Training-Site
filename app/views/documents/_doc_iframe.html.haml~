@@ -1,2 +1,0 @@
-%iframe{:allowfullscreen => "", :frameborder => "0", :height => '780', width => '600', :src => "#{url}"}
-

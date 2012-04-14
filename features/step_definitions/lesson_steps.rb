@@ -11,10 +11,11 @@ Given /^I try to login$/ do
   click_link("signIn")
 end
 
+
 Given /the following lessons exist/ do |lessons_table|
   lessons_table.hashes.each do |lesson|
     # each returned element will be a hash whose key is the table header.
-    # you should arrange to add that movie to the database here.
+    # you should arrange to add that lesson to the database here.
     Lesson.create!(lesson)
   end
 end
@@ -41,4 +42,8 @@ end
 
 And /I upload "(.*)" as my document$/ do |doc_url|
   fill_in("document_url", :with => doc_url)
+end
+
+And /I upload "(.*)" as my prezi$/ do |prez_url|
+  fill_in("prezi_url", :with => prez_url)
 end

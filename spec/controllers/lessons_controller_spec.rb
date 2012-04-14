@@ -6,24 +6,28 @@ describe LessonsController do
     it 'show the correct id page' do
       fake_lesson = mock('Lesson', :id => '1')
       fake_videos = [mock('Video', :id => '1'),mock('Video', :id => '2')]
-      fake_documents = [mock('Document', :id => '1'),mock('Document', :id => '1')]
+      fake_documents = [mock('Document', :id => '1'),mock('Document', :id => '2')]
+      fake_prezis = [mock('Prezi', :id => '1'),mock('Prezi', :id => '2')]
       Lesson.should_receive(:find).with('1').
         and_return(fake_lesson)
       fake_lesson.should_receive(:videos).
         and_return(fake_videos)
       fake_lesson.should_receive(:documents).
         and_return(fake_documents)
-      get :show, {:id => '1'}
-      response.should render_template('lessons/show')
+      fake_lesson.should_receive(:prezis).
+        and_return(fake_prezis)
+      post :show, {:id => '1'}
+      response.should render_template('show')
       assigns(:lesson).should == fake_lesson
       assigns(:videos).should == fake_videos
       assigns(:documents).should == fake_documents
+      assigns(:prezis).should == fake_prezis
     end
 
     it 'show Lesson not found.' do
       Lesson.should_receive(:find).with('10').
         should raise_error
-      get :show, {:id => '10'}
+      post :show, {:id => '10'}
       response.should redirect_to('/lessons')
     end
 
@@ -51,6 +55,8 @@ describe LessonsController do
     end
 
     it 'should appear the created the lesson in home page' do
+      Lesson.stub(:create!).with(@fake_lesson).
+        and_return(@fake_result)
       post :create, {:lesson => @fake_lesson}
       response.should redirect_to('/lessons')
     end

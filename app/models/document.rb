@@ -7,7 +7,6 @@ class Document < Component
     begin
       open(url)
     rescue Exception => e
-      puts e.message
       return false
     end
 

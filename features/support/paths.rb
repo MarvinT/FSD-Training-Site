@@ -22,6 +22,10 @@ module NavigationHelpers
     when /^the detail page for "(.*)"$/
       lesson = Lesson.find_by_title($1)
       lesson_path(lesson)
+      
+    when /^the comment edit page for "(.*)"$/
+      comment = Comment.find_by_title($1)
+      '/lessons/#{comment.lesson_id}/#{comment.id}/edit'
 
     when /^the detail page for lesson number "(.*)"/
       lesson_path($1)

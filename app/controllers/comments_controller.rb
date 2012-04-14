@@ -2,8 +2,12 @@ class CommentsController < ApplicationController
 
   before_filter :admin_required, :except => [:create]
 
+  # def new
+    # @lesson = Lesson.title(params[:lesson_id])
+  # end
+  
   def create
-    @lesson = Lesson.find(params[:id])
+    @lesson = Lesson.find(params[:lesson_id])
     begin
       @comment = Comment.create!(params[:comment])
     rescue
@@ -12,10 +16,10 @@ class CommentsController < ApplicationController
     redirect_to lesson_path(@lesson)
   end
   
-  def edit_comment
-    @lesson = Lesson.find(params[:id])
+  def edit
+    @lesson = Lesson.find(params[:lesson_id])
     begin 
-      @comment = Comment.find(params[:comment_id])
+      @comment = Comment.find(params[:id])
     rescue
       flash[:notice] = "Comment not found."
       redirect_to lesson_path(@lesson)
@@ -23,8 +27,8 @@ class CommentsController < ApplicationController
   end
   
   def update
-    @lesson = Lesson.find(params[:id])
-    @comment = Comment.find params[:comment_id]
+    @lesson = Lesson.find(params[:lesson_id])
+    @comment = Comment.find params[:id]
     begin
       @comment.update_attributes!(params[:comment])
       flash[:notice] = "#{@comment.title} was successfully updated."
@@ -36,8 +40,8 @@ class CommentsController < ApplicationController
   end    
   
   def destroy
-    @lesson = Lesson.find(params[:id])
-    @comment = Comment.find(params[:comment_id])
+    @lesson = Lesson.find(params[:lesson_id])
+    @comment = Comment.find(params[:id])
     @comment.destroy
     flash[:notice] = "Comment '#{@comment.title}' deleted."
     redirect_to lesson_path(@lesson)

@@ -20,3 +20,7 @@
 # Ignore text editor autosave files #
 .rb~
 .rb#
+.haml~
+.haml#
+.css~
+.css#

@@ -1,3 +1,5 @@
 %h2= comment.title
+%p== by #{comment.editor} on #{comment.created_at}
 %p= comment.body
-%br
+-if admin?
+  %p= link_to "edit/delete this comment", edit_lesson_comment_path(comment.lesson_id, comment.id)

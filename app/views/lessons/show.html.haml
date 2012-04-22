@@ -48,10 +48,9 @@
             = link_to "Delete Video", lesson_video_path(@lesson.id, video.id), :method => :delete, :confirm =>'Are you sure?'
             %br
             %br
-      %br
-      .title_small Comments
       #comments
-        %p This functionality is under construction.
+        = render :partial => "comments/comment_feed"
+        %br
     #right_sidebar
       -if !@user.nil?
         %h2 admin control panel

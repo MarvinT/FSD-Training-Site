@@ -1,0 +1,12 @@
+= form_tag url_for(:controller => "comments", :action => "create", :lesson_id => @lesson.id) do
+  = label :comment, :title, 'Title'
+  %br
+  = text_field :comment, 'title'
+  %br
+  %br
+  = label :comment, :body, 'Comment'
+  %br
+  = text_area :comment, 'body'
+  %br
+  %br
+  = submit_tag 'Submit Comment'

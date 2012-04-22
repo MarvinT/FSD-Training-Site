@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
   def create
     @lesson = Lesson.find(params[:lesson_id])
     begin
-      @comment = Comment.create!(params[:comment])
+      @comment = @lesson.comments.create!(params[:comment])
     rescue
       flash[:notice] = "You must enter a title for comment."
     end

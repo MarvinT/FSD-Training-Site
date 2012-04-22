@@ -16,6 +16,8 @@ class LessonsController < ApplicationController
       @prezis = @lesson.prezis
 
       @videos = @lesson.videos
+      
+      @comments = @lesson.comments
 
     rescue Exception => e
       flash[:notice] = "Lesson not found."

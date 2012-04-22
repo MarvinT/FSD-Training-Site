@@ -11,7 +11,10 @@ describe CommentsController do
     it 'should successfully add comment to lesson' do
       fake_comment = {'title' => 'comment1', 'editor' => 'user1', "body" => 'comment1', "lesson_id" => '1'}
       fake_comment_result = mock('Comment', :id => '1', :title => 'comment1', :editor => 'user1', :body => 'comment1', :lesson_id => '1')
-      Comment.should_receive(:create!).with(fake_comment).
+      fake_comment_list = []
+      @fake_lesson_result.stub(:comments).
+        and_return(fake_comment_list)
+      fake_comment_list.should_receive(:create!).with(fake_comment).
         and_return(fake_comment_result)
       post :create, {:lesson_id => '1', :comment => fake_comment}
       response.should redirect_to(lesson_path(Lesson.find('1')))
@@ -19,7 +22,10 @@ describe CommentsController do
 
     it 'should show wrong comment information' do
       invalid_fake_comment = {'editor' => 'user1', "body" => 'comment1', "lesson_id" => '1'}
-      Comment.should_receive(:create!).with(invalid_fake_comment).
+      fake_comment_list = []
+      @fake_lesson_result.stub(:comments).
+        and_return(fake_comment_list)
+      fake_comment_list.should_receive(:create!).with(invalid_fake_comment).
         should raise_error
       post :create, {:lesson_id => '1', :comment => invalid_fake_comment}
       response.should redirect_to(lesson_path(@fake_lesson_result))

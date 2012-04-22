@@ -8,6 +8,7 @@ describe LessonsController do
       fake_videos = [mock('Video', :id => '1'),mock('Video', :id => '2')]
       fake_documents = [mock('Document', :id => '1'),mock('Document', :id => '2')]
       fake_prezis = [mock('Prezi', :id => '1'),mock('Prezi', :id => '2')]
+      fake_comments = [mock('Comment', :id => '1'),mock('Comment', :id => '2')]
       Lesson.should_receive(:find).with('1').
         and_return(fake_lesson)
       fake_lesson.should_receive(:videos).
@@ -16,12 +17,15 @@ describe LessonsController do
         and_return(fake_documents)
       fake_lesson.should_receive(:prezis).
         and_return(fake_prezis)
+      fake_lesson.should_receive(:comments).
+        and_return(fake_comments)
       post :show, {:id => '1'}
       response.should render_template('show')
       assigns(:lesson).should == fake_lesson
       assigns(:videos).should == fake_videos
       assigns(:documents).should == fake_documents
       assigns(:prezis).should == fake_prezis
+      assigns(:comments).should == fake_comments
     end
 
     it 'show Lesson not found.' do

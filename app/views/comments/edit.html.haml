@@ -2,7 +2,7 @@
   = render :partial => "shared/head"
   #main
     .content
-      %h1 Edit Lesson
+      %h1 Edit Comment
       %hr
       - if flash[:notice] != nil
         #notice.message= flash[:notice]
@@ -23,14 +23,17 @@
         %br
         = text_area :comment, 'body'
         %br
+        %br
         = submit_tag 'Save Changes'
         %br
-      = link_to "Delete Comment", lesson_comment_path(@comment.lesson_id, @comment.id), :method => :delete, :confirm => 'Are you sure?'
   #right_sidebar
     .content
       -if !@user.nil?
         %h2 admin control panel
-        %p= link_to "Logout", logout_path
+        %p
+          = link_to "Delete Comment", lesson_comment_path(@comment.lesson_id, @comment.id), :method => :delete, :confirm => 'Are you sure?'
+          %br
+          = link_to "Logout", logout_path
         %hr
       %h2 navigation
       %p= link_to "Return Home", root_path

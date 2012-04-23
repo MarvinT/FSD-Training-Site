@@ -2,7 +2,7 @@
   = render :partial => "shared/head"
   .content
     .content
-      %h1= @lesson.title
+      #lesson_title= @lesson.title
       %img{:src => "/assets/#{@banner}"}
       - if flash[:notice] != nil
         %br

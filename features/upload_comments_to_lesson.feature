@@ -36,7 +36,7 @@ Scenario: edit a existing comment
   And  I fill in "comment_editor" with "User1"
   And  I press "Submit Comment"
   And  I am on the detail page for "Lesson1"
-  And  I follow "edit/delete this comment"
+  And  I follow "moderate comment"
   And  I am on the comment edit page for "Comment1"
   And  I fill in "comment_body" with "Comment1 body changed"
   And  I press "Save Changes"
@@ -51,7 +51,7 @@ Scenario: delete a existing comment
   And  I fill in "comment_editor" with "User1"
   And  I press "Submit Comment"
   And  I am on the detail page for "Lesson1"
-  And  I follow "edit/delete this comment"
+  And  I follow "moderate comment"
   And  I am on the comment edit page for "Comment1"
   And I follow "Delete Comment"
   And I press "OK" on the pop up

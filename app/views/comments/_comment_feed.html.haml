@@ -1,6 +1,8 @@
+%hr
 %h2 Comments
-%p== Displaying #{@comments.length} comments
 - @comments.each do |comment|
   = render :partial => 'comments/comment', :locals => { :comment => comment }
+- if !@comments.empty?
+  %br
 = render :partial => "comments/comment_form"
   

@@ -20,6 +20,14 @@ Given /the following lessons exist/ do |lessons_table|
   end
 end
 
+Given /the following comments exist/ do |comments_table|
+  comments_table.hashes.each do |comment|
+    # each returned element will be a hash whose key is the table header.
+    # you should arrange to add that lesson to the database here.
+    Comment.create!(comment)
+  end
+end
+
 Then /I should see all of the lessons/ do
   page.should have_css("table#lessons tr", :count=> Lesson.find(:all).length + 1)
 end

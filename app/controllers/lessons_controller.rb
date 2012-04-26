@@ -19,6 +19,7 @@ class LessonsController < ApplicationController
   def setsize
     @lesson = Lesson.find params[:id]
     session[:pagesize] = params[:pagesize]
+    params[:page] = 1
     redirect_to lesson_path(@lesson)
   end
   
@@ -40,7 +41,12 @@ class LessonsController < ApplicationController
       
       @totalpage = @lesson.totalpage
       
-      @comments = @lesson.subcomments(params[:page])
+      if params[:page] == nil
+        @comments = @lesson.subcomments(1)
+      else
+        @comments = @lesson.subcomments(params[:page])
+      end
+      
 
       
     rescue Exception => e

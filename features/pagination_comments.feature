@@ -1,8 +1,8 @@
-Feature: Create or Delete a Lesson
+Feature: Paginate Comments
 
-	As an admin
-	So that I can organize documents, videos, and prezzies into lessons
-	I want to be able to create or delete a lesson
+	As a user
+	So that I can load pages quickly and read comments in an orderly fashion
+	I would like to have comments paginated
 
 Background: lessons in database
 

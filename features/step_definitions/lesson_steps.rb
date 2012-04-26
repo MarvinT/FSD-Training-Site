@@ -57,7 +57,6 @@ end
 When /^I drag "([^"]*)" down one$/ do |lesson|
   drop_place = page.all(:css, "table tr").select { |e| e.text.include?('Lesson3') }[0]
   target = page.all(:css, "table tr").select { |e| e.text.include?(lesson) }[0]
-  target.drag_to(drop_place)
-  breakpoint
+  pending "need to simulate jquery drag event"
 end
 

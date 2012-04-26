@@ -14,6 +14,8 @@ class Lesson < ActiveRecord::Base
   end
 
   def self.next_position()
+
+
     if Lesson.all.empty?
       return 1
     else

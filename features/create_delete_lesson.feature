@@ -11,6 +11,7 @@ Background: lessons in database
   |title            |description       |
   |Lesson1          |the first lesson  |
   |Lesson2          |the second lesson |
+
   
 Scenario: create a lesson
   When I am on the FSD-Training-Site home page

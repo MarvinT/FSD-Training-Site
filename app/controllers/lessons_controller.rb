@@ -1,6 +1,6 @@
 class LessonsController < ApplicationController
 
-  before_filter :admin_required, :except => [:index, :show]
+  before_filter :admin_required, :except => [:index, :show, :sort]
 
   def show
     @user = session[:admin_user]
@@ -104,6 +104,7 @@ class LessonsController < ApplicationController
   end
 
   def sort
+
     params["lessons"].each_with_index { |id, index|
         lesson = Lesson.find(id.to_i)
         lesson.position = index

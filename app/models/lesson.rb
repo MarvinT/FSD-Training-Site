@@ -7,7 +7,7 @@ class Lesson < ActiveRecord::Base
 
   validates_presence_of :title
 
-  before_save { |lesson| lesson.position = Lesson.next_position() }
+  before_save { |lesson| lesson.position = Lesson.next_position()}
 
   def self.title(id)
     Lesson.find(id).title

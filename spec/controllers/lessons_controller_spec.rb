@@ -51,6 +51,7 @@ describe LessonsController do
       @fake_lesson = {'title' => 'lesson1', "description" => 'sample lesson'}
       @fake_result = mock('Lesson', :id => '1', :title => 'lesson1', :description => 'sample lesson')
       controller.stub(:admin?).and_return(true)
+      @fake_result.stub(:position=)
     end
     it 'should create the lesson page' do
       Lesson.should_receive(:new).with(@fake_lesson).
@@ -60,8 +61,9 @@ describe LessonsController do
     end
 
     it 'should appear the created the lesson in home page' do
-      Lesson.stub(:create!).with(@fake_leson).
+      Lesson.stub(:new).with(@fake_lesson).
         and_return(@fake_result)
+      @fake_result.should_receive(:save).and_return(true)
       post :create, {:lesson => @fake_lesson}
       response.should redirect_to('/lessons')
     end
@@ -117,6 +119,27 @@ describe LessonsController do
       @fake_result.should_receive(:destroy)
       post :destroy, {:id => '1'}
       response.should redirect_to('/lessons')
+    end
+  end
+
+  describe 'lesson sorting' do
+    before :each do
+      @fake_lesson1 = mock('Lesson', :id => '1', :title => 'lesson1', :description => 'sample lesson 1')
+      @fake_lesson2 = mock('Lesson', :id => '2', :title => 'lesson2', :description => 'sample lesson 2')
+      @fake_lesson3 = mock('Lesson', :id => '3', :title => 'lesson3', :description => 'sample lesson 3')
+    end
+
+    it 'should set the position' do
+      Lesson.should_receive(:find).with(1).and_return(@fake_lesson1)
+      @fake_lesson1.should_receive(:position=).with(0)
+      @fake_lesson1.should_receive(:save).and_return(true)
+      Lesson.should_receive(:find).with(2).and_return(@fake_lesson2)
+      @fake_lesson2.should_receive(:save).and_return(true)
+      @fake_lesson2.should_receive(:position=).with(2)
+      Lesson.should_receive(:find).with(3).and_return(@fake_lesson3)
+      @fake_lesson3.should_receive(:position=).with(1)
+      @fake_lesson3.should_receive(:save).and_return(true)
+      post :sort, {"lessons"=>["1", "3", "2"]}
     end
   end
 

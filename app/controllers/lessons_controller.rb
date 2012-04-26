@@ -47,20 +47,6 @@ class LessonsController < ApplicationController
     end
   end
 
-  # def create
-#
-    # @lesson = Lesson.new(params[:lesson])
-    # if request.post?
-      # if @lesson.save
-        # flash[:notice] = "#{@lesson.title} was successfully created."
-        # redirect_to lessons_path
-      # else
-        # flash[:notice] = "You must enter a title for lesson."
-        # redirect_to new_lesson_path
-      # end
-    # end
-  # end
-
   def edit
     @user = session[:admin_user]
     begin
@@ -70,19 +56,6 @@ class LessonsController < ApplicationController
       redirect_to lessons_path
     end
   end
-
-  # def update
-    # @lesson = Lesson.find params[:id]
-    # if request.post?
-      # if Lesson.update(params[:id], params[:lesson])
-        # flash[:notice] = "#{@lesson.title} was successfully updated."
-        # redirect_to lesson_path(@lesson)
-      # else
-        # flash[:notice] = "You must enter a title for lesson."
-        # redirect_to edit_lesson_path(@lesson)
-      # end
-    # end
-  # end
 
   def update
     @lesson = Lesson.find params[:id]

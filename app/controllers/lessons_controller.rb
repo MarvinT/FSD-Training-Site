@@ -2,6 +2,27 @@ class LessonsController < ApplicationController
 
   before_filter :admin_required, :except => [:index, :show]
 
+  def subcomments(page)
+    if session[:pagesize] == nil
+      session[:pagesize] = 10
+    end
+    return self.comments[(page-1)*session[:pagesize],session[:pagesize]]
+  end
+  
+  def totalpage()
+    if session[:pagesize] == nil
+      session[:pagesize] = 10
+    end
+    return self.comments.length/session[:pagesize].ceil
+  end
+  
+  def setsize
+    @lesson = Lesson.find params[:id]
+    session[:pagesize] = params[:pagesize]
+    redirect_to lesson_path(@lesson)
+  end
+  
+  
   def show
     @user = session[:admin_user]
     banners = ["banner1.jpg", "banner2.jpg", "banner3.jpg", "banner4.jpg", "banner5.jpg", "banner6.jpg", "banner7.jpg"]
@@ -16,9 +37,12 @@ class LessonsController < ApplicationController
       @prezis = @lesson.prezis
 
       @videos = @lesson.videos
+      
+      @totalpage = @lesson.totalpage
+      
+      @comments = @lesson.subcomments(params[:page])
 
-      @comments = @lesson.comments
-
+      
     rescue Exception => e
       flash[:notice] = "Lesson not found."
       redirect_to lessons_path

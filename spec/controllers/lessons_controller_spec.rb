@@ -2,6 +2,17 @@ require 'spec_helper'
 
 describe LessonsController do
 
+  describe 'check setsize' do
+    it 'should set the size of single lesson page' do 
+      fake_lesson = mock('Lesson', :id => '1')
+      Lesson.should_receive(:find).with('1').
+        and_return(fake_lesson)
+      post :setsize, {:id => '1', :pagesize => 20}
+      response.should redirect_to(lesson_path(fake_lesson))
+    end
+  end
+
+
   describe 'show test' do
     it 'show the correct id page' do
       fake_lesson = mock('Lesson', :id => '1')
@@ -17,14 +28,17 @@ describe LessonsController do
         and_return(fake_documents)
       fake_lesson.should_receive(:prezis).
         and_return(fake_prezis)
-      fake_lesson.should_receive(:comments).
+      fake_lesson.should_receive(:totalpage).
+        and_return('1')
+      fake_lesson.should_receive(:subcomments).with('1').
         and_return(fake_comments)
-      post :show, {:id => '1'}
+      post :show, {:id => '1',:page => '1'}
       response.should render_template('show')
       assigns(:lesson).should == fake_lesson
       assigns(:videos).should == fake_videos
       assigns(:documents).should == fake_documents
       assigns(:prezis).should == fake_prezis
+      assigns(:totalpage).should == '1'
       assigns(:comments).should == fake_comments
     end
 

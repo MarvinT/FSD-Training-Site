@@ -14,6 +14,8 @@ Fsd::Application.routes.draw do
 
   match 'lessons/:id/addVideo' => 'lessons#addVideo'
 
+  match 'lessons/:id/setsize' => 'lessons#setsize'
+  
   scope '/auth' do
     match '/admin', :as => :login
     match '/admin/callback', :to => 'sessions#authenticate_admin'

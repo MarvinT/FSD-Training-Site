@@ -1,4 +1,11 @@
+Then /^I should see the Facebook feed$/ do
+  page.find('div.fb-like-box')['data-href'].should == 'http://www.facebook.com/Foundation.for.Sustainable.Development'
+end
 
+Then /^I should see the Twitter feed$/ do
+  page.find('div#right_sidebar').find('script')[:src].should == 'http://widgets.twimg.com/j/2/widget.js'
+  page.find('div#right_sidebar').find('script', {:text => 'infoFSD'})
+end
 
 Given /^I enter the url for "([^"]*)"$/ do |url|
   pending # express the regexp above with the code you wish you had

@@ -11,14 +11,14 @@ class Prezi < Component
       return false
     end
 
-    reg = /^http(s)?:\/\/prezi\.com\/([a-zA-Z0-9]+)\/(.*)$/
+    reg = /^http(s)?:\/\/prezi\.com\/([^\/]+)\/(.*)$/
     matches = (reg.match(url))? true : false
 
     return matches
   end
 
   def self.embeddableUrl(url)
-    reg = /^http(s)?:\/\/prezi\.com\/([a-zA-Z0-9]+)\/(.*)$/
+    reg = /^http(s)?:\/\/prezi\.com\/([^\/]+)\/(.*)$/
     matches = reg.match(url)
     return matches[2]
   end

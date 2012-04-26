@@ -11,15 +11,22 @@
          #warning.message= flash[:warning]
       #main
          %p FSD reduces global poverty by providing over 300 grassroots community organizations around the world with training and key resources to address pressing socioeconomic issues.
-         %p The FSD Training Center is an online e-learning center that provides pre-departure training online for students across the United States. Documents, presentations, and videos are organized by lesson to create a classroom-like experience.
-         .title Lessons
-         - if @lessons.empty?
-            %p There currently no lessons available. Please check back later.
-         - else
-            - @lessons.each do |lesson|
-               .lessons
-                  = link_to "#{lesson.title}", lesson_path(lesson)
-                  %span.bold= link_to " >>", lesson_path(lesson)
+         %p The FSD Training Center is an online e-learning center that provides pre-departure training online for university students and young professionals. Documents, presentations, and videos are organized by lesson to create a classroom-like experience.
+         %table
+            %thead
+               %tr.title 
+                  %th.title Lessons
+                  %th Emptiness
+            %tbody#lessons
+               - if @lessons.empty?
+                  %tr 
+                     %td There currently no lessons available. Please check back later.
+               - else
+                  - @lessons.each do |lesson|
+                     %tr{:class => "lessons", :id=> "#{lesson.id}"}
+                        %td.lessons= link_to "#{lesson.title} >>", lesson_path(lesson)
+                        %td "                    "
+                 
          %br
       #right_sidebar
          - if !@user.nil?
@@ -41,3 +48,19 @@
    .clear
 
    = render :partial => "shared/footer"
+
+- content_for :head do  
+   %script{:charset => "utf-8", :type => "text/javascript"}
+      $(document).ready(function() {
+      $('#lessons').tableDnD({
+      onDrop: function(table, row){
+      $.ajax({
+      type: "POST",
+      url: "#{url_for(:action => 'sort')}",
+      processData: false,
+      data: $.tableDnD.serialize() + '&authenticity_token=' + encodeURIComponent("#{form_authenticity_token if protect_against_forgery?}")
+       
+      });
+      }  
+      });
+      });

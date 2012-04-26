@@ -25,6 +25,9 @@ Fsd::Application.routes.draw do
   #   resources :products
   resources :lessons do
     resources :prezis, :documents, :videos, :comments
+    collection do
+      post "sort"
+    end
   end
 
   # Sample resource route with options:

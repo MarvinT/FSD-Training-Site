@@ -13,53 +13,50 @@ Background: lessons in database
   |Lesson1          |the first lesson  |
   |Lesson2          |the second lesson |
 
-@wip    	
+	
 Scenario: upload comments to existing a lesson
   Given I am on the detail page for "Lesson1"
-  And  I fill in "Com_title" with "Comment1"
-  And  I fill in "Com_body" with "Comment1 body"
-  And  I fill in "Com_editor" with "User1"
-  And  I press "upload"
+  And I fill in "comment_title" with "Comment1"
+  And I fill in "comment_body" with "Comment1 body"
+  And I fill in "comment_editor" with "User1"
+  And I press "Submit Comment"
   Then I am on the detail page for "Lesson1"
   And I should see "Comment1"
 
-@wip
-Scenario: try to upload comments without including a comment title
+Scenario: try to Submit Comment comments without including a comment title
   Given I am on the detail page for "Lesson1"
-  And  I fill in "Com_body" with "Comment1 body"
-  And I press "upload"
-  Then I should see "Please enter a valid comment"
+  And I fill in "comment_body" with "Comment1 body"
+  And I press "Submit Comment"
+  Then I should see "You must enter a title for comment"
 
-@wip 
 Scenario: edit a existing comment
   Given I am on the detail page for "Lesson1"
-  And  I fill in "Com_title" with "Comment1"
-  And  I fill in "Com_body" with "Comment1 body"
-  And  I fill in "Com_editor" with "User1"
-  And  I press "upload"
+  And  I fill in "comment_title" with "Comment1"
+  And  I fill in "comment_body" with "Comment1 body"
+  And  I fill in "comment_editor" with "User1"
+  And  I press "Submit Comment"
   And  I am on the detail page for "Lesson1"
-  And  I follow "Edit_1"
+  And  I follow "moderate comment"
   And  I am on the comment edit page for "Comment1"
-  And  I fill in "Com_body_1" with "Comment1 body changed"
-  And  I press "submit"
+  And  I fill in "comment_body" with "Comment1 body changed"
+  And  I press "Save Changes"
   Then I am on the detail page for "Lesson1"
   And I should see "Comment1 body changed"
 
-@wip  
 @javascript
 Scenario: delete a existing comment
   Given I am on the detail page for "Lesson1"
-  And  I fill in "Com_title" with "Comment1"
-  And  I fill in "Com_body" with "Comment1 body"
-  And  I fill in "Com_editor" with "User1"
-  And  I press "upload"
+  And  I fill in "comment_title" with "Comment1"
+  And  I fill in "comment_body" with "Comment1 body"
+  And  I fill in "comment_editor" with "User1"
+  And  I press "Submit Comment"
   And  I am on the detail page for "Lesson1"
-  And  I follow "Edit_1"
+  And  I follow "moderate comment"
   And  I am on the comment edit page for "Comment1"
-  And I follow "Delete Video"
+  And I follow "Delete Comment"
   And I press "OK" on the pop up
   Then I should be on the detail page for "Lesson1"
-  And I should see "You have deleted a comment for this lesson."
-  And I should not see "Comment1"
+  And I should see "Comment 'Comment1' deleted."
+  And I should not see "Comment1 body"
 
 

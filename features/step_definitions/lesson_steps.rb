@@ -47,3 +47,16 @@ end
 And /I upload "(.*)" as my prezi$/ do |prez_url|
   fill_in("prezi_url", :with => prez_url)
 end
+
+Then /^I should see lessons in this order:$/ do |table|
+  pattern = table.raw.flatten.collect(&Regexp.method(:quote)).join('.*?')
+  pattern = Regexp.compile(pattern, Regexp::MULTILINE)
+  page.find_by_id("lessons").text.should =~ pattern
+end
+
+When /^I drag "([^"]*)" down one$/ do |lesson|
+  drop_place = page.all(:css, "table tr").select { |e| e.text.include?('Lesson3') }[0]
+  target = page.all(:css, "table tr").select { |e| e.text.include?(lesson) }[0]
+  pending "need to simulate jquery drag event"
+end
+

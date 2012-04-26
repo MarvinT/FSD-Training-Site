@@ -1,0 +1,41 @@
+#wrapper
+  = render :partial => "shared/head"
+  #main
+    .content
+      %h1 Edit Comment
+      %hr
+      - if flash[:notice] != nil
+        #notice.message= flash[:notice]
+        %br
+      - elsif flash[:warning] != nil
+        #warning.message= flash[:warning]
+        %br
+      = form_tag lesson_comment_path(@comment.lesson_id, @comment.id), :method => :put do
+        = label :comment, :title, 'Title'
+        %br
+        = text_field :comment, 'title'
+        %br
+        = label :comment, :editor, 'Author'
+        %br
+        = text_field :comment, 'editor'
+        %br
+        = label :comment, :body, 'Comment'
+        %br
+        = text_area :comment, 'body'
+        %br
+        %br
+        = submit_tag 'Save Changes'
+        %br
+  #right_sidebar
+    .content
+      -if !@user.nil?
+        %h2 admin control panel
+        %p
+          = link_to "Delete Comment", lesson_comment_path(@comment.lesson_id, @comment.id), :method => :delete, :confirm => 'Are you sure?'
+          %br
+          = link_to "Logout", logout_path
+        %hr
+      %h2 navigation
+      %p= link_to "Return Home", root_path
+  .clear
+  = render :partial => "shared/footer"

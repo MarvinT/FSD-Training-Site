@@ -17,7 +17,7 @@ module NavigationHelpers
       '/'
 
     when /^the login page$/ 
-      '/auth/admin'
+      login_path
       
     when /^the detail page for "(.*)"$/
       lesson = Lesson.find_by_title($1)
@@ -25,22 +25,22 @@ module NavigationHelpers
       
     when /^the comment edit page for "(.*)"$/
       comment = Comment.find_by_title($1)
-      '/lessons/#{comment.lesson_id}/#{comment.id}/edit'
+      edit_lesson_comment_path(comment.lesson_id, comment.id)
 
     when /^the detail page for lesson number "(.*)"/
       lesson_path($1)
 
     when /^the FSD-Training-Site home page$/
-      '/lessons'
+      lessons_path
 
     when /^the edit page for "(.*)"$/
-      "/lessons/#{Lesson.find_by_title($1).id}/edit"
+      edit_lesson_path(Lesson.find_by_title($1))
 
     when /^the create page$/
-      "/lessons/new"
+      new_lesson_path
 
     when /^the details page for "(.*)"$/
-      "/lessons/#{Lesson.find_by_title($1).id}"
+      lesson_path(Lesson.find_by_title($1))
 
 
     # Add more mappings here.

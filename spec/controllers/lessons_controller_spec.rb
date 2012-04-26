@@ -8,6 +8,7 @@ describe LessonsController do
       fake_videos = [mock('Video', :id => '1'),mock('Video', :id => '2')]
       fake_documents = [mock('Document', :id => '1'),mock('Document', :id => '2')]
       fake_prezis = [mock('Prezi', :id => '1'),mock('Prezi', :id => '2')]
+      fake_comments = [mock('Comment', :id => '1'),mock('Comment', :id => '2')]
       Lesson.should_receive(:find).with('1').
         and_return(fake_lesson)
       fake_lesson.should_receive(:videos).
@@ -16,12 +17,15 @@ describe LessonsController do
         and_return(fake_documents)
       fake_lesson.should_receive(:prezis).
         and_return(fake_prezis)
+      fake_lesson.should_receive(:comments).
+        and_return(fake_comments)
       post :show, {:id => '1'}
       response.should render_template('show')
       assigns(:lesson).should == fake_lesson
       assigns(:videos).should == fake_videos
       assigns(:documents).should == fake_documents
       assigns(:prezis).should == fake_prezis
+      assigns(:comments).should == fake_comments
     end
 
     it 'show Lesson not found.' do
@@ -35,7 +39,7 @@ describe LessonsController do
 
   describe 'index test' do
     it 'show the index page' do
-      Lesson.should_receive(:all)
+      Lesson.should_receive(:order).with(:position)
       post :index
       response.should render_template('index')
     end
@@ -47,23 +51,26 @@ describe LessonsController do
       @fake_lesson = {'title' => 'lesson1', "description" => 'sample lesson'}
       @fake_result = mock('Lesson', :id => '1', :title => 'lesson1', :description => 'sample lesson')
       controller.stub(:admin?).and_return(true)
+      @fake_result.stub(:position=)
     end
     it 'should create the lesson page' do
-      Lesson.should_receive(:create!).with(@fake_lesson).
+      Lesson.should_receive(:new).with(@fake_lesson).
         and_return(@fake_result)
+      @fake_result.should_receive(:save).and_return(true)
       post :create, {:lesson => @fake_lesson}
     end
 
     it 'should appear the created the lesson in home page' do
-      Lesson.stub(:create!).with(@fake_lesson).
+      Lesson.stub(:new).with(@fake_lesson).
         and_return(@fake_result)
+      @fake_result.should_receive(:save).and_return(true)
       post :create, {:lesson => @fake_lesson}
       response.should redirect_to('/lessons')
     end
 
     it 'show You must enter a title for lesson.' do
-      Lesson.should_receive(:create!).with(@invalid_fake_lesson).
-        should raise_error
+      Lesson.should_receive(:new).with(@invalid_fake_lesson).and_return(@fake_result)
+      @fake_result.should_receive(:save).and_return(false)
       post :create, {:lesson => @invalid_fake_lesson}
       response.should redirect_to('/lessons/new')
     end
@@ -112,6 +119,27 @@ describe LessonsController do
       @fake_result.should_receive(:destroy)
       post :destroy, {:id => '1'}
       response.should redirect_to('/lessons')
+    end
+  end
+
+  describe 'lesson sorting' do
+    before :each do
+      @fake_lesson1 = mock('Lesson', :id => '1', :title => 'lesson1', :description => 'sample lesson 1')
+      @fake_lesson2 = mock('Lesson', :id => '2', :title => 'lesson2', :description => 'sample lesson 2')
+      @fake_lesson3 = mock('Lesson', :id => '3', :title => 'lesson3', :description => 'sample lesson 3')
+    end
+
+    it 'should set the position' do
+      Lesson.should_receive(:find).with(1).and_return(@fake_lesson1)
+      @fake_lesson1.should_receive(:position=).with(0)
+      @fake_lesson1.should_receive(:save).and_return(true)
+      Lesson.should_receive(:find).with(2).and_return(@fake_lesson2)
+      @fake_lesson2.should_receive(:save).and_return(true)
+      @fake_lesson2.should_receive(:position=).with(2)
+      Lesson.should_receive(:find).with(3).and_return(@fake_lesson3)
+      @fake_lesson3.should_receive(:position=).with(1)
+      @fake_lesson3.should_receive(:save).and_return(true)
+      post :sort, {"lessons"=>["1", "3", "2"]}
     end
   end
 

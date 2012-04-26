@@ -26,15 +26,18 @@ Background: lessons in database
   |Comment10        |user10            |comment10 body   |1                |
   |Comment11        |user11            |comment11 body   |1                |
   
+@wip
 Scenario: One page only shows 10 comments
   Given I am on the detail page for "Lesson1"
   Then I should not see "comment11 body"
-  
+
+@wip  
 Scenario: Go to the second page
   Given I am on the detail page for "Lesson1"
   And I press "Next Page"
   Then I should see "comment11 body"
-  
+
+@wip  
 Scenario: Change page size
   Given I am on the detail page for "Lesson1"
   And I fill in "comment_size" with "5"

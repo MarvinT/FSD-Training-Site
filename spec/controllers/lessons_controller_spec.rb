@@ -39,7 +39,7 @@ describe LessonsController do
 
   describe 'index test' do
     it 'show the index page' do
-      Lesson.should_receive(:all)
+      Lesson.should_receive(:order).with(:position)
       post :index
       response.should render_template('index')
     end
@@ -53,21 +53,22 @@ describe LessonsController do
       controller.stub(:admin?).and_return(true)
     end
     it 'should create the lesson page' do
-      Lesson.should_receive(:create!).with(@fake_lesson).
+      Lesson.should_receive(:new).with(@fake_lesson).
         and_return(@fake_result)
+      @fake_result.should_receive(:save).and_return(true)
       post :create, {:lesson => @fake_lesson}
     end
 
     it 'should appear the created the lesson in home page' do
-      Lesson.stub(:create!).with(@fake_lesson).
+      Lesson.stub(:create!).with(@fake_leson).
         and_return(@fake_result)
       post :create, {:lesson => @fake_lesson}
       response.should redirect_to('/lessons')
     end
 
     it 'show You must enter a title for lesson.' do
-      Lesson.should_receive(:create!).with(@invalid_fake_lesson).
-        should raise_error
+      Lesson.should_receive(:new).with(@invalid_fake_lesson).and_return(@fake_result)
+      @fake_result.should_receive(:save).and_return(false)
       post :create, {:lesson => @invalid_fake_lesson}
       response.should redirect_to('/lessons/new')
     end

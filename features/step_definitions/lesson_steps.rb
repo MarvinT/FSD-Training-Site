@@ -27,6 +27,24 @@ Given /the following lessons exist/ do |lessons_table|
   end
 end
 
+Given /the following videos exist/ do |videos_table|
+  videos_table.hashes.each do |video|
+    Video.create!(video)
+  end
+end
+
+Given /the following documents exist/ do |documents_table|
+  documents_table.hashes.each do |document|
+    Document.create!(document)
+  end
+end
+
+Given /the following prezis exist/ do |prezis_table|
+  prezis_table.hashes.each do |prezis|
+    Prezis.create!(prezis)
+  end
+end
+
 Given /the following comments exist/ do |comments_table|
   comments_table.hashes.each do |comment|
     # each returned element will be a hash whose key is the table header.
@@ -63,15 +81,19 @@ And /I upload "(.*)" as my prezi$/ do |prez_url|
   fill_in("prezi_url", :with => prez_url)
 end
 
-Then /^I should see lessons in this order:$/ do |table|
+Then /^I should see "(.*)" in this order:$/ do |component, table|
   pattern = table.raw.flatten.collect(&Regexp.method(:quote)).join('.*?')
   pattern = Regexp.compile(pattern, Regexp::MULTILINE)
-  page.find_by_id("lessons").text.should =~ pattern
+  page.find_by_id("#{component}").text.should =~ pattern
 end
 
-When /^I drag "([^"]*)" down one$/ do |lesson|
-  drop_place = page.all(:css, "table tr").select { |e| e.text.include?('Lesson3') }[0]
-  target = page.all(:css, "table tr").select { |e| e.text.include?(lesson) }[0]
-  pending "need to simulate jquery drag event"
+When /^I drag the first "(.*)" down one$/ do |component|
+
+  page.execute_script %Q{
+    $('#{component} tr:first').simulateDragSortable({move: 1});
+  }
+  # pending "need to simulate jquery drag event"
 end
+
+
 

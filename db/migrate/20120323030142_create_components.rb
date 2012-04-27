@@ -5,7 +5,7 @@ class CreateComponents < ActiveRecord::Migration
       t.references :lesson
       t.string :url
       t.string :type
-
+      t.string :title
       t.timestamps
     end
   end

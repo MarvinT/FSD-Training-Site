@@ -16,12 +16,12 @@ Background: lessons in database
 @javascript
 Scenario: I can drag and drop lessons to reorder
   Given I am on the FSD-Training-Site home page
-  Then I should see lessons in this order:
+  Then I should see "lessons" in this order:
   	| Lesson1	|
   	| Lesson2	|
   	| Lesson3	|
-  When I drag "Lesson1" down one
-  Then I should see lessons in this order:
+  When I drag the first "lesson" down one
+  Then I should see "lessons" in this order:
   	| Lesson2	|
   	| Lesson1	|
   	| Lesson3	|
@@ -29,13 +29,13 @@ Scenario: I can drag and drop lessons to reorder
 @javascript
 Scenario: Reordering should be saved
   Given I am on the FSD-Training-Site home page
-  Then I should see lessons in this order:
+  Then I should see "lessons" in this order:
   	| Lesson1	|
   	| Lesson2	|
   	| Lesson3	|
-  When I drag "Lesson1" down one
+  When I drag the first "lesson" down one
   When I reload the FSD-Training-Site home page
-  Then I should see lessons in this order:
+  Then I should see "lessons" in this order:
   	| Lesson2	|
   	| Lesson1	|
   	| Lesson3	|

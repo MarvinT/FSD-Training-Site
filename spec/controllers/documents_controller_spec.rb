@@ -44,9 +44,29 @@ describe DocumentsController do
       @fake_doc.should_receive(:destroy)
       post :destroy, {:id => '1', :lesson_id => '1'}
       response.should redirect_to('/lessons/1?description=sample+lesson&title=lesson1')
-
-
-
     end
   end
+
+  describe 'document sorting' do
+    before :each do
+      @fake_document1 = mock('Document', :id => '1', :title => 'document1', :description => 'sample document 1')
+      @fake_document2 = mock('Document', :id => '2', :title => 'document2', :description => 'sample document 2')
+      @fake_document3 = mock('Document', :id => '3', :title => 'document3', :description => 'sample document 3')
+    end
+
+    it 'should set the position' do
+      pending "need sort method"
+      Document.should_receive(:find).with(1).and_return(@fake_document1)
+      @fake_document1.should_receive(:position=).with(0)
+      @fake_document1.should_receive(:save).and_return(true)
+      Document.should_receive(:find).with(2).and_return(@fake_document2)
+      @fake_document2.should_receive(:save).and_return(true)
+      @fake_document2.should_receive(:position=).with(2)
+      Document.should_receive(:find).with(3).and_return(@fake_document3)
+      @fake_document3.should_receive(:position=).with(1)
+      @fake_document3.should_receive(:save).and_return(true)
+      post :sort, {"documents"=>["1", "3", "2"]}
+    end
+  end
+
  end

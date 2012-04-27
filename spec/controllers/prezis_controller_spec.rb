@@ -39,4 +39,27 @@ describe PrezisController do
       response.should redirect_to('/lessons/1?description=sample+lesson&title=lesson1')
     end
   end
+
+  describe 'prezi sorting' do
+    before :each do
+      @fake_prezi1 = mock('Prezi', :id => '1', :title => 'prezi1', :description => 'sample prezi 1')
+      @fake_prezi2 = mock('Prezi', :id => '2', :title => 'prezi2', :description => 'sample prezi 2')
+      @fake_prezi3 = mock('Prezi', :id => '3', :title => 'prezi3', :description => 'sample prezi 3')
+    end
+
+    it 'should set the position' do
+    pending "need sort method"
+      Prezi.should_receive(:find).with(1).and_return(@fake_prezi1)
+      @fake_prezi1.should_receive(:position=).with(0)
+      @fake_prezi1.should_receive(:save).and_return(true)
+      Prezi.should_receive(:find).with(2).and_return(@fake_prezi2)
+      @fake_prezi2.should_receive(:save).and_return(true)
+      @fake_prezi2.should_receive(:position=).with(2)
+      Prezi.should_receive(:find).with(3).and_return(@fake_prezi3)
+      @fake_prezi3.should_receive(:position=).with(1)
+      @fake_prezi3.should_receive(:save).and_return(true)
+      post :sort, {"prezis"=>["1", "3", "2"]}
+    end
+  end
+
 end

@@ -43,9 +43,29 @@ describe VideosController do
       @fake_video.should_receive(:destroy)
       post :destroy, {:id => '1', :lesson_id => '1'}
       response.should redirect_to('/lessons/1?description=sample+lesson&title=lesson1')
-
-
-
     end
   end
+
+  describe 'video sorting' do
+    before :each do
+      @fake_video1 = mock('Video', :id => '1', :title => 'video1', :description => 'sample video 1')
+      @fake_video2 = mock('Video', :id => '2', :title => 'video2', :description => 'sample video 2')
+      @fake_video3 = mock('Video', :id => '3', :title => 'video3', :description => 'sample video 3')
+    end
+
+    it 'should set the position' do
+      pending "need sort method"
+      Video.should_receive(:find).with(1).and_return(@fake_video1)
+      @fake_video1.should_receive(:position=).with(0)
+      @fake_video1.should_receive(:save).and_return(true)
+      Video.should_receive(:find).with(2).and_return(@fake_video2)
+      @fake_video2.should_receive(:save).and_return(true)
+      @fake_video2.should_receive(:position=).with(2)
+      Video.should_receive(:find).with(3).and_return(@fake_video3)
+      @fake_video3.should_receive(:position=).with(1)
+      @fake_video3.should_receive(:save).and_return(true)
+      post :sort, {"videos"=>["1", "3", "2"]}
+    end
+  end
+
  end

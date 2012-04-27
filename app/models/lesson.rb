@@ -20,6 +20,9 @@ class Lesson < ActiveRecord::Base
       return Lesson.order(:position).last.position + 1
     end
   end
-
+  
+  def self.sublessons(page,size)
+    
+  end
 
 end

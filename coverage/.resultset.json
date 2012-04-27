@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/saasbook/FSD-Training-Site/app/controllers/application_controller.rb": [
+      "/home/saasbook/FSD/app/controllers/application_controller.rb": [
         1,
         1,
         null,
@@ -24,7 +24,7 @@
         null,
         null
       ],
-      "/home/saasbook/FSD-Training-Site/app/controllers/comments_controller.rb": [
+      "/home/saasbook/FSD/app/controllers/comments_controller.rb": [
         1,
         null,
         1,
@@ -76,7 +76,7 @@
         null,
         null
       ],
-      "/home/saasbook/FSD-Training-Site/app/models/comment.rb": [
+      "/home/saasbook/FSD/app/models/comment.rb": [
         1,
         1,
         null,
@@ -89,7 +89,7 @@
         null,
         null
       ],
-      "/home/saasbook/FSD-Training-Site/app/controllers/documents_controller.rb": [
+      "/home/saasbook/FSD/app/controllers/documents_controller.rb": [
         1,
         null,
         1,
@@ -126,7 +126,7 @@
         null,
         null
       ],
-      "/home/saasbook/FSD-Training-Site/app/models/document.rb": [
+      "/home/saasbook/FSD/app/models/document.rb": [
         1,
         1,
         null,
@@ -154,7 +154,7 @@
         null,
         null
       ],
-      "/home/saasbook/FSD-Training-Site/app/models/component.rb": [
+      "/home/saasbook/FSD/app/models/component.rb": [
         1,
         1,
         null,
@@ -169,7 +169,7 @@
         null,
         null
       ],
-      "/home/saasbook/FSD-Training-Site/app/controllers/lessons_controller.rb": [
+      "/home/saasbook/FSD/app/controllers/lessons_controller.rb": [
         1,
         null,
         1,
@@ -294,7 +294,7 @@
         null,
         null
       ],
-      "/home/saasbook/FSD-Training-Site/app/models/lesson.rb": [
+      "/home/saasbook/FSD/app/models/lesson.rb": [
         1,
         null,
         1,
@@ -324,7 +324,7 @@
         null,
         null
       ],
-      "/home/saasbook/FSD-Training-Site/app/controllers/prezis_controller.rb": [
+      "/home/saasbook/FSD/app/controllers/prezis_controller.rb": [
         1,
         null,
         1,
@@ -358,7 +358,7 @@
         null,
         null
       ],
-      "/home/saasbook/FSD-Training-Site/app/models/prezi.rb": [
+      "/home/saasbook/FSD/app/models/prezi.rb": [
         1,
         1,
         null,
@@ -385,7 +385,7 @@
         null,
         null
       ],
-      "/home/saasbook/FSD-Training-Site/app/controllers/sessions_controller.rb": [
+      "/home/saasbook/FSD/app/controllers/sessions_controller.rb": [
         1,
         1,
         2,
@@ -410,7 +410,7 @@
         null,
         null
       ],
-      "/home/saasbook/FSD-Training-Site/app/controllers/videos_controller.rb": [
+      "/home/saasbook/FSD/app/controllers/videos_controller.rb": [
         1,
         null,
         1,
@@ -449,7 +449,7 @@
         null,
         null
       ],
-      "/home/saasbook/FSD-Training-Site/app/models/video.rb": [
+      "/home/saasbook/FSD/app/models/video.rb": [
         1,
         1,
         null,
@@ -479,6 +479,6 @@
         null
       ]
     },
-    "timestamp": 1335503850
+    "timestamp": 1335508803
   }
 }

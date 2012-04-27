@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120413211920) do
+ActiveRecord::Schema.define(:version => 20120425230408) do
 
   create_table "comments", :force => true do |t|
     t.string   "title"
@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(:version => 20120413211920) do
     t.integer  "lesson_id"
     t.string   "url"
     t.string   "type"
-    t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -41,11 +40,10 @@ ActiveRecord::Schema.define(:version => 20120413211920) do
   create_table "lessons", :force => true do |t|
     t.string   "title"
     t.integer  "order"
-    t.integer  "position"
     t.text     "description"
-    t.integer  "comment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "position"
   end
 
   create_table "prezis", :force => true do |t|

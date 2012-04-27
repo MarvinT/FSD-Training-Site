@@ -39,9 +39,11 @@ Given /the following documents exist/ do |documents_table|
   end
 end
 
-Given /the following prezis exist/ do |prezis_table|
+Given /the following prezis exist in "(.*)"/ do |lesson, prezis_table|
+  l = Lesson.find_by_title("#{lesson}")
   prezis_table.hashes.each do |prezis|
-    Prezis.create!(prezis)
+    p = Prezi.create!(prezis)
+    l.prezis << p
   end
 end
 

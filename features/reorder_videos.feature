@@ -12,10 +12,10 @@ Background: lessons in database
   |Lesson2          |the second lesson |
   |Lesson3          |the third lesson  |
 
-  Given the following documents exist:
-  |title       |url                        |
-  |vid1        |http://youtu.be/Q_h4IoPJXZw|
-  |vid2        |http://youtu.be/Q_h4IoPJXZw|
+  Given the following videos exist:
+  |url                        |
+  |http://youtu.be/Q_h4IoPJXZw|
+  |http://youtu.be/Q_h4IoPJXZw|
 
 
 @javascript

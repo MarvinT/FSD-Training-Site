@@ -22,7 +22,7 @@ describe Video do
     end
   end
 
-    describe 'video reordering' do
+  describe 'video reordering' do
     it 'should set next position as 1 if there are no videos' do
       pending "need next_position method"
       Video.stub(:all).and_return([])

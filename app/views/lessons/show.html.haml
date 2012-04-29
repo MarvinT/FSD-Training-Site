@@ -51,6 +51,14 @@
       #comments
         = render :partial => "comments/comment_feed"
         %br
+        = link_to "First Page", lesson_path(@lesson, :page => 1)
+        %br
+        = link_to "Previous Page", lesson_path(@lesson, :page => (@currentpage.to_i-1))
+        %br
+        = link_to "Next Page", lesson_path(@lesson, :page => (@currentpage.to_i+1))
+        %br
+        = link_to "Last Page", lesson_path(@lesson, :page => @totalpage)
+        %br
     #right_sidebar
       -if !@user.nil?
         %h2 admin control panel

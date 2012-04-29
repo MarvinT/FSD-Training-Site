@@ -8,6 +8,7 @@ class LessonsController < ApplicationController
     random = rand(7)
     @banner = banners[random]
     id = params[:id] # retrieve lesson ID from URI route
+    
     begin
       @lesson = Lesson.find(id) # look up lesson by unique ID
 
@@ -18,18 +19,19 @@ class LessonsController < ApplicationController
       @videos = @lesson.videos
       
       allcomments = @lesson.comments
-
-      @totalpage = allcomments.length/15.ceil
-      
+      a = allcomments.length
+      @totalpage = (allcomments.length/15.to_f).ceil
+      b = @totalpage
       @currentpage = params[:page]
-      
-      if params[:page] == nil
+      c = @currentpage
+      if @currentpage == nil
         @comments = allcomments[0,15]
-      elsif params[:page] <= 0 or params[:page] > @totalpage
+      elsif @currentpage.to_i > 0 and @currentpage.to_i <= @totalpage.to_i
+        @comments = allcomments[(@currentpage.to_i-1)*15,15]
+      else
+        @currentpage = 1
         @comments = allcomments[0,15]
         flash[:notice] = "Comment page out of range."
-      else
-        @comments = allcomments[(params[:page]-1)*15,15]
       end
  
     rescue Exception => e

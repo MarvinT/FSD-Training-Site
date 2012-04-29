@@ -2,28 +2,6 @@ class LessonsController < ApplicationController
 
   before_filter :admin_required, :except => [:index, :show]
 
-  def subcomments(page)
-    if session[:pagesize] == nil
-      session[:pagesize] = 10
-    end
-    return self.comments[(page-1)*session[:pagesize],session[:pagesize]]
-  end
-
-  def totalpage()
-    if session[:pagesize] == nil
-      session[:pagesize] = 10
-    end
-    return self.comments.length/session[:pagesize].ceil
-  end
-
-  def setsize
-    @lesson = Lesson.find params[:id]
-    session[:pagesize] = params[:pagesize]
-    params[:page] = 1
-    redirect_to lesson_path(@lesson)
-  end
-
-
   def show
     @user = session[:admin_user]
     banners = ["banner1.jpg", "banner2.jpg", "banner3.jpg", "banner4.jpg", "banner5.jpg", "banner6.jpg", "banner7.jpg"]
@@ -38,20 +16,22 @@ class LessonsController < ApplicationController
       @prezis = @lesson.prezis
 
       @videos = @lesson.videos
+      
+      allcomments = @lesson.comments
 
-      #@totalpage = @lesson.totalpage
-=begin
+      @totalpage = allcomments.length/15.ceil
+      
+      @currentpage = params[:page]
+      
       if params[:page] == nil
-        @comments = @lesson.subcomments(1)
+        @comments = allcomments[0,15]
+      elsif params[:page] <= 0 or params[:page] > @totalpage
+        @comments = allcomments[0,15]
+        flash[:notice] = "Comment page out of range."
       else
-        @comments = @lesson.subcomments(params[:page])
+        @comments = allcomments[(params[:page]-1)*15,15]
       end
-
-
-=end
-      @comments = []
-
-
+ 
     rescue Exception => e
       puts e.message
       flash[:notice] = "Lesson not found."

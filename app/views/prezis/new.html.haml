@@ -13,6 +13,11 @@
         = text_field :prezi, 'url'
         %br
         %br
+        = label :prezi, :title, 'Enter a title for this prezi. This title will not be displayed except for when you choose to reorder prezis in a lesson.'
+        %br
+        = text_field :prezi, 'title'
+        %br
+        %br
         = submit_tag 'Upload Prezi'
   #right_sidebar
     .content

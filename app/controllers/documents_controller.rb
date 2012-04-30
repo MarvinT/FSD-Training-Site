@@ -10,7 +10,8 @@ class DocumentsController < ApplicationController
     if request.post?
       if Document.isValidUrl?(params[:document][:url])
 
-        @doc = Document.new("url" => Document.embedableUrl(params[:document][:url]))
+        @doc = Document.new("url" => Document.embedableUrl(params[:document][:url]),
+                            "title" => params[:document][:title])
         @doc.save
         lesson = Lesson.find(params[:lesson_id])
         lesson.documents << @doc
@@ -29,6 +30,22 @@ class DocumentsController < ApplicationController
     @lesson = Lesson.find(params[:lesson_id])
     flash[:notice] = 'You have deleted a document for this lesson.'
     redirect_to lesson_path(@lesson)
+  end
+
+
+  def index
+    @documents = Lesson.find(params[:lesson_id]).documents.order(:position)
+    @lesson_id = params[:lesson_id]
+  end
+
+  def sort
+    params["components"].each_with_index { |id, index|
+        doc = Document.find(id.to_i)
+        doc.position = index 
+        doc.save
+      }
+
+    render :nothing => true
   end
 
 end

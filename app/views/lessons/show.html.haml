@@ -16,6 +16,8 @@
       %hr
       #documents
         %h2 Documents
+        - if !@user.nil?
+          = link_to "Reorder documents", lesson_documents_path(@lesson.id)
         - if @documents.empty?
           %p There are currently no documents uploaded for this lesson.
         - @documents.each do |doc|
@@ -28,6 +30,8 @@
              
       #prezis
         %h2 Prezis
+        - if !@user.nil?
+          = link_to "Reorder prezis", lesson_prezis_path(@lesson.id)
         - if @prezis.empty?
           %p There are currently no prezis uploaded for this lesson.
         - @prezis.each do |prezi|

@@ -1,31 +1,29 @@
 class Component < ActiveRecord::Base
   belongs_to :lesson
 
-  class Video < Component
-    before_save { |video| video.position = Video.next_position(video) unless video.position}
+  before_save { |comp| comp.class.next_position(comp) }
+  
 
-    def self.next_position(video)
-      if Video.all.empty?
-        return 0
-      else
-        return Video.order(:position).last + 1
-      end
-    end
+  class Video < Component
   end
 
   class Document < Component
   end
 
   class Prezi < Component
+  
   end
 
  def self.method_missing(method_id, *arguments, &block)
-   if method_id == "next_position"
+   if method_id.to_s == "next_position"
+     component = arguments[0]
      classy = (arguments[0]).class
-     if classy.all.empty?
-       return 0
-     else
-       return classy.order(:position).last + 1
+     if component.position.nil?
+       if classy.all.empty?
+         component.position = 1
+        else
+          component.position = classy.order(:position).last.position + 1
+       end
      end
    else
      super

@@ -12,7 +12,7 @@ describe VideosController do
 
     it 'should send back a redirect to the lesson page on successful creation' do
       Video.should_receive(:isValidUrl?).with('a_valid_url').and_return(true)
-      Video.should_receive(:new).with('url'=> 'a_valid_url').
+      Video.should_receive(:new).with('url'=> 'a_valid_url', 'title' => nil).
         and_return(@fake_video)
       Video.should_receive(:embedableUrl).with('a_valid_url').and_return('a_valid_url')
       @fake_video.should_receive(:save).and_return(true)

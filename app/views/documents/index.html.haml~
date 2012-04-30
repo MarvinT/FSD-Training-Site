@@ -1,0 +1,1 @@
+=  render :partial => 'shared/reorder_components', :locals => {:component => "Documents", :components => @videos, :lesson_id => @lesson_id}

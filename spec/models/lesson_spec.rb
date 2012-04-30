@@ -13,9 +13,9 @@ describe Lesson do
  end
 
   describe 'lesson reordering' do
-    it 'should set next position as 1 if there are no lessons' do
+    it 'should set next position as 0 if there are no lessons' do
       Lesson.stub(:all).and_return([])
-      Lesson.next_position().should == 1
+      Lesson.next_position().should == 0
     end
 
     it 'should return the next open position' do

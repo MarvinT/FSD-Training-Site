@@ -10,7 +10,7 @@ describe PrezisController do
   describe 'the create method' do
     it 'should send back a redirect to the lesson page on sccessful creation' do
       Prezi.should_receive(:isValidUrl?).with('a_valid_url').and_return(true)
-      Prezi.should_receive(:new).with('url'=> 'a_valid_url').
+      Prezi.should_receive(:new).with('url'=> 'a_valid_url', 'title' => nil).
         and_return(@fake_prezi)
       Prezi.should_receive(:embeddableUrl).with('a_valid_url').and_return('a_valid_url')
       @fake_prezi.should_receive(:save).and_return(true)

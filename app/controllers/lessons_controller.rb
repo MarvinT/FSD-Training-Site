@@ -12,9 +12,9 @@ class LessonsController < ApplicationController
     begin
       @lesson = Lesson.find(id) # look up lesson by unique ID
 
-      @documents = @lesson.documents
+      @documents = @lesson.documents.order(:position)
 
-      @prezis = @lesson.prezis
+      @prezis = @lesson.prezis.order(:position)
 
       @videos = @lesson.videos.order(:position)
       

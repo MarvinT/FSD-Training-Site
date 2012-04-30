@@ -13,6 +13,11 @@
         = text_field :document, 'url'
         %br
         %br
+        = label :document, :title, 'Enter a title for this document. This title will not be displayed except for when you choose to reorder documents in a lesson.'
+        %br
+        = text_field :document, 'title'
+        %br
+        %br
         = submit_tag 'Upload Document'
   #right_sidebar
     .content

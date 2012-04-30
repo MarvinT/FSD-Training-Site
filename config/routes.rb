@@ -26,7 +26,11 @@ Fsd::Application.routes.draw do
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
   resources :lessons do
-    resources :prezis, :documents, :videos, :comments
+    resources :prezis, :documents, :videos, :comments do
+      collection do
+        post "sort"
+        end
+    end
     collection do
       post "sort"
     end

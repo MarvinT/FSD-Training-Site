@@ -39,6 +39,8 @@
             %br
       #videos
         %h2 Videos
+        - if !@user.nil?
+          = link_to "Reorder videos", lesson_videos_path(@lesson.id)
         - if @videos.empty?
           %p There are currently no videos uploaded for this lesson.
         - @videos.each do |video|

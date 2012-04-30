@@ -1,7 +1,7 @@
 class CreateComponents < ActiveRecord::Migration
   def change
     create_table :components do |t|
-      t.integer :order
+      t.integer :position
       t.references :lesson
       t.string :url
       t.string :type

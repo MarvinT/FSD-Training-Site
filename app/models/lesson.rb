@@ -15,7 +15,7 @@ class Lesson < ActiveRecord::Base
 
   def self.next_position()
     if Lesson.all.empty?
-      return 1
+      return 0
     else
       return Lesson.order(:position).last.position + 1
     end

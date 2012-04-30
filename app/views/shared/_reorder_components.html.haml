@@ -1,0 +1,103 @@
+#fb-root
+:javascript
+   (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+#wrapper
+   = render :partial => "shared/head"
+   .content
+      %h1 Welcome to FSD Training Center
+      %img{:src => "/assets/trainingcenter_banner.jpg"}
+      - if flash[:notice] != nil
+         %br
+         #notice.message= flash[:notice]
+      - elsif flash[:warning] != nil
+         %br 
+         #warning.message= flash[:warning]
+      #main
+         %p FSD reduces global poverty by providing over 300 grassroots community organizations around the world with training and key resources to address pressing socioeconomic issues.
+         %p The FSD Training Center is an online e-learning center that provides pre-departure training online for university students and young professionals. Documents, presentations, and videos are organized by lesson to create a classroom-like experience.
+         %h3= "Reorder #{components}"
+         %table
+            %thead
+               %tr.title 
+                  %th.title= "#{component}"
+                  
+            %tbody#components
+               - if components.empty?
+                  %tr 
+                     %td= "There currently no #{component} available for this lesson." 
+               - else
+                  - components.each do |component|
+                     %tr{:class => "lessons", :id=> "#{component.id}"}
+                        %td.lessons= "#{component.title}"
+                 
+         %br
+         = link_to "Return to lesson.", lesson_path(lesson_id)
+      #right_sidebar
+         - if !@user.nil?
+            %h2 admin control panel
+            %p
+               = link_to "Create Lesson", new_lesson_path
+               %br
+               = link_to "Logout", logout_path
+            %hr
+         %h2 facebook
+         .fb-like-box{"data-border-color" => "#ffffff", "data-header" => "false", "data-height" => "300", "data-href" => "http://www.facebook.com/Foundation.for.Sustainable.Development", "data-show-faces" => "true", "data-stream" => "true", "data-width" => "225"}
+         %br
+         %br
+         %br
+         %hr
+         %h2 twitter
+         %script{:charset => "utf-8", :src => "http://widgets.twimg.com/j/2/widget.js"}
+         :javascript
+            new TWTR.Widget({
+               version: 2,
+               type: 'profile',
+               rpp: 5,
+               interval: 30000,
+               width: 235,
+               height: 200,
+               theme: {
+                  shell: {
+                     background: '#c2ad99',
+                     color: '#000000'
+                  },
+                  tweets: {
+                     background: '#f2eeda',
+                     color: '#000000',
+                     links: '#e37226'
+                  }
+               },
+               features: {
+                  scrollbar: true,
+                  loop: false,
+                  live: true,
+                  behavior: 'all'
+               }
+            }).render().setUser('infoFSD').start();
+         %br
+   .clear
+
+   = render :partial => "shared/footer"
+
+- content_for :head do  
+   %script{:charset => "utf-8", :type => "text/javascript"}
+      $(document).ready(function() {
+      $('#components').tableDnD({
+      onDrop: function(table, row){
+      $.ajax({
+      type: "POST",
+      url: "#{url_for(:action => 'sort')}",
+      processData: false,
+      data: $.tableDnD.serialize() + '&authenticity_token=' + encodeURIComponent("#{form_authenticity_token if protect_against_forgery?}")
+       
+      });
+      }  
+      });
+      });

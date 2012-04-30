@@ -16,7 +16,7 @@ class LessonsController < ApplicationController
 
       @prezis = @lesson.prezis
 
-      @videos = @lesson.videos
+      @videos = @lesson.videos.order(:position)
       
       allcomments = @lesson.comments
       a = allcomments.length
@@ -95,7 +95,7 @@ class LessonsController < ApplicationController
   def sort
     params["lessons"].each_with_index { |id, index|
         lesson = Lesson.find(id.to_i)
-        lesson.position = index
+        lesson.position = index 
         lesson.save
       }
 

@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(:version => 20120429214353) do
   end
 
   create_table "components", :force => true do |t|
-    t.integer  "order"
+    t.integer  "position"
     t.integer  "lesson_id"
     t.string   "url"
     t.string   "type"

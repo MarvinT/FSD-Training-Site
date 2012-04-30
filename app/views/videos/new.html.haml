@@ -13,6 +13,11 @@
         = text_field :video, 'url'
         %br
         %br
+        = label :video, :title, 'Enter a title for this video. This title will not be displayed except for when you choose to reorder videos in a lesson.'
+        %br
+        = text_field :video, 'title'
+        %br
+        %br
         = submit_tag 'Upload Video'
   #right_sidebar
     .content

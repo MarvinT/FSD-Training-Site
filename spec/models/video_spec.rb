@@ -22,22 +22,5 @@ describe Video do
     end
   end
 
-  describe 'video reordering' do
-    it 'should set next position as 1 if there are no videos' do
-      pending "need next_position method"
-      Video.stub(:all).and_return([])
-      Video.next_position().should == 1
-    end
-
-    it 'should return the next open position' do
-      pending "need next_position method"
-      fake_video1 = mock('Video1', :title=>'fake1', :id =>1, :position => 1)
-      fake_video2 = mock('Video2', :title=>'fake2', :id =>2, :position => 2)
-      Video.stub(:order).with(:position).and_return([fake_video1, fake_video2])
-      Video.stub(:all).and_return([fake_video1, fake_video2])
-      Video.next_position().should == 3
-    end
-
-  end
 
 end

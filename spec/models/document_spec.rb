@@ -25,23 +25,7 @@ describe Document do
     end
   end
 
-  describe 'document reordering' do
-    it 'should set next position as 1 if there are no Documents' do
-      pending "need next_position method"
-      Document.stub(:all).and_return([])
-      Document.next_position().should == 1
-    end
 
-    it 'should return the next open position' do
-      pending "need next_position method"
-      fake_doc1 = mock('doc1', :title=>'fake1', :id =>1, :position => 1)
-      fake_doc2 = mock('doc2', :title=>'fake2', :id =>2, :position => 2)
-      Document.stub(:order).with(:position).and_return([fake_doc1, fake_doc2])
-      Document.stub(:all).and_return([fake_doc1, fake_doc2])
-      Document.next_position().should == 3
-    end
-
-  end
 
 end
 

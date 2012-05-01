@@ -31,7 +31,7 @@ text-decoration: none;
 
 #main {
 float:right;
-width: 710px;
+width: 725px;
 }
 
 .content{
@@ -118,7 +118,7 @@ color: #fff;
 font-weight: bold;
 background-color: #746859;
 text-align:left;
-width:680px;
+width:690px;
 }
 
 .title_small {
@@ -176,7 +176,7 @@ font-weight:bold;
 
 iframe {
   height: 400px;
-  width: 700px;  
+  width: 690px;  
 
   margin-left: 5px;
   margin-top: 10px;
@@ -186,9 +186,7 @@ iframe {
   -webkit-border-radius: 12px; 
   border-radius: 12px; 
 
-  -moz-box-shadow: 4px 4px 14px #466193; 
-  -webkit-box-shadow: 4px 4px 14px #466193; 
-  box-shadow: 4px 4px 14px #466193; 
+
 }
 
 #comment {

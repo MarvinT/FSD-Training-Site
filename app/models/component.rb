@@ -2,7 +2,7 @@ class Component < ActiveRecord::Base
   belongs_to :lesson
 
   before_save { |comp| comp.class.next_position(comp) }
-  
+
 
   class Video < Component
   end
@@ -11,7 +11,7 @@ class Component < ActiveRecord::Base
   end
 
   class Prezi < Component
-  
+
   end
 
  def self.method_missing(method_id, *arguments, &block)
@@ -29,6 +29,6 @@ class Component < ActiveRecord::Base
      super
    end
 
- end 
+ end
 
 end

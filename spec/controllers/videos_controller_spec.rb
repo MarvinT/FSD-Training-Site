@@ -54,7 +54,6 @@ describe VideosController do
     end
 
     it 'should set the position' do
-      pending "need sort method"
       Video.should_receive(:find).with(1).and_return(@fake_video1)
       @fake_video1.should_receive(:position=).with(0)
       @fake_video1.should_receive(:save).and_return(true)
@@ -64,7 +63,7 @@ describe VideosController do
       Video.should_receive(:find).with(3).and_return(@fake_video3)
       @fake_video3.should_receive(:position=).with(1)
       @fake_video3.should_receive(:save).and_return(true)
-      post :sort, {"videos"=>["1", "3", "2"]}
+      post :sort, {"lesson_id"=>1, "components"=>["1", "3", "2"]}
     end
   end
 

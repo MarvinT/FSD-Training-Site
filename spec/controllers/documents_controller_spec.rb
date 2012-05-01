@@ -55,7 +55,6 @@ describe DocumentsController do
     end
 
     it 'should set the position' do
-      pending "need sort method"
       Document.should_receive(:find).with(1).and_return(@fake_document1)
       @fake_document1.should_receive(:position=).with(0)
       @fake_document1.should_receive(:save).and_return(true)
@@ -65,7 +64,7 @@ describe DocumentsController do
       Document.should_receive(:find).with(3).and_return(@fake_document3)
       @fake_document3.should_receive(:position=).with(1)
       @fake_document3.should_receive(:save).and_return(true)
-      post :sort, {"documents"=>["1", "3", "2"]}
+      post :sort, {"lesson_id"=>1, "components"=>["1", "3", "2"]}
     end
   end
 

@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/saasbook/cs169/fsd/app/controllers/application_controller.rb": [
+      "/home/saasbook/tmpFSD/FSD2/app/controllers/application_controller.rb": [
         1,
         1,
         null,
@@ -24,7 +24,7 @@
         null,
         null
       ],
-      "/home/saasbook/cs169/fsd/app/controllers/comments_controller.rb": [
+      "/home/saasbook/tmpFSD/FSD2/app/controllers/comments_controller.rb": [
         1,
         null,
         1,
@@ -76,7 +76,7 @@
         null,
         null
       ],
-      "/home/saasbook/cs169/fsd/app/models/comment.rb": [
+      "/home/saasbook/tmpFSD/FSD2/app/models/comment.rb": [
         1,
         1,
         null,
@@ -89,7 +89,7 @@
         null,
         null
       ],
-      "/home/saasbook/cs169/fsd/app/controllers/documents_controller.rb": [
+      "/home/saasbook/tmpFSD/FSD2/app/controllers/documents_controller.rb": [
         1,
         null,
         1,
@@ -143,7 +143,7 @@
         null,
         null
       ],
-      "/home/saasbook/cs169/fsd/app/models/document.rb": [
+      "/home/saasbook/tmpFSD/FSD2/app/models/document.rb": [
         1,
         1,
         null,
@@ -171,7 +171,7 @@
         null,
         null
       ],
-      "/home/saasbook/cs169/fsd/app/models/component.rb": [
+      "/home/saasbook/tmpFSD/FSD2/app/models/component.rb": [
         1,
         1,
         null,
@@ -207,7 +207,7 @@
         null,
         null
       ],
-      "/home/saasbook/cs169/fsd/app/controllers/lessons_controller.rb": [
+      "/home/saasbook/tmpFSD/FSD2/app/controllers/lessons_controller.rb": [
         1,
         null,
         1,
@@ -324,7 +324,7 @@
         null,
         null
       ],
-      "/home/saasbook/cs169/fsd/app/models/lesson.rb": [
+      "/home/saasbook/tmpFSD/FSD2/app/models/lesson.rb": [
         1,
         null,
         1,
@@ -354,7 +354,7 @@
         null,
         null
       ],
-      "/home/saasbook/cs169/fsd/app/controllers/prezis_controller.rb": [
+      "/home/saasbook/tmpFSD/FSD2/app/controllers/prezis_controller.rb": [
         1,
         null,
         1,
@@ -404,7 +404,7 @@
         null,
         null
       ],
-      "/home/saasbook/cs169/fsd/app/models/prezi.rb": [
+      "/home/saasbook/tmpFSD/FSD2/app/models/prezi.rb": [
         1,
         1,
         null,
@@ -431,7 +431,7 @@
         null,
         null
       ],
-      "/home/saasbook/cs169/fsd/app/controllers/sessions_controller.rb": [
+      "/home/saasbook/tmpFSD/FSD2/app/controllers/sessions_controller.rb": [
         1,
         1,
         2,
@@ -456,7 +456,7 @@
         null,
         null
       ],
-      "/home/saasbook/cs169/fsd/app/controllers/videos_controller.rb": [
+      "/home/saasbook/tmpFSD/FSD2/app/controllers/videos_controller.rb": [
         1,
         null,
         1,
@@ -511,7 +511,7 @@
         null,
         null
       ],
-      "/home/saasbook/cs169/fsd/app/models/video.rb": [
+      "/home/saasbook/tmpFSD/FSD2/app/models/video.rb": [
         1,
         1,
         null,
@@ -541,6 +541,6 @@
         null
       ]
     },
-    "timestamp": 1335860969
+    "timestamp": 1335904518
   }
 }

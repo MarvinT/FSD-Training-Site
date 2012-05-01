@@ -12,46 +12,44 @@
     #main
       %h2 Description
       %p= @lesson.description
-      %hr         
-      #prezis
-        %h2 Prezis
-        - if !@user.nil?
-          = link_to "Reorder Prezis", lesson_prezis_path(@lesson.id)
-        - if @prezis.empty?
-          %p There are currently no prezis uploaded for this lesson.
-        - @prezis.each do |prezi|
-          = render :partial => 'prezis/prezi_player', :locals => {:url => prezi.url}
+      %hr     
+      - if not @prezis.empty?    
+        #prezis
+          %h2 Prezis
           - if !@user.nil?
-            %br
-            = link_to "Delete Prezi", lesson_prezi_path(@lesson.id, prezi.id), :method => :delete, :confirm => 'Are you sure?' 
-            %br
-            %br
-      #videos
-        %h2 Videos
-        - if !@user.nil?
-          = link_to "Reorder Videos", lesson_videos_path(@lesson.id)
-        - if @videos.empty?
-          %p There are currently no videos uploaded for this lesson.
-        - @videos.each do |video|
-          = render :partial => 'videos/youtube_video', :locals => { :url => video.url }
-          -if !@user.nil?
-            %br
-            = link_to "Delete Video", lesson_video_path(@lesson.id, video.id), :method => :delete, :confirm =>'Are you sure?'
-            %br
-            %br
-      #documents
-        %h2 Documents
-        - if !@user.nil?
-          = link_to "Reorder Documents", lesson_documents_path(@lesson.id)
-        - if @documents.empty?
-          %p There are currently no documents uploaded for this lesson.
-        - @documents.each do |doc|
-          = render :partial => 'documents/doc_iframe', :locals => { :url => doc.url}
-          -if !@user.nil?
-            %br
-            = link_to "Delete Document", lesson_document_path(@lesson.id, doc.id), :method => :delete, :confirm => 'Are you sure?'
-            %br
-            %br
+            = link_to "Reorder Prezis", lesson_prezis_path(@lesson.id)
+          - @prezis.each do |prezi|
+            = render :partial => 'prezis/prezi_player', :locals => {:url => prezi.url}
+            - if !@user.nil?
+              %br
+              = link_to "Delete Prezi", lesson_prezi_path(@lesson.id, prezi.id), :method => :delete, :confirm => 'Are you sure?' 
+              %br
+              %br
+      - if not @videos.empty?
+        #videos
+          %h2 Videos
+          - if !@user.nil?
+            = link_to "Reorder Videos", lesson_videos_path(@lesson.id)
+            %p There are currently no videos uploaded for this lesson.
+          - @videos.each do |video|
+            = render :partial => 'videos/youtube_video', :locals => { :url => video.url }
+            -if !@user.nil?
+              %br
+              = link_to "Delete Video", lesson_video_path(@lesson.id, video.id), :method => :delete, :confirm =>'Are you sure?'
+              %br
+              %br
+      - if not @documents.empty?
+        #documents
+          %h2 Documents
+          - if !@user.nil?
+            = link_to "Reorder Documents", lesson_documents_path(@lesson.id)
+          - @documents.each do |doc|
+            = render :partial => 'documents/doc_iframe', :locals => { :url => doc.url}
+            -if !@user.nil?
+              %br
+              = link_to "Delete Document", lesson_document_path(@lesson.id, doc.id), :method => :delete, :confirm => 'Are you sure?'
+              %br
+              %br
       #comments
         = render :partial => "comments/comment_feed"
   .clear

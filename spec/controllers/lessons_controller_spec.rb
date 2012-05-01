@@ -2,16 +2,6 @@ require 'spec_helper'
 
 describe LessonsController do
 
-  describe 'check setsize' do
-    it 'should set the size of single lesson page' do
-      fake_lesson = mock('Lesson', :id => '1')
-      Lesson.should_receive(:find).with('1').
-        and_return(fake_lesson)
-      post :setsize, {:id => '1', :pagesize => 20}
-      response.should redirect_to(lesson_path(fake_lesson))
-    end
-  end
-
 
   describe 'show test' do
     it 'show the correct id page' do
@@ -22,24 +12,33 @@ describe LessonsController do
       fake_comments = [mock('Comment', :id => '1'),mock('Comment', :id => '2')]
       Lesson.should_receive(:find).with('1').
         and_return(fake_lesson)
-      fake_lesson.should_receive(:videos).
-        and_return(fake_videos)
-      fake_lesson.should_receive(:documents).
+      fake_lesson.stub(:documents).
         and_return(fake_documents)
-      fake_lesson.should_receive(:prezis).
+      fake_documents.should_receive(:order).with(:position).
+        and_return(fake_documents)
+        
+      fake_lesson.stub(:prezis).
         and_return(fake_prezis)
-      #fake_lesson.should_receive(:totalpage).
-      #  and_return('1')
-      #fake_lesson.should_receive(:subcomments).with('1').
-      #  and_return(fake_comments)
+      fake_prezis.should_receive(:order).with(:position).
+        and_return(fake_prezis) 
+        
+      fake_lesson.stub(:videos).
+        and_return(fake_videos)
+      fake_videos.should_receive(:order).with(:position).
+        and_return(fake_videos)
+        
+      fake_lesson.should_receive(:comments).
+        and_return(fake_comments)
+
       post :show, {:id => '1',:page => '1'}
       response.should render_template('show')
       assigns(:lesson).should == fake_lesson
-      assigns(:videos).should == fake_videos
-      assigns(:documents).should == fake_documents
+      assigns(:documents).should == fake_documents      
       assigns(:prezis).should == fake_prezis
-      #assigns(:totalpage).should == '1'
-      #assigns(:comments).should == fake_comments
+      assigns(:videos).should == fake_videos
+      assigns(:totalpage).should == 1
+      assigns(:currentpage).should == '1'
+      assigns(:comments).should == fake_comments
     end
 
     it 'show Lesson not found.' do

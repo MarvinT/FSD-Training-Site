@@ -19,11 +19,11 @@ class LessonsController < ApplicationController
       @videos = @lesson.videos.order(:position)
       
       allcomments = @lesson.comments
-      a = allcomments.length
+      
       @totalpage = (allcomments.length/15.to_f).ceil
-      b = @totalpage
+      
       @currentpage = params[:page]
-      c = @currentpage
+   
       if @currentpage == nil
         @comments = allcomments[0,15]
       elsif @currentpage.to_i > 0 and @currentpage.to_i <= @totalpage.to_i

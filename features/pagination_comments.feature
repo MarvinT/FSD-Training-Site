@@ -25,24 +25,25 @@ Background: lessons in database
   |Comment9         |user9             |comment9 body    |1                |
   |Comment10        |user10            |comment10 body   |1                |
   |Comment11        |user11            |comment11 body   |1                |
-  
+  |Comment12        |user12            |comment12 body   |1                |
+  |Comment13        |user13            |comment13 body   |1                |
+  |Comment14        |user14            |comment14 body   |1                |
+  |Comment15        |user15            |comment15 body   |1                |
+  |Comment16        |user16            |comment16 body   |1                |
+  |Comment17        |user17            |comment17 body   |1                |
+  |Comment18        |user18            |comment18 body   |1                |
+  |Comment19        |user19            |comment19 body   |1                |
+    
 @wip
-Scenario: One page only shows 10 comments
+Scenario: One page only shows 15 comments
   Given I am on the detail page for "Lesson1"
-  Then I should not see "comment11 body"
+  Then I should not see "comment16 body"
 
 @wip  
 Scenario: Go to the second page
   Given I am on the detail page for "Lesson1"
-  And I press "Next Page"
-  Then I should see "comment11 body"
-
-@wip  
-Scenario: Change page size
-  Given I am on the detail page for "Lesson1"
-  And I fill in "comment_size" with "5"
-  And I press "Save"
-  Then I should not see "comment6 body"
+  And I follow "Next Page"
+  Then I should see "comment16 body"
 
 
 

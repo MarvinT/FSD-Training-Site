@@ -1,0 +1,43 @@
+#wrapper
+  = render :partial => "shared/head"
+  = render :partial => "shared/navigation_new"
+  #main
+    .content
+      %h1 Reorder Lessons
+      - if flash[:notice] != nil
+        %br
+        #notice.message= flash[:notice]
+      - elsif flash[:warning] != nil
+        %br 
+        #warning.message= flash[:warning]
+      %table
+        %thead
+          %tr.title 
+            %th.title Lessons
+        %tbody#lessons
+          - if @lessons.empty?
+            %tr 
+              %td There currently no lessons available. Please check back later.
+          - else
+            - @lessons.each do |lesson|
+              %tr{:class => "lessons", :id=> "#{lesson.id}"}
+                %td.lessons #{lesson.title}    
+  .clear
+  %br
+  = render :partial => "shared/footer"
+
+- content_for :head do  
+  %script{:charset => "utf-8", :type => "text/javascript"}
+    $(document).ready(function() {
+    $('#lessons').tableDnD({
+    onDrop: function(table, row){
+    $.ajax({
+    type: "POST",
+    url: "#{url_for(:action => 'sort')}",
+    processData: false,
+    data: $.tableDnD.serialize() + '&authenticity_token=' + encodeURIComponent("#{form_authenticity_token if protect_against_forgery?}")
+       
+    });
+    }  
+    });
+    });

@@ -26,7 +26,7 @@ class LessonsController < ApplicationController
       @currentpage = params[:page]
 
       if @currentpage == nil
-        @currentpage = '1'
+        @currentpage = 1
         @comments = allcomments[0,15]
       elsif @currentpage.to_i > 0 and @currentpage.to_i <= @totalpage.to_i
         @comments = allcomments[(@currentpage.to_i-1)*15,15]

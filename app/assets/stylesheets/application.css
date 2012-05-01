@@ -212,12 +212,6 @@ margin-bottom: 5px;
 }
 
 #comment_body {
-width: 700px;
+width: 650px;
 height: 100px;
-}
-
-#lesson_title {
-color: #000;
-font-size: 22px;
-font-weight:normal;
 }

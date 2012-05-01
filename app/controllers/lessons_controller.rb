@@ -3,6 +3,7 @@ class LessonsController < ApplicationController
   before_filter :admin_required, :except => [:index, :show]
 
   def show
+    @lessons = Lesson.order(:position)
     @user = session[:admin_user]
     banners = ["banner1.jpg", "banner2.jpg", "banner3.jpg", "banner4.jpg", "banner5.jpg", "banner6.jpg", "banner7.jpg", "banner8.jpg"]
     random = rand(8)
@@ -25,7 +26,7 @@ class LessonsController < ApplicationController
       @currentpage = params[:page]
 
       if @currentpage == nil
-        @currentpage = '1'
+        @currentpage = 1
         @comments = allcomments[0,15]
       elsif @currentpage.to_i > 0 and @currentpage.to_i <= @totalpage.to_i
         @comments = allcomments[(@currentpage.to_i-1)*15,15]

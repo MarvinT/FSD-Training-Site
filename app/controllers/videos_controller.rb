@@ -11,7 +11,7 @@ class VideosController < ApplicationController
 
 
       if Video.isValidUrl?(params[:video][:url])
-        
+
         @video = Video.new("url" => Video.embedableUrl(params[:video][:url]),
                            "title" => params[:video][:title])
         @video.save
@@ -42,7 +42,7 @@ class VideosController < ApplicationController
   def sort
     params["components"].each_with_index { |id, index|
         video = Video.find(id.to_i)
-        video.position = index 
+        video.position = index
         video.save
       }
 

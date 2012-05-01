@@ -12,25 +12,11 @@
     #main
       %h2 Description
       %p= @lesson.description
-      %hr
-      #documents
-        %h2 Documents
-        - if !@user.nil?
-          = link_to "Reorder documents", lesson_documents_path(@lesson.id)
-        - if @documents.empty?
-          %p There are currently no documents uploaded for this lesson.
-        - @documents.each do |doc|
-          = render :partial => 'documents/doc_iframe', :locals => { :url => doc.url}
-          -if !@user.nil?
-            %br
-            = link_to "Delete Document", lesson_document_path(@lesson.id, doc.id), :method => :delete, :confirm => 'Are you sure?'
-            %br
-            %br
-             
+      %hr         
       #prezis
         %h2 Prezis
         - if !@user.nil?
-          = link_to "Reorder prezis", lesson_prezis_path(@lesson.id)
+          = link_to "Reorder Prezis", lesson_prezis_path(@lesson.id)
         - if @prezis.empty?
           %p There are currently no prezis uploaded for this lesson.
         - @prezis.each do |prezi|
@@ -43,7 +29,7 @@
       #videos
         %h2 Videos
         - if !@user.nil?
-          = link_to "Reorder videos", lesson_videos_path(@lesson.id)
+          = link_to "Reorder Videos", lesson_videos_path(@lesson.id)
         - if @videos.empty?
           %p There are currently no videos uploaded for this lesson.
         - @videos.each do |video|
@@ -51,6 +37,19 @@
           -if !@user.nil?
             %br
             = link_to "Delete Video", lesson_video_path(@lesson.id, video.id), :method => :delete, :confirm =>'Are you sure?'
+            %br
+            %br
+      #documents
+        %h2 Documents
+        - if !@user.nil?
+          = link_to "Reorder Documents", lesson_documents_path(@lesson.id)
+        - if @documents.empty?
+          %p There are currently no documents uploaded for this lesson.
+        - @documents.each do |doc|
+          = render :partial => 'documents/doc_iframe', :locals => { :url => doc.url}
+          -if !@user.nil?
+            %br
+            = link_to "Delete Document", lesson_document_path(@lesson.id, doc.id), :method => :delete, :confirm => 'Are you sure?'
             %br
             %br
       #comments

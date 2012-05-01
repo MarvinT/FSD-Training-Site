@@ -4,11 +4,11 @@ class LessonsController < ApplicationController
 
   def show
     @user = session[:admin_user]
-    banners = ["banner1.jpg", "banner2.jpg", "banner3.jpg", "banner4.jpg", "banner5.jpg", "banner6.jpg", "banner7.jpg"]
-    random = rand(7)
+    banners = ["banner1.jpg", "banner2.jpg", "banner3.jpg", "banner4.jpg", "banner5.jpg", "banner6.jpg", "banner7.jpg", "banner8.jpg"]
+    random = rand(8)
     @banner = banners[random]
     id = params[:id] # retrieve lesson ID from URI route
-    
+
     begin
       @lesson = Lesson.find(id) # look up lesson by unique ID
 
@@ -17,13 +17,13 @@ class LessonsController < ApplicationController
       @prezis = @lesson.prezis.order(:position)
 
       @videos = @lesson.videos.order(:position)
-      
+
       allcomments = @lesson.comments
-      
+
       @totalpage = (allcomments.length/15.to_f).ceil
-      
+
       @currentpage = params[:page]
-   
+
       if @currentpage == nil
         @currentpage = '1'
         @comments = allcomments[0,15]
@@ -34,7 +34,7 @@ class LessonsController < ApplicationController
         @comments = allcomments[0,15]
         flash[:notice] = "Comment page out of range."
       end
- 
+
     rescue Exception => e
       puts e.message
       flash[:notice] = "Lesson not found."
@@ -44,6 +44,10 @@ class LessonsController < ApplicationController
   end
 
   def index
+    @user = session[:admin_user]
+    banners = ["banner1.jpg", "banner2.jpg", "banner3.jpg", "banner4.jpg", "banner5.jpg", "banner6.jpg", "banner7.jpg", "banner8.jpg"]
+    random = rand(8)
+    @banner = banners[random]
     @user = session[:admin_user]
     @lessons = Lesson.order(:position)
   end
@@ -96,7 +100,7 @@ class LessonsController < ApplicationController
   def sort
     params["lessons"].each_with_index { |id, index|
         lesson = Lesson.find(id.to_i)
-        lesson.position = index 
+        lesson.position = index
         lesson.save
       }
 

@@ -12,7 +12,7 @@
    = render :partial => "shared/head"
    .content
       %h1 Welcome to FSD Training Center
-      %img{:src => "/assets/trainingcenter_banner.jpg"}
+      %img{:src => "/assets/#{@banner}"}
       - if flash[:notice] != nil
          %br
          #notice.message= flash[:notice]

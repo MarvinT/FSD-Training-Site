@@ -1,5 +1,6 @@
 #wrapper
   = render :partial => "shared/head"
+  = render :partial => "shared/navigation_edit"
   #main
     .content
       %h1 Edit Lesson
@@ -22,13 +23,5 @@
         %br
         %br
         = submit_tag 'Save Changes'
-  #right_sidebar
-    .content
-      -if !@user.nil?
-        %h2 admin control panel
-        %p= link_to "Logout", logout_path
-        %hr
-      %h2 navigation
-      %p= link_to "Return Home", root_path
   .clear
   = render :partial => "shared/footer"

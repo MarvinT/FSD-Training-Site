@@ -3,6 +3,7 @@ class LessonsController < ApplicationController
   before_filter :admin_required, :except => [:index, :show]
 
   def show
+    @lessons = Lesson.order(:position)
     @user = session[:admin_user]
     banners = ["banner1.jpg", "banner2.jpg", "banner3.jpg", "banner4.jpg", "banner5.jpg", "banner6.jpg", "banner7.jpg", "banner8.jpg"]
     random = rand(8)

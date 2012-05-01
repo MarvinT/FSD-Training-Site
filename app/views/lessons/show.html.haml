@@ -2,14 +2,13 @@
   = render :partial => "shared/head"
   .content
     .content
-      #lesson_title= @lesson.title
       %img{:src => "/assets/#{@banner}"}
+      %h1= @lesson.title
       - if flash[:notice] != nil
-        %br
         #notice.message= flash[:notice]
       - elsif flash[:warning] != nil
-        %br
         #warning.message= flash[:warning]
+    = render :partial => "shared/navigation"
     #main
       %h2 Description
       %p= @lesson.description
@@ -65,23 +64,5 @@
         %br
         = link_to "Last Page", lesson_path(@lesson, :page => @totalpage)
         %br
-    #right_sidebar
-      -if !@user.nil?
-        %h2 admin control panel
-        %p
-          = link_to "Edit Lesson", edit_lesson_path(@lesson)
-          %br
-          = link_to "Delete Lesson", lesson_path(@lesson), :method => :delete, :confirm =>'Are you sure?'
-          %br
-          = link_to "Upload Document", new_lesson_document_path(@lesson)
-          %br
-          = link_to "Upload Prezi", new_lesson_prezi_path(@lesson)
-          %br
-          = link_to "Upload Video", new_lesson_video_path(@lesson)
-          %br
-          %p= link_to "Logout", logout_path
-        %hr
-      %h2 navigation
-      %p= link_to "Return Home", root_path
   .clear
   = render :partial => "shared/footer"

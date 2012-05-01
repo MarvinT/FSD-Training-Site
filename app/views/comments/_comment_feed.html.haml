@@ -2,7 +2,7 @@
 %h2 Comments
 - if @currentpage.to_i != 1
   = link_to "<< Previous Page", lesson_path(@lesson, :page => (@currentpage.to_i-1))
-- if @currentpage.to_i != @totalpage.to_i
+- if ((@totalpage.to_i != 0) and (@currentpage.to_i != @totalpage.to_i))
   .right= link_to "Next Page >>", lesson_path(@lesson, :page => (@currentpage.to_i+1))
 .clear
 %br
@@ -12,8 +12,9 @@
   %br
 - if @currentpage.to_i != 1
   = link_to "<< Previous Page", lesson_path(@lesson, :page => (@currentpage.to_i-1))
-- if @currentpage.to_i != @totalpage.to_i
+  %br
+- if ((@totalpage.to_i != 0) and (@currentpage.to_i != @totalpage.to_i))
   .right= link_to "Next Page >>", lesson_path(@lesson, :page => (@currentpage.to_i+1))
+  %br
 .clear
-%br
 = render :partial => "comments/comment_form"

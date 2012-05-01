@@ -3,8 +3,8 @@ Then /^I should see the Facebook feed$/ do
 end
 
 Then /^I should see the Twitter feed$/ do
-  page.find('div#right_sidebar').find('script')[:src].should == 'http://widgets.twimg.com/j/2/widget.js'
-  page.find('div#right_sidebar').find('script', {:text => 'infoFSD'})
+  page.find('div#left_sidebar').find('script')[:src].should == 'http://widgets.twimg.com/j/2/widget.js'
+  page.find('div#left_sidebar').find('script', {:text => 'infoFSD'})
 end
 
 Given /^I enter the url for "([^"]*)"$/ do |url|

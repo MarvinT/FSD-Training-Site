@@ -1,0 +1,19 @@
+#left_sidebar
+  -if !@user.nil?
+    %h2 admin control panel
+    %p
+      = link_to "Edit Lesson", edit_lesson_path(@lesson)
+      %br
+      = link_to "Delete Lesson", lesson_path(@lesson), :method => :delete, :confirm =>'Are you sure?'
+      %br
+      = link_to "Upload Document", new_lesson_document_path(@lesson)
+      %br
+      = link_to "Upload Prezi", new_lesson_prezi_path(@lesson)
+      %br
+      = link_to "Upload Video", new_lesson_video_path(@lesson)
+      %br
+      %p= link_to "Logout", logout_path
+    %hr
+  %h2 navigation
+  %p= link_to "Return to Resource Center Home", root_path
+  %br

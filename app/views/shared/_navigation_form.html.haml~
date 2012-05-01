@@ -1,0 +1,9 @@
+eft_sidebar
+  -if !@user.nil?
+    %h2 admin control panel
+      %p= link_to "Logout", logout_path
+    %hr
+  %h2 navigation
+  %p= link_to "Return to Lesson", lesson_path(@lesson)
+  %p= link_to "Return to Resource Center Home", root_path
+  %br

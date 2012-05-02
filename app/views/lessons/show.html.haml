@@ -12,7 +12,9 @@
     #main
       %h2 Description
       %p= @lesson.description
-      %hr     
+      %hr
+      - if @prezis.empty? and @videos.empty? and @documents.empty?
+        %p There are no prezis, videos, or documents uploaded to this lesson.   
       - if not @prezis.empty?    
         #prezis
           %h2 Prezis

@@ -3,6 +3,8 @@ class PrezisController < ApplicationController
   before_filter :admin_required
 
   def new
+    @user = session[:admin_user]
+    @lesson = Lesson.find(params[:lesson_id])
     @lesson_title = Lesson.title(params[:lesson_id])
   end
 
@@ -30,8 +32,9 @@ class PrezisController < ApplicationController
     redirect_to lesson_path(@lesson)
   end
 
-  
+
   def index
+    @user = session[:admin_user]
     @prezis = Lesson.find(params[:lesson_id]).prezis.order(:position)
     @lesson_id = params[:lesson_id]
   end
@@ -39,7 +42,7 @@ class PrezisController < ApplicationController
   def sort
     params["components"].each_with_index { |id, index|
         prezi = Prezi.find(id.to_i)
-        prezi.position = index 
+        prezi.position = index
         prezi.save
       }
 

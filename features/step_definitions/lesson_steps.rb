@@ -2,9 +2,17 @@ Then /^I should see the Facebook feed$/ do
   page.find('div.fb-like-box')['data-href'].should == 'http://www.facebook.com/Foundation.for.Sustainable.Development'
 end
 
+Then /^I should not see the Facebook feed$/ do
+  page.should_not have_css('div.fb-like-box')
+end
+
 Then /^I should see the Twitter feed$/ do
   page.find('div#left_sidebar').find('script')[:src].should == 'http://widgets.twimg.com/j/2/widget.js'
   page.find('div#left_sidebar').find('script', {:text => 'infoFSD'})
+end
+
+Then /^I should not see the Twitter feed$/ do
+  page.find('div#left_sidebar').should_not have_css('script', :src => 'http://widgets.twimg.com/j/2/widget.js')
 end
 
 Given /^I enter the url for "([^"]*)"$/ do |url|

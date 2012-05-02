@@ -39,15 +39,12 @@ Scenario: One page only shows 15 comments
   Given I am on the detail page for "Lesson1"
   Then I should not see "comment16 body"
 
+Scenario: Previous page does not show up in first page
+  Given I am on the detail page for "Lesson1"
+  Then I should not see "Previous Page"
 
 Scenario: Go to the second page
   Given I am on the detail page for "Lesson1"
   And I follow "Next Page"
   Then I should see "comment16 body"
-
-Scenario: Go out of comment page range
-  Given I am on the detail page for "Lesson1"
-  And I follow "Previous Page"
-  Then I should see "Comment page out of range."
-
 

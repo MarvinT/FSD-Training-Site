@@ -1,15 +1,7 @@
 #footer
    .float
       .content 
-         %h2 Links
-         = link_to 'main site', 'http://fsdinternational.org/'
-         %br
-         = link_to 'donate', 'http://fsdinternational.org/donate'
-         %br
-         = link_to "admin login", login_path
-   .float
-      .content
-         %h2 Social Media
+         %h2 Find Us Online
          = link_to 'facebook', 'https://www.facebook.com/foundation.for.sustainable.development'
          %br
          = link_to 'twitter', 'http://twitter.com/#!/infoFSD'
@@ -17,6 +9,11 @@
          = link_to 'youtube', 'http://www.youtube.com/fsdinternational'
          %br
          = link_to 'linkedin', 'http://www.linkedin.com/groups?gid=111574&mostPopular=&trk=tyah'
+         %br
+         = link_to 'fsd home', 'http://fsdinternational.org/'
+         %br
+         %br
+         = link_to "admin login", login_path
    .float
       .content
          %h2 Contact Us
@@ -26,4 +23,18 @@
          1000 Brannan St, Suite 207
          %br
          San Francisco, CA 94103
+   .float
+      .content
+         %h2 What You Can Do
+         = link_to 'programs abroad', 'http://fsdinternational.org/trainingprograms'
+         %br
+         = link_to 'giving circle', 'http://fsdinternational.org/givingcircle'
+         %br
+         = link_to 'donate', 'http://fsdinternational.org/donate'
+   .float
+      .content
+         %h2 About FSD
+         FSD reduces global poverty by providing over 300 grassroots community organizations around the world with training and key resources to address pressing socioeconomic issues.
    .clear
+   %br
+   %img{:src => '/assets/featuredin.png'}

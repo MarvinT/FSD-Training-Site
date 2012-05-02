@@ -98,14 +98,32 @@ background-color:#746859;
 }
 
 #footer {
+font-family: arial;
+font-weight: bold;
 color: #3F3831;
 background-color: #D4D3C9;
 }
 
+#footer .content, #footer .content h2 {
+color: #3f3831;
+}
+
+#footer .content {
+font-size: 11px;
+line-height: 17px;
+}
+
+#footer h2 {
+font-size: 13px;
+margin-top: 0px;
+margin-bottom: 5px;
+}
+
+
 #footer .float {
 float: left;
-width: 310px;
-padding: 5px;
+width: 225px;
+padding: 10px;
 }
 
 #lesson_title{

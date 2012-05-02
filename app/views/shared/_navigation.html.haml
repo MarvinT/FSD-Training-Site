@@ -11,10 +11,11 @@
     %br
   %h2 Navigation
   - if !@lessons.empty?
-    - @lessons.each do |lesson|
-      - if @lesson == lesson
-        .navlink_highlighted= link_to "#{lesson.title} >>", lesson_path(lesson)
-      - else
-        .navlink= link_to "#{lesson.title}", lesson_path(lesson)
+    #lessons_nav
+      - @lessons.each do |lesson|
+        - if @lesson == lesson
+          .navlink_highlighted= link_to "#{lesson.title} >>", lesson_path(lesson)
+        - else
+          .navlink= link_to "#{lesson.title}", lesson_path(lesson)
   .navlink= link_to "Return to Resource Center Home", root_path
   %br

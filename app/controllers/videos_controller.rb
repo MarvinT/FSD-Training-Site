@@ -3,6 +3,8 @@ class VideosController < ApplicationController
   before_filter :admin_required
 
   def new
+    @user = session[:admin_user]
+    @lesson = Lesson.find(params[:lesson_id])
     @lesson_title = Lesson.title(params[:lesson_id])
   end
 
@@ -35,6 +37,7 @@ class VideosController < ApplicationController
   end
 
   def index
+    @user = session[:admin_user]
     @videos = Lesson.find(params[:lesson_id]).videos.order(:position)
     @lesson_id = params[:lesson_id]
   end

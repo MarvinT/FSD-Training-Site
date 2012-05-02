@@ -19,21 +19,18 @@
          #warning.message= flash[:warning]
       #left_sidebar
          - if !@user.nil?
-            %h2 admin control panel
-            %p
-               = link_to "Create Lesson", new_lesson_path
-               %br
-               = link_to "Reorder Lessons", lessons_reorder_path
-               %br
-               = link_to "Logout", logout_path
-            %hr
-         %h2 facebook
-         .fb-like-box{"data-border-color" => "#ffffff", "data-header" => "false", "data-height" => "300", "data-href" => "http://www.facebook.com/Foundation.for.Sustainable.Development", "data-show-faces" => "true", "data-stream" => "true", "data-width" => "225"}
+            %h2 Admin Control Panel
+            .navlink= link_to "Create Lesson", new_lesson_path
+            .navlink= link_to "Reorder Lessons", lessons_reorder_path
+            .navlink= link_to "Logout", logout_path
+            %br
+         %h2 Facebook
+         .fb-like-box{"data-border-color" => "#c2ad99", "data-header" => "false", "data-height" => "300", "data-href" => "http://www.facebook.com/Foundation.for.Sustainable.Development", "data-show-faces" => "true", "data-stream" => "true", "data-width" => "225"}
          %br
          %br
          %br
          %hr
-         %h2 twitter
+         %h2 Twitter
          %script{:charset => "utf-8", :src => "http://widgets.twimg.com/j/2/widget.js"}
          :javascript
             new TWTR.Widget({
@@ -41,7 +38,7 @@
                type: 'profile',
                rpp: 5,
                interval: 30000,
-               width: 235,
+               width: 225,
                height: 200,
                theme: {
                   shell: {

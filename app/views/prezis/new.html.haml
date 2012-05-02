@@ -1,5 +1,6 @@
 #wrapper
   = render :partial => "shared/head"
+  = render :partial => "shared/navigation_edit"
   #main
     .content
       - if flash[:notice]
@@ -19,14 +20,6 @@
         %br
         %br
         = submit_tag 'Upload Prezi'
-  #right_sidebar
-    .content
-      -if @user.nil?
-        %h2 admin control panel
-        %p= link_to "Logout", "/auth/admin/logout"
-        %hr
-      %h2 navigation
-      %p= link_to "Return Home", "/"
   .clear
   = render :partial => "shared/footer"
   

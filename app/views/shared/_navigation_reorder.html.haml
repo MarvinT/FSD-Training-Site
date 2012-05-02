@@ -1,10 +1,10 @@
 #left_sidebar
   .content
     -if !@user.nil?
-      %h2 admin control panel
-      %p= link_to "Logout", logout_path
-      %hr
-    %h2 navigation
-    %p= link_to "Return to Lesson", lesson_path(@lesson_id)
-    %p= link_to "Return to Resource Center Home", root_path
+      %h2 Admin Control Panel
+      .navlink= link_to "Logout", logout_path
+      %br
+    %h2 Navigation
+    .navlink= link_to "Return to Lesson", lesson_path(@lesson_id)
+    .navlink= link_to "Return to Resource Center Home", root_path
     %br

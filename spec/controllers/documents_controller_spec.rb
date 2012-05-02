@@ -2,10 +2,27 @@
 require 'spec_helper'
 
 describe DocumentsController do
+
   before :each do
+    @fake_document1 = mock('Document', :id => '1', :title => 'document1', :description => 'sample document 1')
+    @fake_document2 = mock('Document', :id => '2', :title => 'document2', :description => 'sample document 2')
+    @fake_document3 = mock('Document', :id => '3', :title => 'document3', :description => 'sample document 3')
+    @fake_docs = [@fake_document1, @fake_document2, @fake_document3]
     @fake_lesson = {'title' => 'lesson1', "description" => 'sample lesson', :id => '1'}
     @fake_doc = mock('Document', :id => '1', "url" => "a_valid_url")
     controller.stub(:admin?).and_return(true)
+  end
+
+  describe 'reordering view' do
+    it 'should show all the documents for a lesson' do
+      Lesson.should_receive(:find).and_return(@fake_lesson)
+      @fake_lesson.should_receive(:documents).and_return(@fake_docs)
+      @fake_docs.should_receive(:order).with(:position).and_return(@fake_docs)
+      
+
+
+      post :index, {:lesson_id => 1}
+    end
   end
 
 
@@ -48,11 +65,7 @@ describe DocumentsController do
   end
 
   describe 'document sorting' do
-    before :each do
-      @fake_document1 = mock('Document', :id => '1', :title => 'document1', :description => 'sample document 1')
-      @fake_document2 = mock('Document', :id => '2', :title => 'document2', :description => 'sample document 2')
-      @fake_document3 = mock('Document', :id => '3', :title => 'document3', :description => 'sample document 3')
-    end
+  
 
     it 'should set the position' do
       Document.should_receive(:find).with(1).and_return(@fake_document1)

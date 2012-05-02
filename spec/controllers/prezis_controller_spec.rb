@@ -4,7 +4,19 @@ describe PrezisController do
   before :each do
     @fake_lesson = {'title' => 'lesson1', "description" => 'sample lesson', :id => '1'}
     @fake_prezi = mock('Prezi', :id => '1', "url" => "a_valid_url")
+    @fake_prezis = [@fake_prezi]
     controller.stub(:admin?).and_return(true)
+  end
+
+
+
+  describe 'reordering view' do
+    it 'should show all the prezis for a lesson' do
+      Lesson.should_receive(:find).and_return(@fake_lesson)
+      @fake_lesson.should_receive(:prezis).and_return(@fake_prezis)
+      @fake_prezis.should_receive(:order).with(:position).and_return(@fake_prezis)
+      post :index, {:lesson_id => 1}
+    end
   end
 
   describe 'the create method' do

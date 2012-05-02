@@ -4,17 +4,10 @@ class Document < Component
   belongs_to :lesson
 
   def self.isValidUrl?(url)
-    begin
-      open(url)
-    rescue Exception => e
-      return false
-    end
-
     reg = /^http(s)?:\/\/docs.google.com\/document\/pub\?id=([a-zA-Z0-9_\/-]*)$/
-    match =  (reg.match(url))? true : false
-
-    return match
+    super(url, reg)
   end
+   
 
   def self.embedableUrl(url)
     #url something like... https://docs.google.com/document/pub?id=1...

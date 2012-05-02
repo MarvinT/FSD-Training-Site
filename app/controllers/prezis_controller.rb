@@ -11,6 +11,7 @@ class PrezisController < ApplicationController
   def create
     if request.post?
       if Prezi.isValidUrl?(params[:prezi][:url])
+      
         @prezi = Prezi.new("url" => Prezi.embeddableUrl(params[:prezi][:url]), "title" => params[:prezi][:title])
         @prezi.save
         lesson = Lesson.find(params[:lesson_id])

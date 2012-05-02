@@ -4,7 +4,7 @@ class Prezi < Component
   belongs_to :lesson
 
   def self.isValidUrl?(url)
-    reg = /^http(s)?:\/\/prezi\.com\/([^\/]+)\/(.*)$/
+    reg = /^http(s)?:\/\/prezi.com\/([^\/]+)\/(.*)$/
     super(url, reg)
   end
 

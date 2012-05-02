@@ -14,6 +14,11 @@ class Component < ActiveRecord::Base
 
   end
 
+  def self.isValidUrl?(url, reg)
+    match = !reg.match(url).nil?
+   return match
+  end
+
  def self.method_missing(method_id, *arguments, &block)
    if method_id.to_s == "next_position"
      component = arguments[0]

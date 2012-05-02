@@ -9,7 +9,7 @@ describe Prezi do
     end
 
     it 'should reject invalid urls' do
-      badUrl = "http://prezi.com/h43habmufpt3/"
+      badUrl = "http://prozi.com/h43habmufpt3/"
       Prezi.isValidUrl?(badUrl).should == false
     end
   end

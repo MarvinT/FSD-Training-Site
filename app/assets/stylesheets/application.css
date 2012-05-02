@@ -94,6 +94,8 @@ float: right;
 }
 
 #header {
+padding: 10px;
+padding-left: 20px;
 background-color:#746859;
 }
 
@@ -264,4 +266,16 @@ background-color: #3C2918;
 
 .navlink_highlighted a {
 color: #fff;
+}
+
+#header .sm_button {
+margin-top: -5px;
+float: right;
+width: 30px;
+}
+
+#header #donate {
+float:right;
+width: 100px;
+margin-top: 40px;
 }

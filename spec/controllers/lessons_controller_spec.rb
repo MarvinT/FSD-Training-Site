@@ -16,24 +16,24 @@ describe LessonsController do
         and_return(fake_documents)
       fake_documents.should_receive(:order).with(:position).
         and_return(fake_documents)
-        
+
       fake_lesson.stub(:prezis).
         and_return(fake_prezis)
       fake_prezis.should_receive(:order).with(:position).
-        and_return(fake_prezis) 
-        
+        and_return(fake_prezis)
+
       fake_lesson.stub(:videos).
         and_return(fake_videos)
       fake_videos.should_receive(:order).with(:position).
         and_return(fake_videos)
-        
+
       fake_lesson.should_receive(:comments).
         and_return(fake_comments)
 
       post :show, {:id => '1',:page => '1'}
       response.should render_template('show')
       assigns(:lesson).should == fake_lesson
-      assigns(:documents).should == fake_documents      
+      assigns(:documents).should == fake_documents
       assigns(:prezis).should == fake_prezis
       assigns(:videos).should == fake_videos
       assigns(:totalpage).should == 1
@@ -42,8 +42,10 @@ describe LessonsController do
     end
 
     it 'show Lesson not found.' do
+      allow_message_expectations_on_nil
       Lesson.should_receive(:find).with('10').
         should raise_error
+      nil.should_receive(:documents).and_raise("")
       post :show, {:id => '10'}
       response.should redirect_to('/lessons')
     end

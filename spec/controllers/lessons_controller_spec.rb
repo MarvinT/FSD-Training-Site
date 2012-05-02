@@ -40,7 +40,55 @@ describe LessonsController do
       assigns(:currentpage).should == '1'
       assigns(:comments).should == fake_comments
     end
-
+    
+    describe 'page not correct' do
+      before :each do
+        @fake_lesson = mock('Lesson', :id => '1')
+        @fake_videos = [mock('Video', :id => '1'),mock('Video', :id => '2')]
+        @fake_documents = [mock('Document', :id => '1'),mock('Document', :id => '2')]
+        @fake_prezis = [mock('Prezi', :id => '1'),mock('Prezi', :id => '2')]
+        @fake_comments = [mock('Comment', :id => '1'),mock('Comment', :id => '2')]
+        Lesson.stub(:find).
+          and_return(@fake_lesson)
+        @fake_lesson.stub(:documents).
+          and_return(@fake_documents)
+        @fake_documents.stub(:order).
+          and_return(@fake_documents)
+  
+        @fake_lesson.stub(:prezis).
+          and_return(@fake_prezis)
+        @fake_prezis.stub(:order).
+          and_return(@fake_prezis)
+  
+        @fake_lesson.stub(:videos).
+          and_return(@fake_videos)
+        @fake_videos.stub(:order).
+          and_return(@fake_videos)
+  
+        @fake_lesson.stub(:comments).
+          and_return(@fake_comments)
+      end
+      
+      it 'show the first page due to nil pass in' do
+        post :show, {:id => '1',:page => nil}
+      end
+      
+      it 'goes out of comment page range' do
+        post :show, {:id => '1',:page => '2'}
+      end
+      
+      after :each do
+        response.should render_template('show')
+        assigns(:lesson).should == @fake_lesson
+        assigns(:documents).should == @fake_documents
+        assigns(:prezis).should == @fake_prezis
+        assigns(:videos).should == @fake_videos
+        assigns(:totalpage).should == 1
+        assigns(:currentpage).should == 1
+        assigns(:comments).should == @fake_comments     
+      end
+    end
+    
     it 'show Lesson not found.' do
       allow_message_expectations_on_nil
       Lesson.should_receive(:find).with('10').
@@ -60,13 +108,17 @@ describe LessonsController do
     end
   end
 
-  describe 'create, edit, update, destroy test' do
+  describe 'new, create, edit, update, destroy test' do
     before :each do
       @invalid_fake_lesson = {'title' => '', "description" => 'sample lesson'}
       @fake_lesson = {'title' => 'lesson1', "description" => 'sample lesson'}
       @fake_result = mock('Lesson', :id => '1', :title => 'lesson1', :description => 'sample lesson')
       controller.stub(:admin?).and_return(true)
       @fake_result.stub(:position=)
+    end
+    it 'should go to new page' do
+      post :new
+      response.should render_template('new')
     end
     it 'should create the lesson page' do
       Lesson.should_receive(:new).with(@fake_lesson).
@@ -96,13 +148,6 @@ describe LessonsController do
       post :edit, {:id => '1'}
       response.should render_template('edit')
     end
-
-    # it 'show Lesson not found.' do
-      # Lesson.should_receive(:find).with('10').
-        # should raise_error
-      # post :edit, {:id => '10'}
-      # response.should redirect_to('/lessons')
-    # end
 
     it 'show Lesson not found.' do
       Lesson.stub(:find).with('10').
@@ -157,6 +202,15 @@ describe LessonsController do
       post :sort, {"lessons"=>["1", "3", "2"]}
     end
   end
+
+ describe 'check reorder' do
+   it 'should change to the set order' do
+     fake_lessons = [mock('Lesson', :id => '1', :title => 'lesson1', :description => 'sample lesson 1')]
+     Lesson.should_receive(:order).with(:position).
+       and_return(fake_lessons)
+     post :reorder
+   end
+ end
 
 end
 

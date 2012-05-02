@@ -254,6 +254,10 @@ margin-right: 5px;
 padding: 5px;
 }
 
+#lessons_nav .navlink, #lessons_nav .navlink_highlighted {
+font-size: 10px;
+}
+
 .navlink_highlighted {
 background-color: #3C2918;
 }

@@ -32,6 +32,7 @@
           %h2 Videos
           - if !@user.nil?
             = link_to "Reorder Videos", lesson_videos_path(@lesson.id)
+            %br
           - @videos.each do |video|
             = render :partial => 'videos/youtube_video', :locals => { :url => video.url }
             -if !@user.nil?

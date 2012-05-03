@@ -20,45 +20,38 @@ Given /^I enter the url for "([^"]*)"$/ do |url|
 
 end
 
-Given /^I try to login$/ do
-  fill_in("Email", :with => "marvin")
-  fill_in("Passwd", :with => "marvin2012")
-  click_link("signIn")
-end
+
 
 
 Given /the following lessons exist/ do |lessons_table|
   lessons_table.hashes.each do |lesson|
-    # each returned element will be a hash whose key is the table header.
-    # you should arrange to add that lesson to the database here.
     Lesson.create!(lesson)
   end
 end
 
-Given /the following videos exist/ do |videos_table|
+Given /the following videos exist in "(.*)"/ do |lesson, videos_table|
+  l = Lesson.find_by_title(lesson)
   videos_table.hashes.each do |video|
-    Video.create!(video)
+    l.videos << Video.create!(video)
   end
 end
 
-Given /the following documents exist/ do |documents_table|
+Given /the following documents exist in "(.*)"/ do |lesson, documents_table|
+  l = Lesson.find_by_title(lesson)
   documents_table.hashes.each do |document|
-    Document.create!(document)
+    l.documents << Document.create!(document)
   end
 end
 
 Given /the following prezis exist in "(.*)"/ do |lesson, prezis_table|
-  l = Lesson.find_by_title("#{lesson}")
+  l = Lesson.find_by_title(lesson)
   prezis_table.hashes.each do |prezis|
-    p = Prezi.create!(prezis)
-    l.prezis << p
+    l.prezis << Prezi.create!(prezis)
   end
 end
 
 Given /the following comments exist/ do |comments_table|
   comments_table.hashes.each do |comment|
-    # each returned element will be a hash whose key is the table header.
-    # you should arrange to add that lesson to the database here.
     Comment.create!(comment)
   end
 end
@@ -91,19 +84,22 @@ And /I upload "(.*)" as my prezi$/ do |prez_url|
   fill_in("prezi_url", :with => prez_url)
 end
 
-Then /^I should see "(.*)" in this order:$/ do |component, table|
+Then /^I should see "(.*)" in this order:$/ do |component_type, table|
+  table_name = 'components'
+  if component_type == 'lessons' then
+    table_name = component_type
+  end
   pattern = table.raw.flatten.collect(&Regexp.method(:quote)).join('.*?')
   pattern = Regexp.compile(pattern, Regexp::MULTILINE)
-  page.find_by_id("#{component}").text.should =~ pattern
+  page.find_by_id(table_name).text.should =~ pattern
 end
 
-When /^I drag the first "(.*)" down one$/ do |component|
-
-  page.execute_script %Q{
-    $('#{component} tr:first').simulateDragSortable({move: 1});
-  }
-  # pending "need to simulate jquery drag event"
+When /^I drag the first lesson down one$/ do
+  post '/lessons/sort', "lessons"=>["2", "1", "3"]
 end
 
-
-
+When /^I drag the first "([^"]*)" of "([^"]*)" down one$/ do |component_type, lesson|
+  l = Lesson.find_by_title(lesson)
+  url = '/lessons/' + l.id.to_s + '/' + component_type + 's/sort'
+  post url, "components"=>["2", "1"]
+end
